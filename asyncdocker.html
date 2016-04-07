@@ -1428,7 +1428,7 @@ docker start hello</pre><p>And the equivalent asyncdocker example:</p>
 
 <span class="Keyword">proc</span> <span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">async</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
   <span class="Keyword">var</span> <span class="Identifier">docker</span> <span class="Operator">=</span> <span class="Identifier">newAsyncDocker</span><span class="Punctuation">(</span><span class="Identifier">hostname</span><span class="Punctuation">,</span> <span class="Identifier">port</span><span class="Punctuation">)</span>
-  <span class="Identifier">await</span> <span class="Identifier">docker</span><span class="Operator">.</span><span class="Identifier">pull</span><span class="Punctuation">(</span><span class="Identifier">fromImage</span> <span class="Operator">=</span> <span class="StringLit">&quot;ubuntu&quot;</span><span class="Punctuation">,</span>
+  <span class="Identifier">await</span> <span class="Identifier">docker</span><span class="Operator">.</span><span class="Identifier">pull</span><span class="Punctuation">(</span><span class="Identifier">fromImage</span> <span class="Operator">=</span> <span class="StringLit">&quot;ubuntu&quot;</span><span class="Punctuation">,</span> <span class="Identifier">tag</span> <span class="Operator">=</span> <span class="StringLit">&quot;14.10&quot;</span><span class="Punctuation">,</span>
                     <span class="Identifier">cb</span> <span class="Operator">=</span> <span class="Keyword">proc</span><span class="Punctuation">(</span><span class="Identifier">state</span><span class="Punctuation">:</span> <span class="Identifier">JsonNode</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">bool</span> <span class="Operator">=</span>
                       <span class="Keyword">if</span> <span class="Identifier">state</span><span class="Operator">.</span><span class="Identifier">hasKey</span><span class="Punctuation">(</span><span class="StringLit">&quot;progress&quot;</span><span class="Punctuation">)</span><span class="Punctuation">:</span>
                         <span class="Keyword">let</span> <span class="Identifier">current</span> <span class="Operator">=</span> <span class="Identifier">state</span><span class="Punctuation">[</span><span class="StringLit">&quot;progressDetail&quot;</span><span class="Punctuation">]</span><span class="Punctuation">[</span><span class="StringLit">&quot;current&quot;</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Identifier">getNum</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
@@ -3509,7 +3509,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2016-04-07 17:34:02 UTC</small>
+        <small>Made with Nim. Generated: 2016-04-07 17:53:00 UTC</small>
       </div>
     </div>
   </div>
