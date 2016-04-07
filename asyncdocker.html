@@ -1420,10 +1420,16 @@ docker start hello</pre><p>And the equivalent asyncdocker example:</p>
 
 <span class="Identifier">waitFor</span> <span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre>
 <h1><a class="toc-backref" id="simulate-pull-image" href="#simulate-pull-image">Simulate pull image</a></h1><p>This example simulates the docker cli <tt class="docutils literal"><span class="pre">docker pull ubuntu:14.10</span></tt> to download the image and print progress bars:</p>
-<pre class = "listing"><span class="Keyword">proc</span> <span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">async</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
+<pre class = "listing"><span class="Keyword">import</span> <span class="Identifier">asyncdocker</span><span class="Punctuation">,</span> <span class="Identifier">asyncdispatch</span><span class="Punctuation">,</span> <span class="Identifier">json</span>
+
+<span class="Keyword">const</span>
+  <span class="Identifier">hostname</span> <span class="Operator">=</span> <span class="StringLit">&quot;127.0.0.1&quot;</span>
+  <span class="Identifier">port</span> <span class="Operator">=</span> <span class="Identifier">Port</span><span class="Punctuation">(</span><span class="DecNumber">2375</span><span class="Punctuation">)</span>
+
+<span class="Keyword">proc</span> <span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span> <span class="Punctuation">{</span><span class="Operator">.</span><span class="Identifier">async</span><span class="Operator">.</span><span class="Punctuation">}</span> <span class="Operator">=</span>
   <span class="Keyword">var</span> <span class="Identifier">docker</span> <span class="Operator">=</span> <span class="Identifier">newAsyncDocker</span><span class="Punctuation">(</span><span class="Identifier">hostname</span><span class="Punctuation">,</span> <span class="Identifier">port</span><span class="Punctuation">)</span>
-  <span class="Identifier">await</span> <span class="Identifier">docker</span><span class="Operator">.</span><span class="Identifier">pull</span><span class="Punctuation">(</span><span class="Identifier">fromImage</span> <span class="Operator">=</span> <span class="StringLit">&quot;ubuntu&quot;</span><span class="Punctuation">,</span> <span class="Identifier">tag</span> <span class="Operator">=</span> <span class="StringLit">&quot;14.10&quot;</span><span class="Punctuation">,</span>
-                    <span class="Identifier">cb</span> <span class="Operator">=</span> <span class="Keyword">proc</span><span class="Punctuation">(</span><span class="Identifier">state</span><span class="Punctuation">:</span> <span class="Identifier">JsonNode</span><span class="Punctuation">)</span> <span class="Operator">=</span>
+  <span class="Identifier">await</span> <span class="Identifier">docker</span><span class="Operator">.</span><span class="Identifier">pull</span><span class="Punctuation">(</span><span class="Identifier">fromImage</span> <span class="Operator">=</span> <span class="StringLit">&quot;ubuntu&quot;</span><span class="Punctuation">,</span>
+                    <span class="Identifier">cb</span> <span class="Operator">=</span> <span class="Keyword">proc</span><span class="Punctuation">(</span><span class="Identifier">state</span><span class="Punctuation">:</span> <span class="Identifier">JsonNode</span><span class="Punctuation">)</span><span class="Punctuation">:</span> <span class="Identifier">bool</span> <span class="Operator">=</span>
                       <span class="Keyword">if</span> <span class="Identifier">state</span><span class="Operator">.</span><span class="Identifier">hasKey</span><span class="Punctuation">(</span><span class="StringLit">&quot;progress&quot;</span><span class="Punctuation">)</span><span class="Punctuation">:</span>
                         <span class="Keyword">let</span> <span class="Identifier">current</span> <span class="Operator">=</span> <span class="Identifier">state</span><span class="Punctuation">[</span><span class="StringLit">&quot;progressDetail&quot;</span><span class="Punctuation">]</span><span class="Punctuation">[</span><span class="StringLit">&quot;current&quot;</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Identifier">getNum</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
                         <span class="Keyword">let</span> <span class="Identifier">total</span> <span class="Operator">=</span> <span class="Identifier">state</span><span class="Punctuation">[</span><span class="StringLit">&quot;progressDetail&quot;</span><span class="Punctuation">]</span><span class="Punctuation">[</span><span class="StringLit">&quot;total&quot;</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Identifier">getNum</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
@@ -1447,6 +1453,7 @@ docker start hello</pre><p>And the equivalent asyncdocker example:</p>
                         <span class="Keyword">else</span><span class="Punctuation">:</span>
                           <span class="Identifier">stdout</span><span class="Operator">.</span><span class="Identifier">write</span><span class="Punctuation">(</span><span class="Identifier">state</span><span class="Punctuation">[</span><span class="StringLit">&quot;status&quot;</span><span class="Punctuation">]</span><span class="Operator">.</span><span class="Identifier">getStr</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Punctuation">)</span>
                           <span class="Identifier">stdout</span><span class="Operator">.</span><span class="Identifier">write</span><span class="Punctuation">(</span><span class="StringLit">&quot;</span><span class="EscapeSequence">\n</span><span class="StringLit">&quot;</span><span class="Punctuation">)</span><span class="Punctuation">)</span>
+  
   <span class="Identifier">docker</span><span class="Operator">.</span><span class="Identifier">close</span><span class="Punctuation">(</span><span class="Punctuation">)</span>
 
 <span class="Identifier">waitFor</span> <span class="Identifier">main</span><span class="Punctuation">(</span><span class="Punctuation">)</span></pre><p>output:</p>
@@ -1570,7 +1577,7 @@ docker --host 127.0.0.1:2376 \
 <dd>
 Asynchronous docker client.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L250"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L257"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="ContainerStatus"><a name="ContainerStatus"></a><pre><span class="Identifier">ContainerStatus</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1578,7 +1585,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Enumeration of all container status.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L256"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L263"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="RestartPolicy"><a name="RestartPolicy"></a><pre><span class="Identifier">RestartPolicy</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1587,7 +1594,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Enumeration of all restart policy for container.  
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L259"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L266"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="LogType"><a name="LogType"></a><pre><span class="Identifier">LogType</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1596,63 +1603,63 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Enumeration of all available log driver.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L263"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L270"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="DockerError"><a name="DockerError"></a><pre><span class="Identifier">DockerError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">IOError</span></pre></dt>
 <dd>
 Requesting to docker daemon has an error.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L267"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L274"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="NotModifiedError"><a name="NotModifiedError"></a><pre><span class="Identifier">NotModifiedError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">DockerError</span></pre></dt>
 <dd>
 <cite>Not modified</cite> from docker daemon, response status code is <cite>304</cite>.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L269"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L276"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="BadParameterError"><a name="BadParameterError"></a><pre><span class="Identifier">BadParameterError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">DockerError</span></pre></dt>
 <dd>
 <cite>Bad parameter</cite> from docker daemon, response status code is <cite>400</cite>.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L271"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L278"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="ForbiddenError"><a name="ForbiddenError"></a><pre><span class="Identifier">ForbiddenError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">DockerError</span></pre></dt>
 <dd>
 <cite>Forbidden</cite> from docker daemon, response status code is <cite>403</cite>.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L273"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L280"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="NotFoundError"><a name="NotFoundError"></a><pre><span class="Identifier">NotFoundError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">DockerError</span></pre></dt>
 <dd>
 <cite>Not found</cite> from docker daemon, response status code is <cite>404</cite>.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L275"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L282"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="NotAcceptableError"><a name="NotAcceptableError"></a><pre><span class="Identifier">NotAcceptableError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">DockerError</span></pre></dt>
 <dd>
 <cite>Not acceptable</cite> from docker daemon, response status code is <cite>406</cite>.                                          
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L277"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L284"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="ConflictError"><a name="ConflictError"></a><pre><span class="Identifier">ConflictError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">DockerError</span></pre></dt>
 <dd>
 <cite>Conflict</cite> from docker daemon, response status code is <cite>409</cite>.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L279"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L286"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="ServerError"><a name="ServerError"></a><pre><span class="Identifier">ServerError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">DockerError</span></pre></dt>
 <dd>
 <cite>Server error</cite> from docker daemon, response status code is <cite>500</cite>.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L281"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L288"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 
@@ -1664,14 +1671,14 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L284"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L291"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="userAgent"><a name="userAgent"></a><pre><span class="Identifier">userAgent</span> <span class="Other">=</span> <span class="StringLit">&quot;Nim Docker client/0.0.1 (1.22)&quot;</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L285"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L292"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 
@@ -1683,14 +1690,14 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Creates a new AsyncDocker instance. 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L320"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L327"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="close"><a name="close,AsyncDocker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">close</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">)</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
 <dd>
 Closes the socket resource used by <tt class="docutils literal"><span class="pre">c</span></tt>.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L328"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L335"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="ps"><a name="ps,AsyncDocker,string,string,seq[int],seq[ContainerStatus],seq[string]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">ps</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">all</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">size</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">limit</span> <span class="Other">=</span> <span class="Operator">-</span> <span class="DecNumber">1</span><span class="Other">;</span> <span class="Identifier">since</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span> <span class="Identifier">before</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span>
@@ -1777,7 +1784,7 @@ class="link-seesrc" target="_blank">Source</a>
 <span class="Punctuation">}</span><span class="Punctuation">,</span></pre><p>see <a class="reference external" href="https://docs.docker.com/swarm/swarm-api/#endpoints-which-behave-differently">Docker Reference of Swarm API</a></p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L387"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L394"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="create"><a name="create,AsyncDocker,string,seq[string],seq[string],string,string,string,string,seq[tuple[string,string]],string,string,string,seq[string],seq[string],seq[string],seq[string],seq[string],int,int,int,int,int,int,int,string,string,int,seq[tuple[string,int]],seq[tuple[string,int]],seq[tuple[string,int]],seq[tuple[string,int]],seq[tuple[string,int]],int,string,seq[tuple[string,seq[string]]],seq[string],seq[string],seq[string],seq[string],seq[string],seq[string],seq[string],tuple[RestartPolicy,int],seq[string],string,string,int,seq[tuple[string,int,int]],seq[tuple[string,string,string]],tuple[LogType,seq[tuple[string,string]]]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">create</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">image</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">cmd</span><span class="Other">,</span> <span class="Identifier">entrypoint</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span>
@@ -1903,7 +1910,7 @@ class="link-seesrc" target="_blank">Source</a>
               <span class="Operator">--</span><span class="Identifier">publish</span> <span class="DecNumber">5000</span><span class="Punctuation">:</span><span class="DecNumber">5000</span> <span class="Operator">\</span>
               <span class="Identifier">ubuntu</span><span class="Punctuation">:</span><span class="FloatNumber">14.10</span> <span class="Operator">/</span><span class="Identifier">bin</span><span class="Operator">/</span><span class="Identifier">bash</span> <span class="Operator">-</span><span class="Identifier">c</span> <span class="CharLit">'echo hello'</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L535"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L542"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="inspect"><a name="inspect,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">inspect</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">size</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2064,7 +2071,7 @@ class="link-seesrc" target="_blank">Source</a>
  <span class="Punctuation">]</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L889"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L896"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="top"><a name="top,AsyncDocker,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">top</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">psArgs</span> <span class="Other">=</span> <span class="StringLit">&quot;-ef&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2096,7 +2103,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Punctuation">]</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1071"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1078"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="logs"><a name="logs,AsyncDocker,string,int,string,proc(int,string)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">logs</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">stdout</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">;</span>
@@ -2132,7 +2139,7 @@ docker run --detach --name my_container ubuntu:14.04 \
 <span class="Identifier">Log</span> <span class="DecNumber">2</span><span class="Punctuation">:</span> <span class="Identifier">hello</span> <span class="Identifier">world</span>
 <span class="Identifier">Complete</span> <span class="Operator">.</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1123"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1130"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="changes"><a name="changes,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">changes</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2164,7 +2171,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1202"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1209"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="exportContainer"><a name="exportContainer,AsyncDocker,string,proc(string)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">exportContainer</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span>
@@ -2178,7 +2185,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1252"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1259"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="stats"><a name="stats,AsyncDocker,string,proc(JsonNode)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stats</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">stream</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">stat</span><span class="Other">:</span> <span class="Identifier">JsonNode</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span>
@@ -2271,7 +2278,7 @@ class="link-seesrc" target="_blank">Source</a>
  <span class="Punctuation">}</span>
 <span class="Punctuation">}</span> </pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1276"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1283"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="resize"><a name="resize,AsyncDocker,string,int,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">resize</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">width</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2286,7 +2293,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1406"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1413"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="start"><a name="start,AsyncDocker,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">start</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">detachKeys</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2300,7 +2307,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1434"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1441"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="stop"><a name="stop,AsyncDocker,string,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stop</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">time</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2314,7 +2321,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1462"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1469"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="restart"><a name="restart,AsyncDocker,string,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">restart</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">time</span> <span class="Other">=</span> <span class="DecNumber">10</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2329,7 +2336,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Restart the container <cite>name</cite>.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1487"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1494"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="kill"><a name="kill,AsyncDocker,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">kill</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">signal</span> <span class="Other">=</span> <span class="StringLit">&quot;SIGKILL&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2343,7 +2350,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1513"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1520"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="update"><a name="update,AsyncDocker,string,int,int,int,int,string,string,int,int,int,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">update</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
@@ -2359,7 +2366,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="StringLit">&quot;Warnings&quot;</span><span class="Punctuation">:</span> <span class="Punctuation">[</span><span class="Punctuation">]</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1540"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1547"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="rename"><a name="rename,AsyncDocker,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">rename</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">newname</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2373,7 +2380,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1597"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1604"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="pause"><a name="pause,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pause</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -2386,7 +2393,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1624"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1631"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="unpause"><a name="unpause,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">unpause</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -2399,7 +2406,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1646"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1653"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="attach"><a name="attach,AsyncDocker,string,string,proc(int,string)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">attach</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">detachKeys</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span>
@@ -2420,7 +2427,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1668"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1675"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="wait"><a name="wait,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">wait</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -2434,7 +2441,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Result is a JSON object, the internal members of which depends on the version of your docker engine. For example:</p>
 <pre class = "listing"><span class="Punctuation">{</span><span class="StringLit">&quot;StatusCode&quot;</span><span class="Punctuation">:</span> <span class="DecNumber">0</span><span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1714"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1721"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="rm"><a name="rm,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">rm</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">volumes</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">force</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2449,7 +2456,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1746"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1753"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="retrieveArchive"><a name="retrieveArchive,AsyncDocker,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">retrieveArchive</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2473,7 +2480,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="StringLit">&quot;linkTarget&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;&quot;</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1777"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1784"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="getArchive"><a name="getArchive,AsyncDocker,string,string,proc(string)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getArchive</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
@@ -2504,7 +2511,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="StringLit">&quot;linkTarget&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;&quot;</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1828"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1835"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="putArchive"><a name="putArchive,AsyncDocker,string,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">putArchive</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">archive</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
@@ -2534,7 +2541,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="StringLit">&quot;linkTarget&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;&quot;</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1886"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1893"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="images"><a name="images,AsyncDocker,seq[string],string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">images</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">all</span><span class="Other">,</span> <span class="Identifier">digests</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span> <span class="Identifier">danglingFilters</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
@@ -2583,7 +2590,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Punctuation">}</span>
 <span class="Punctuation">]</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1945"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L1952"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="build"><a name="build,AsyncDocker,string,string,string,string,int,string,string,int,int,int,seq[tuple[string,string]],seq[tuple[string,string,string]],proc(JsonNode)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">build</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">tarball</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">dockerfile</span><span class="Other">,</span> <span class="Identifier">t</span><span class="Other">,</span> <span class="Identifier">remote</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span>
@@ -2618,7 +2625,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2024"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2031"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="pull"><a name="pull,AsyncDocker,string,string,string,string,tuple[string,string,string],proc(JsonNode)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pull</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">fromImage</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">fromSrc</span><span class="Other">,</span> <span class="Identifier">repo</span><span class="Other">,</span> <span class="Identifier">tag</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span> <span class="Identifier">registryAuth</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span>
@@ -2638,7 +2645,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2126"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2133"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="inspectImage"><a name="inspectImage,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">inspectImage</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2740,7 +2747,7 @@ class="link-seesrc" target="_blank">Source</a>
  <span class="Punctuation">}</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2177"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2184"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="history"><a name="history,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">history</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2785,7 +2792,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Punctuation">}</span>
 <span class="Punctuation">]</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2296"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2303"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="push"><a name="push,AsyncDocker,string,string,tuple[string,string,string],proc(JsonNode)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">push</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">tag</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">;</span> <span class="Identifier">registryAuth</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span>
@@ -2807,7 +2814,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2358"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2365"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="tag"><a name="tag,AsyncDocker,string,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">tag</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">,</span> <span class="Identifier">repo</span><span class="Other">,</span> <span class="Identifier">tag</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">force</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2822,7 +2829,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2413"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2420"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="rmImage"><a name="rmImage,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">rmImage</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">force</span><span class="Other">,</span> <span class="Identifier">noprune</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -2842,7 +2849,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Punctuation">{</span><span class="StringLit">&quot;Deleted&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;53b4f83ac9&quot;</span><span class="Punctuation">}</span>
 <span class="Punctuation">]</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2446"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2453"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="search"><a name="search,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">search</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -2879,7 +2886,7 @@ class="link-seesrc" target="_blank">Source</a>
 <span class="Operator">...</span>
 <span class="Punctuation">]</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2491"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2498"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="auth"><a name="auth,AsyncDocker,string,string,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">auth</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">username</span><span class="Other">,</span> <span class="Identifier">password</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">email</span><span class="Other">,</span> <span class="Identifier">serveraddress</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span>
@@ -2889,7 +2896,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p><tt class="docutils literal"><span class="pre">FutureError</span></tt> represents an exception, it may be <tt class="docutils literal"><span class="pre">ServerError</span></tt>, or <cite>DockerError</cite>.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2545"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2552"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="info"><a name="info,AsyncDocker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">info</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -2949,7 +2956,7 @@ class="link-seesrc" target="_blank">Source</a>
  <span class="StringLit">&quot;ServerVersion&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;1.9.0&quot;</span>
 <span class="Punctuation">}</span>  </pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2571"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2578"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="version"><a name="version,AsyncDocker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">version</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -2969,7 +2976,7 @@ class="link-seesrc" target="_blank">Source</a>
  <span class="StringLit">&quot;Experimental&quot;</span><span class="Punctuation">:</span> <span class="Identifier">false</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2643"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2650"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="ping"><a name="ping,AsyncDocker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">ping</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span><span class="Other">.}</span></pre></dt>
@@ -2979,7 +2986,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Result is a string. For example:</p>
 <pre class = "listing"><span class="Identifier">OK</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2675"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2682"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="commit"><a name="commit,AsyncDocker,string,string,string,string,string,string,string,string,string,seq[string],seq[string],seq[string],seq[string],seq[tuple[string,string]],string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">commit</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">container</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">repo</span><span class="Other">,</span> <span class="Identifier">tag</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">comment</span><span class="Other">,</span> <span class="Identifier">author</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span>
@@ -3005,7 +3012,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Result is a JSON object, the internal members of which depends on the version of your docker engine. For example:</p>
 <pre class = "listing"><span class="Punctuation">{</span><span class="StringLit">&quot;Id&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;596069db4bf5&quot;</span><span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2695"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2702"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="events"><a name="events,AsyncDocker,int,int,seq[tuple[string,string]],proc(JsonNode)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">events</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">since</span><span class="Other">,</span> <span class="Identifier">until</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">;</span>
@@ -3034,7 +3041,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2779"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2786"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="get"><a name="get,AsyncDocker,string,proc(string)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">get</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -3048,7 +3055,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2834"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2841"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="get"><a name="get,AsyncDocker,seq[string],proc(string)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">get</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">names</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -3062,7 +3069,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2860"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2867"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="execCreate"><a name="execCreate,AsyncDocker,string,string,seq[string]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">execCreate</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
@@ -3087,7 +3094,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="StringLit">&quot;Warnings&quot;</span><span class="Punctuation">:</span><span class="Punctuation">[</span><span class="Punctuation">]</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2905"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2912"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="execStart"><a name="execStart,AsyncDocker,string,proc(string)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">execStart</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">detach</span><span class="Other">,</span> <span class="Identifier">tty</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">;</span>
@@ -3103,7 +3110,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2960"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2967"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="execResize"><a name="execResize,AsyncDocker,string,int,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">execResize</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">width</span><span class="Other">,</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -3117,7 +3124,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2992"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L2999"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="execInspect"><a name="execInspect,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">execInspect</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -3231,7 +3238,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Punctuation">}</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3020"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3027"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="volumes"><a name="volumes,AsyncDocker"></a><pre><span class="Keyword">proc</span> <span class="Identifier">volumes</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">dangling</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -3253,7 +3260,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Punctuation">]</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3152"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3159"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="createVolume"><a name="createVolume,AsyncDocker,string,string,seq[tuple[string,string]]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createVolume</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">driver</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span>
@@ -3278,7 +3285,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="StringLit">&quot;Name&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;tardis&quot;</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3195"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3202"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="inspectVolume"><a name="inspectVolume,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">inspectVolume</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -3296,7 +3303,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="StringLit">&quot;Mountpoint&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;/var/lib/docker/volumes/tardis&quot;</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3245"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3252"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="rmVolume"><a name="rmVolume,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">rmVolume</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -3309,7 +3316,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3280"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3287"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="networks"><a name="networks,AsyncDocker,seq[string],seq[string],seq[string]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">networks</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span>
@@ -3380,7 +3387,7 @@ class="link-seesrc" target="_blank">Source</a>
   }
 ]</pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3304"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3311"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="inspectNetwork"><a name="inspectNetwork,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">inspectNetwork</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">JsonNode</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -3423,7 +3430,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Punctuation">}</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3408"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3415"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="createNetwork"><a name="createNetwork,AsyncDocker,string,string,string,seq[tuple[string,string,string]],seq[tuple[string,bool]]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">createNetwork</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">driver</span> <span class="Other">=</span> <span class="StringLit">&quot;bridge&quot;</span><span class="Other">;</span> <span class="Identifier">ipamDriver</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span>
@@ -3446,7 +3453,7 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="StringLit">&quot;Warning&quot;</span><span class="Punctuation">:</span> <span class="StringLit">&quot;&quot;</span>
 <span class="Punctuation">}</span></pre>
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3465"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3472"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="connect"><a name="connect,AsyncDocker,string,string,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connect</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">,</span> <span class="Identifier">container</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">iPv4Address</span><span class="Other">,</span> <span class="Identifier">iPv6Address</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span>
@@ -3461,7 +3468,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Docs: <a class="reference external" href="https://docs.docker.com/engine/reference/api/docker_remote_api_v1.22/#connect-a-container-to-a-network">https://docs.docker.com/engine/reference/api/docker_remote_api_v1.22/#connect-a-container-to-a-network</a></p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3524"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3531"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="disconnect"><a name="disconnect,AsyncDocker,string,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">disconnect</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">,</span> <span class="Identifier">container</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">force</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span>
@@ -3476,7 +3483,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3558"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3565"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="rmNetWork"><a name="rmNetWork,AsyncDocker,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">rmNetWork</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">AsyncDocker</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other">{.</span><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -3489,7 +3496,7 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3586"
+href="https://github.com/tulayang/asyncdocker/blob/master/asyncdocker.nim#L3593"
 class="link-seesrc" target="_blank">Source</a>
 </dd>
 
@@ -3502,7 +3509,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2016-04-07 16:10:49 UTC</small>
+        <small>Made with Nim. Generated: 2016-04-07 17:34:02 UTC</small>
       </div>
     </div>
   </div>
