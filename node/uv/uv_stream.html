@@ -1307,9 +1307,9 @@ function main() {
 <dd>
 Stream handle type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L18"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="Connect"><a name="Connect"></a><pre><span class="Identifier">Connect</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1320,9 +1320,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Connect request type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L24"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L24"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="Shutdown"><a name="Shutdown"></a><pre><span class="Identifier">Shutdown</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1333,9 +1333,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Shutdown request type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L29"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L29"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="Write"><a name="Write"></a><pre><span class="Identifier">Write</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1347,9 +1347,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Write request type. Careful attention must be paid when reusing objects of this type. When a stream is in non-blocking mode, write requests sent with <tt class="docutils literal"><span class="pre">write()</span></tt> will be queued. Reusing objects at this point is undefined behaviour. It is safe to reuse the ````Write`` object only after the callback passed to <tt class="docutils literal"><span class="pre">write()</span></tt> is fired.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L34"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L34"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="ReadCb"><a name="ReadCb"></a><pre><span class="Identifier">ReadCb</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">nread</span><span class="Other">:</span> <span class="Identifier">cssize</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Buffer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1361,45 +1361,45 @@ class="link-seesrc" target="_blank">Source</a>
 <p>The callee is responsible for freeing the buffer, libuv does not reuse it. The buffer may be a nil buffer (where buf.base=nil and buf.len=0) on error.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L43"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L43"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="WriteCb"><a name="WriteCb"></a><pre><span class="Identifier">WriteCb</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Write</span><span class="Other">;</span> <span class="Identifier">status</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Callback called after data was written on a stream. status will be 0 in case of success, &lt; 0 otherwise.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L57"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L57"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="ConnectCb"><a name="ConnectCb"></a><pre><span class="Identifier">ConnectCb</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Connect</span><span class="Other">;</span> <span class="Identifier">status</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Callback called after a connection started by <tt class="docutils literal"><span class="pre">connect()</span></tt> is done. status will be 0 in case of success, &lt; 0 otherwise.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L60"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L60"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="ShutdownCb"><a name="ShutdownCb"></a><pre><span class="Identifier">ShutdownCb</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Shutdown</span><span class="Other">;</span> <span class="Identifier">status</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Callback called after a shutdown request has been completed. status will be 0 in case of success, &lt; 0 otherwise.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L63"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L63"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="ConnectionCb"><a name="ConnectionCb"></a><pre><span class="Identifier">ConnectionCb</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">server</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">status</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Callback called when a stream server has received an incoming connection. The user can accept the connection by calling <tt class="docutils literal"><span class="pre">accept()</span></tt>. status will be 0 in case of success, &lt; 0 otherwise.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L66"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L66"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1412,9 +1412,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Shutdown the outgoing (write) side of a duplex stream. It waits for pending write requests to complete. The handle should refer to a initialized stream. req should be an uninitialized shutdown request struct. The cb is called after shutdown is complete.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L70"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L70"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="listen"><a name="listen,ptr.Stream,cint,ConnectionCb"></a><pre><span class="Keyword">proc</span> <span class="Identifier">listen</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">backlog</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Identifier">ConnectionCb</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1422,9 +1422,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Start listening for incoming connections. <cite>backlog</cite> indicates the number of connections the kernel might queue, same as <a class="reference external" href="http://linux.die.net/man/2/listen">listen(2)</a>. When a new incoming connection is received the <tt class="docutils literal"><span class="pre">ConnectionCb</span></tt> callback is called.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L74"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L74"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L74" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L74" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="accept"><a name="accept,ptr.Stream,ptr.Stream"></a><pre><span class="Keyword">proc</span> <span class="Identifier">accept</span><span class="Other">(</span><span class="Identifier">server</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">client</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_accept&quot;</span><span class="Other">,</span>
@@ -1435,9 +1435,9 @@ class="link-seesrc" target="_blank">Source</a>
 <blockquote><p>Note: server and client must be handles running on the same loop.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L79"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L79"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L79" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L79" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="readStart"><a name="readStart,ptr.Stream,AllocCb,ReadCb"></a><pre><span class="Keyword">proc</span> <span class="Identifier">readStart</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">allocCb</span><span class="Other">:</span> <span class="Identifier">AllocCb</span><span class="Other">;</span> <span class="Identifier">readCb</span><span class="Other">:</span> <span class="Identifier">ReadCb</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1445,9 +1445,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Read data from an incoming stream. The <tt class="docutils literal"><span class="pre">ReadCb</span></tt> callback will be made several times until there is no more data to read or <tt class="docutils literal"><span class="pre">readStop()</span></tt> is called.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L88"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L88"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L88" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L88" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="readStop"><a name="readStop,ptr.Stream"></a><pre><span class="Keyword">proc</span> <span class="Identifier">readStop</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_read_stop&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1456,9 +1456,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>This function is idempotent and may be safely called on a stopped stream.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L91"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L91"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L91" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L91" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="write"><a name="write,ptr.Write,ptr.Stream,ptr.Buffer,cuint,WriteCb"></a><pre><span class="Keyword">proc</span> <span class="Identifier">write</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Write</span><span class="Other">;</span> <span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">bufs</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Buffer</span><span class="Other">;</span> <span class="Identifier">nbufs</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Identifier">WriteCb</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1471,9 +1471,9 @@ Write data to stream. Buffers are written in order. Example:<pre class = "listin
 
 <span class="Identifier">Note</span> <span class="Identifier">The</span> <span class="Identifier">memory</span> <span class="Identifier">pointed</span> <span class="Identifier">to</span> <span class="Identifier">by</span> <span class="Identifier">the</span> <span class="Identifier">buffers</span> <span class="Identifier">must</span> <span class="Identifier">remain</span> <span class="Identifier">valid</span> <span class="Identifier">until</span> <span class="Identifier">the</span> <span class="Identifier">callback</span> <span class="Identifier">gets</span> <span class="Identifier">called</span><span class="Operator">.</span> <span class="Identifier">This</span> <span class="Identifier">also</span> <span class="Identifier">holds</span> <span class="Keyword">for</span> <span class="Punctuation">`</span><span class="Punctuation">`</span><span class="Identifier">write2</span><span class="Punctuation">(</span><span class="Punctuation">)</span><span class="Punctuation">`</span><span class="Punctuation">`</span><span class="Operator">.</span></pre>
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L96"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L96"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L96" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L96" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="write2"><a name="write2,ptr.Write,ptr.Stream,ptr.Buffer,cuint,ptr.Stream,WriteCb"></a><pre><span class="Keyword">proc</span> <span class="Identifier">write2</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Write</span><span class="Other">;</span> <span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">bufs</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Buffer</span><span class="Other">;</span> <span class="Identifier">nbufs</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">;</span>
@@ -1484,9 +1484,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Note sendHandle must be a TCP socket or pipe, which is a server or a connection (listening or connected state). Bound sockets or pipes will be assumed to be servers.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L108"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L108"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L108" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L108" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="tryWrite"><a name="tryWrite,ptr.Stream,ptr.Buffer,cuint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">tryWrite</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">bufs</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Buffer</span><span class="Other">;</span> <span class="Identifier">nbufs</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1499,27 +1499,27 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L114"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L114"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isReadable"><a name="isReadable,ptr.Stream"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isReadable</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_is_readable&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Returns 1 if the stream is readable, 0 otherwise.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L122"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L122"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L122" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L122" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isWriteable"><a name="isWriteable,ptr.Stream"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isWriteable</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_is_writable&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Returns 1 if the stream is writable, 0 otherwise.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L125"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L125"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L125" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L125" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setBlocking"><a name="setBlocking,ptr.Stream,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setBlocking</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stream</span><span class="Other">;</span> <span class="Identifier">blocking</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1534,9 +1534,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Changed in version 1.4.0: UNIX implementation added.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_stream.nim#L128"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_stream.nim#L128"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_stream.nim#L128" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_stream.nim#L128" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1549,7 +1549,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:30 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:51 UTC</small>
       </div>
     </div>
   </div>

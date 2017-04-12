@@ -1252,54 +1252,54 @@ function main() {
 <dd>
 libuv version’s major number.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_version.nim#L16"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_version.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_version.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_version.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="VERSION_MINOR"><a name="VERSION_MINOR"></a><pre><span class="Identifier">VERSION_MINOR</span><span class="Other">:</span> <span class="Identifier">cuint</span></pre></dt>
 <dd>
 libuv version’s minor number.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_version.nim#L18"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_version.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_version.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_version.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="VERSION_PATCH"><a name="VERSION_PATCH"></a><pre><span class="Identifier">VERSION_PATCH</span><span class="Other">:</span> <span class="Identifier">cuint</span></pre></dt>
 <dd>
 libuv version’s patch number.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_version.nim#L20"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_version.nim#L20"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_version.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_version.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="VERSION_IS_RELEASE"><a name="VERSION_IS_RELEASE"></a><pre><span class="Identifier">VERSION_IS_RELEASE</span><span class="Other">:</span> <span class="Identifier">cint</span></pre></dt>
 <dd>
 Set to 1 to indicate a release version of libuv, 0 for a development snapshot.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_version.nim#L22"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_version.nim#L22"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_version.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_version.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="VERSION_SUFFIX"><a name="VERSION_SUFFIX"></a><pre><span class="Identifier">VERSION_SUFFIX</span><span class="Other">:</span> <span class="Identifier">cstring</span></pre></dt>
 <dd>
 libuv version suffix. Certain development releases such as Release Candidates might have a suffix such as “rc”.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_version.nim#L24"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_version.nim#L24"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_version.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_version.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="VERSION_HEX"><a name="VERSION_HEX"></a><pre><span class="Identifier">VERSION_HEX</span><span class="Other">:</span> <span class="Identifier">cuint</span></pre></dt>
 <dd>
 Returns the libuv version packed into a single integer. 8 bits are used for each component, with the patch number stored in the 8 least significant bits. E.g. for libuv 1.2.3 this would be 0x010203.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_version.nim#L27"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_version.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_version.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_version.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1311,18 +1311,18 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Returns <tt class="docutils literal"><span class="pre">VERSION_HEX</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_version.nim#L32"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_version.nim#L32"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_version.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_version.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="versionString"><a name="versionString,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">versionString</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cstring</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_version_string&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Returns the libuv version number as a string. For non-release versions the version suffix is included.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_version.nim#L35"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_version.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_version.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_version.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1335,7 +1335,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:32 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:52 UTC</small>
       </div>
     </div>
   </div>

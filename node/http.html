@@ -1301,18 +1301,18 @@ function main() {
 <dd>
 Abstraction for HTTP request.
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L27"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="ServerRequest"><a name="ServerRequest"></a><pre><span class="Identifier">ServerRequest</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">HttpRequest</span></pre></dt>
 <dd>
 Incominng HTTP request on server.
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L32"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L32"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="ClientRequest"><a name="ClientRequest"></a><pre><span class="Identifier">ClientRequest</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">HttpRequest</span>
@@ -1324,9 +1324,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 HTTP reqeust made by client.
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L34"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L34"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1338,9 +1338,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Buffer size for reading http header.
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L14"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1352,18 +1352,18 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L181"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L181"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L181" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L181" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="close"><a name="close,HttpRequest"></a><pre><span class="Keyword">proc</span> <span class="Identifier">close</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">HttpRequest</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Close the internal TCP connection, connection is no longer available. 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L186"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L186"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L186" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L186" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="readLine"><a name="readLine,HttpRequest,pointer,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">readLine</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">HttpRequest</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">int</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1373,9 +1373,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p><tt class="docutils literal"><span class="pre">size</span></tt> is length of <tt class="docutils literal"><span class="pre">buf</span></tt>, it must be not less than <tt class="docutils literal"><span class="pre">HeaderBufSize</span></tt>. This function is mainly used for optimization purposes.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L190"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L190"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L190" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L190" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="readLine"><a name="readLine,HttpRequest"></a><pre><span class="Keyword">proc</span> <span class="Identifier">readLine</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">HttpRequest</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span>
@@ -1385,9 +1385,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>If the line's length is greater than <tt class="docutils literal"><span class="pre">HeaderBufSize</span></tt>, raise an error.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L224"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L224"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L224" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L224" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="readChunk"><a name="readChunk,HttpRequest,pointer,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">readChunk</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">HttpRequest</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">immediate</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">int</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1399,9 +1399,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>This function returns a decoded result for <tt class="docutils literal"><span class="pre">Transfer-Encoding: chunked</span></tt> HTTP request. An error occured if <tt class="docutils literal"><span class="pre">size</span></tt> less then the length of a chunk. Make sure <tt class="docutils literal"><span class="pre">size</span></tt> is long enough.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L257"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L257"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L257" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L257" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="readChunk"><a name="readChunk,HttpRequest,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">readChunk</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">HttpRequest</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">immediate</span> <span class="Other">=</span> <span class="Identifier">true</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1412,9 +1412,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>When reached end of a request, returns <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt>. Or raise <tt class="docutils literal"><span class="pre">NodeError</span></tt> on error. </p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L329"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L329"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L329" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L329" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="writeChunk"><a name="writeChunk,HttpRequest,pointer,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">writeChunk</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">HttpRequest</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1424,9 +1424,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>For <tt class="docutils literal"><span class="pre">Transfer-Encoding: chunked</span></tt> HTTP request this function will encode data, <tt class="docutils literal"><span class="pre">size</span></tt> must be two longer then the real length of <tt class="docutils literal"><span class="pre">buf</span></tt> to hold the last <tt class="docutils literal"><span class="pre">\r\L</span></tt>.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L349"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L349"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L349" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L349" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="writeChunk"><a name="writeChunk,HttpRequest,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">writeChunk</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">HttpRequest</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">void</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1436,9 +1436,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>For <tt class="docutils literal"><span class="pre">Transfer-Encoding: chunked</span></tt> HTTP request this function will encode data.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L369"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L369"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L369" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L369" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="readHead"><a name="readHead,ServerRequest"></a><pre><span class="Keyword">proc</span> <span class="Identifier">readHead</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">ServerRequest</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">httpVersionMajor</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span>
@@ -1450,9 +1450,9 @@ Reads the whole header from incoming HTTP request, returns the results.<dl class
 </dl>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L389"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L389"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L389" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L389" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="readHead"><a name="readHead,ClientRequest"></a><pre><span class="Keyword">proc</span> <span class="Identifier">readHead</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">ClientRequest</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">httpVersionMajor</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span>
@@ -1464,9 +1464,9 @@ Reads the whole header from HTTP response from server, returns the results.<dl c
 </dl>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L428"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L428"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L428" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L428" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="writeHead"><a name="writeHead,ServerRequest,int,StringTableRef"></a><pre><span class="Keyword">proc</span> <span class="Identifier">writeHead</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">ServerRequest</span><span class="Other">;</span> <span class="Identifier">statusCode</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">StringTableRef</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span>
@@ -1474,9 +1474,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Writes the whole header and status via HTTP request on server.
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L462"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L462"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L462" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L462" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="writeHead"><a name="writeHead,ClientRequest,string,string,StringTableRef"></a><pre><span class="Keyword">proc</span> <span class="Identifier">writeHead</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">ClientRequest</span><span class="Other">;</span> <span class="Identifier">reqMethod</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
@@ -1485,9 +1485,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Writes the whole header and status via HTTP request on client.
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L473"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L473"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L473" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L473" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="request"><a name="request,ClientRequest,Port,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">request</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">ClientRequest</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">Port</span><span class="Other">;</span> <span class="Identifier">hostname</span> <span class="Other">=</span> <span class="StringLit">&quot;127.0.0.1&quot;</span><span class="Other">;</span>
@@ -1496,9 +1496,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Make a new HTTP connection if <tt class="docutils literal"><span class="pre">req</span></tt> is not connecting. Or close the conection and make a new connection if <tt class="docutils literal"><span class="pre">port</span></tt>,``hostname``,``domain`` changed. Or returns immediately.
 &nbsp;&nbsp;<a
-href="/tree/master/node/http.nim#L485"
+href="https://github.com/tulayang/nimnode/tree/master/node/http.nim#L485"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/http.nim#L485" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/http.nim#L485" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1511,7 +1511,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:33 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:54 UTC</small>
       </div>
     </div>
   </div>

@@ -1379,81 +1379,81 @@ function main() {
 <dd>
 Buffer data type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L31"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L31"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="FileHandle"><a name="FileHandle"></a><pre><span class="Identifier">FileHandle</span> <span class="Other">=</span> <span class="Identifier">cint</span></pre></dt>
 <dd>
 Cross platform representation of a file handle.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L34"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L34"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="SocketHandle"><a name="SocketHandle"></a><pre><span class="Identifier">SocketHandle</span> <span class="Other">=</span> <span class="Identifier">posix</span><span class="Other">.</span><span class="Identifier">SocketHandle</span></pre></dt>
 <dd>
 Cross platform representation of a socket handle.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L35"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="FD"><a name="FD"></a><pre><span class="Identifier">FD</span> <span class="Other">=</span> <span class="Identifier">cint</span></pre></dt>
 <dd>
 Abstract representation of a file descriptor.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L36"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L36"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="cssize"><a name="cssize"></a><pre><span class="Identifier">cssize</span> <span class="Other">=</span> <span class="Identifier">int</span></pre></dt>
 <dd>
 This is the same as the type <tt class="docutils literal"><span class="pre">ssize_t</span></tt> in C.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L37"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L37"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="MallocProc"><a name="MallocProc"></a><pre><span class="Identifier">MallocProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Replacement function for <a class="reference external" href="http://linux.die.net/man/3/malloc">malloc(3)</a>. See <tt class="docutils literal"><span class="pre">replaceAllocator()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L39"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L39"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="ReallocProc"><a name="ReallocProc"></a><pre><span class="Identifier">ReallocProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Replacement function for <a class="reference external" href="http://linux.die.net/man/3/realloc">realloc(3)</a>. See <tt class="docutils literal"><span class="pre">replaceAllocator()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L43"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L43"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="CallocProc"><a name="CallocProc"></a><pre><span class="Identifier">CallocProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">csize</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Replacement function for <a class="reference external" href="http://linux.die.net/man/3/calloc">calloc(3)</a>. See <tt class="docutils literal"><span class="pre">replaceAllocator()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L47"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L47"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="FreeProc"><a name="FreeProc"></a><pre><span class="Identifier">FreeProc</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Replacement function for <a class="reference external" href="http://linux.die.net/man/3/free">free(3)</a>. See <tt class="docutils literal"><span class="pre">replaceAllocator()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L51"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L51"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="TimeVal"><a name="TimeVal"></a><pre><span class="Identifier">TimeVal</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1463,9 +1463,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L55"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L55"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="ResourceUsage"><a name="ResourceUsage"></a><pre><span class="Identifier">ResourceUsage</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1491,9 +1491,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Members marked with (X) are unsupported on Windows. See <a class="reference external" href="http://linux.die.net/man/2/getrusage">getrusage(2)</a> for supported fields on Unix.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L59"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L59"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L59" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L59" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="CpuTimes"><a name="CpuTimes"></a><pre><span class="Identifier">CpuTimes</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1506,9 +1506,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L81"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L81"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="CpuInfo"><a name="CpuInfo"></a><pre><span class="Identifier">CpuInfo</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1519,9 +1519,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Data type for CPU information.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L88"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L88"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L88" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L88" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="SockAddrN"><a name="SockAddrN"></a><pre><span class="Identifier">SockAddrN</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">union</span></div><span class="Other pragmaend">.}</span>
@@ -1531,9 +1531,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L94"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L94"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L94" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L94" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="InterfaceAddress"><a name="InterfaceAddress"></a><pre><span class="Identifier">InterfaceAddress</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1546,9 +1546,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Data type for interface addresses.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L98"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L98"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L98" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L98" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="Password"><a name="Password"></a><pre><span class="Identifier">Password</span> <span class="Other">=</span> <span class="Keyword">object</span>
@@ -1561,9 +1561,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Data type for password file information.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L106"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L106"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L106" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L106" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1582,9 +1582,9 @@ class="link-seesrc" target="_blank">Source</a>
 <blockquote><p>Warning: There is no protection against changing the allocator multiple times. If the user changes it they are responsible for making sure the allocator is changed while no memory was allocated with the previous allocator, or that they are compatible.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L114"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L114"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L114" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="initBuffer"><a name="initBuffer,pointer,cuint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">initBuffer</span><span class="Other">(</span><span class="Identifier">base</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">length</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Buffer</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_buf_init&quot;</span><span class="Other">,</span>
@@ -1594,9 +1594,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Due to platform differences the user cannot rely on the ordering of the base and len members of the <tt class="docutils literal"><span class="pre">Buffer</span></tt> struct. The user is responsible for freeing base after the <tt class="docutils literal"><span class="pre">Buffer</span></tt> is done. Return struct passed by value.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L134"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L134"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L134" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L134" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setupArgs"><a name="setupArgs,cint,cstringArray"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setupArgs</span><span class="Other">(</span><span class="Identifier">argc</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">argv</span><span class="Other">:</span> <span class="Identifier">cstringArray</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cstringArray</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1604,9 +1604,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Store the program arguments. Required for getting / setting the process title.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L141"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L141"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L141" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L141" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getProcessTitle"><a name="getProcessTitle,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getProcessTitle</span><span class="Other">(</span><span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1614,9 +1614,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Gets the title of the current process. If buffer is <tt class="docutils literal"><span class="pre">nil</span></tt> or size is zero, <tt class="docutils literal"><span class="pre">EINVAL</span></tt> is returned. If size cannot accommodate the process title and terminating NULL character, the function returns <tt class="docutils literal"><span class="pre">ENOBUFS</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L144"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L144"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L144" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L144" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setProcessTitle"><a name="setProcessTitle,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setProcessTitle</span><span class="Other">(</span><span class="Identifier">title</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_set_process_title&quot;</span><span class="Other">,</span>
@@ -1624,9 +1624,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Sets the current process title.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L148"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L148"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L148" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L148" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getResidentSetMemory"><a name="getResidentSetMemory,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getResidentSetMemory</span><span class="Other">(</span><span class="Identifier">rss</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_resident_set_memory&quot;</span><span class="Other">,</span>
@@ -1634,18 +1634,18 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Gets the resident set size (RSS) for the current process.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L151"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L151"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L151" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L151" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getUpTime"><a name="getUpTime,cdouble"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getUpTime</span><span class="Other">(</span><span class="Identifier">uptime</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cdouble</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_uptime&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Gets the current system uptime.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L154"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L154"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L154" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L154" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getResourceUsage"><a name="getResourceUsage,ResourceUsage"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getResourceUsage</span><span class="Other">(</span><span class="Identifier">rusage</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">ResourceUsage</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_getrusage&quot;</span><span class="Other">,</span>
@@ -1654,9 +1654,9 @@ class="link-seesrc" target="_blank">Source</a>
 Gets the resource usage measures for the current process.<blockquote><p>Note: On Windows not all fields are set, the unsupported fields are filled with zeroes. See <tt class="docutils literal"><span class="pre">ResourceUsage</span></tt> for more details.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L157"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L157"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L157" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L157" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCpuInfo"><a name="getCpuInfo,ptr.CpuInfo,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCpuInfo</span><span class="Other">(</span><span class="Identifier">cpuInfos</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Keyword">ptr</span> <span class="Identifier">CpuInfo</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1664,9 +1664,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Gets information about the CPUs on the system. The cpuInfos array will have count elements and needs to be freed with <tt class="docutils literal"><span class="pre">freeCpuInfo()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L163"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L163"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L163" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L163" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="freeCpuInfo"><a name="freeCpuInfo,ptr.CpuInfo,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">freeCpuInfo</span><span class="Other">(</span><span class="Identifier">cpuInfos</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">CpuInfo</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_free_cpu_info&quot;</span><span class="Other">,</span>
@@ -1674,9 +1674,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Frees the cpu_infos array previously allocated with <tt class="docutils literal"><span class="pre">getCpuInfo()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L167"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L167"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L167" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L167" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getInterfaceAddresses"><a name="getInterfaceAddresses,ptr.InterfaceAddress,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getInterfaceAddresses</span><span class="Other">(</span><span class="Identifier">addresses</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Keyword">ptr</span> <span class="Identifier">InterfaceAddress</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1684,9 +1684,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Gets address information about the network interfaces on the system. An array of count elements is allocated and returned in addresses. It must be freed by the user , calling <tt class="docutils literal"><span class="pre">freeInterfaceAddresses()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L170"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L170"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L170" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L170" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="freeInterfaceAddresses"><a name="freeInterfaceAddresses,ptr.InterfaceAddress,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">freeInterfaceAddresses</span><span class="Other">(</span><span class="Identifier">addresses</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">InterfaceAddress</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1694,9 +1694,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Free an array of <tt class="docutils literal"><span class="pre">InterfaceAddress</span></tt> which was returned by <tt class="docutils literal"><span class="pre">getInterfaceAddresses()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L175"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L175"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L175" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L175" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getLoadAverage"><a name="getLoadAverage,array[,cdouble]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getLoadAverage</span><span class="Other">(</span><span class="Identifier">avg</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">array</span><span class="Other">[</span><span class="DecNumber">3</span><span class="Other">,</span> <span class="Identifier">cdouble</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_loadavg&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1704,9 +1704,9 @@ class="link-seesrc" target="_blank">Source</a>
 Gets the load average. See: <a class="reference external" href="http://en.wikipedia.org/wiki/Load_(computing">http://en.wikipedia.org/wiki/Load_(computing</a>)<blockquote><p>Note: Returns [0,0,0] on Windows (i.e., it’s not implemented).</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L179"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L179"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L179" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L179" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="toIp4Addr"><a name="toIp4Addr,cstring,cint,Sockaddr_in"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toIp4Addr</span><span class="Other">(</span><span class="Identifier">ip</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">sockAddr</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Sockaddr_in</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1714,9 +1714,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Convert a string containing an IPv4 addresses to a binary structure.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L184"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L184"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L184" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L184" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="toIp6Addr"><a name="toIp6Addr,cstring,cint,Sockaddr_in6"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toIp6Addr</span><span class="Other">(</span><span class="Identifier">ip</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">sockAddr</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Sockaddr_in6</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1724,9 +1724,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Convert a string containing an IPv6 addresses to a binary structure.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L188"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L188"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L188" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L188" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="toIp4Name"><a name="toIp4Name,ptr.Sockaddr_in,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toIp4Name</span><span class="Other">(</span><span class="Identifier">src</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Sockaddr_in</span><span class="Other">;</span> <span class="Identifier">dst</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1734,9 +1734,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Convert a binary structure containing an IPv4 address to a string.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L192"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L192"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L192" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L192" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="toIp6Name"><a name="toIp6Name,ptr.Sockaddr_in6,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">toIp6Name</span><span class="Other">(</span><span class="Identifier">src</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Sockaddr_in6</span><span class="Other">;</span> <span class="Identifier">dst</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1744,9 +1744,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Convert a binary structure containing an IPv6 address to a string.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L196"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L196"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L196" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L196" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="inetNtop"><a name="inetNtop,cint,pointer,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">inetNtop</span><span class="Other">(</span><span class="Identifier">af</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">src</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">dst</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1754,9 +1754,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 This function converts an Internet address (either IPv4 or IPv6) from network (binary) to presentation (textual) form. <cite>af</cite> should be either <tt class="docutils literal"><span class="pre">AF_INET</span></tt> or <tt class="docutils literal"><span class="pre">AF_INET6</span></tt>, as appropriate for the type of address being converted.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L200"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L200"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L200" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L200" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="inetPton"><a name="inetPton,cint,cstring,pointer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">inetPton</span><span class="Other">(</span><span class="Identifier">af</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">src</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">dst</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_inet_pton&quot;</span><span class="Other">,</span>
@@ -1766,9 +1766,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Cross-platform IPv6-capable implementation of <a class="reference external" href="http://linux.die.net/man/3/inet_ntop">inet_ntop(3)</a> and <a class="reference external" href="http://linux.die.net/man/3/inet_pton">inet_pton(3)</a>. On success they return 0. In case of error the target dst pointer is unmodified.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L205"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L205"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L205" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L205" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getExePath"><a name="getExePath,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getExePath</span><span class="Other">(</span><span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_exepath&quot;</span><span class="Other">,</span>
@@ -1776,9 +1776,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Gets the executable path.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L212"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L212"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L212" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L212" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getCurrentDir"><a name="getCurrentDir,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getCurrentDir</span><span class="Other">(</span><span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_cwd&quot;</span><span class="Other">,</span>
@@ -1788,18 +1788,18 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Changed in version 1.1.0: On Unix the path no longer ends in a slash.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L215"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L215"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L215" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L215" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="chgCurrentDir"><a name="chgCurrentDir,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">chgCurrentDir</span><span class="Other">(</span><span class="Identifier">dir</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_chdir&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Changes the current working directory.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L220"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L220"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L220" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L220" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getHomeDir"><a name="getHomeDir,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getHomeDir</span><span class="Other">(</span><span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_os_homedir&quot;</span><span class="Other">,</span>
@@ -1809,9 +1809,9 @@ Gets the current user’s home directory. On Windows, getHomeDir() first checks 
 <p><em>New in version 1.6.0.</em></p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L223"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L223"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L223" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L223" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getTpmDir"><a name="getTpmDir,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getTpmDir</span><span class="Other">(</span><span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_os_tmpdir&quot;</span><span class="Other">,</span>
@@ -1821,9 +1821,9 @@ Gets the temp directory. On Windows, getTpmDir() uses GetTempPathW(). On all oth
 <p><em>New in version 1.6.0.</em></p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L237"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L237"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L237" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L237" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPassword"><a name="getPassword,Password"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPassword</span><span class="Other">(</span><span class="Identifier">pwd</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Password</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_os_get_passwd&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1832,9 +1832,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p><em>New in version 1.9.0.</em></p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L249"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L249"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L249" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L249" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="freePassword"><a name="freePassword,Password"></a><pre><span class="Keyword">proc</span> <span class="Identifier">freePassword</span><span class="Other">(</span><span class="Identifier">pwd</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Password</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_os_free_passwd&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1843,18 +1843,18 @@ class="link-seesrc" target="_blank">Source</a>
 <p><em>New in version 1.9.0.</em></p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L258"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L258"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L258" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L258" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getTotalMemory"><a name="getTotalMemory,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getTotalMemory</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">uint64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_get_total_memory&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Gets memory information (in bytes).
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L263"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L263"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L263" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L263" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="hrTime"><a name="hrTime,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">hrTime</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">uint64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_hrtime&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1862,9 +1862,9 @@ class="link-seesrc" target="_blank">Source</a>
 Returns the current high-resolution real time. This is expressed in nanoseconds. It is relative to an arbitrary time in the past. It is not related to the time of day and therefore not subject to clock drift. The primary use is for measuring performance between intervals.<blockquote><p>Note: Not every platform can support nanosecond resolution; however, this value will always be in nanoseconds.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_misc.nim#L266"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_misc.nim#L266"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_misc.nim#L266" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_misc.nim#L266" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1877,7 +1877,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:29 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:50 UTC</small>
       </div>
     </div>
   </div>

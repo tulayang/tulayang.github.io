@@ -1277,9 +1277,9 @@ function main() {
 <dd>
 Poll handle type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_poll.nim#L39"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_poll.nim#L39"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_poll.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_poll.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="PollEvent"><a name="PollEvent"></a><pre><span class="Identifier">PollEvent</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1287,18 +1287,18 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Poll event types
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_poll.nim#L44"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_poll.nim#L44"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_poll.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_poll.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="PollCb"><a name="PollCb"></a><pre><span class="Identifier">PollCb</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Poll</span><span class="Other">;</span> <span class="Identifier">status</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">events</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Type definition for callback passed to <tt class="docutils literal"><span class="pre">start()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_poll.nim#L47"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_poll.nim#L47"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_poll.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_poll.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1313,9 +1313,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Changed in version 1.2.2: the file descriptor is set to non-blocking mode.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_poll.nim#L50"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_poll.nim#L50"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_poll.nim#L50" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_poll.nim#L50" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="initWithSocket"><a name="initWithSocket,ptr.Loop,ptr.Poll,SocketHandle"></a><pre><span class="Keyword">proc</span> <span class="Identifier">initWithSocket</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">;</span> <span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Poll</span><span class="Other">;</span> <span class="Identifier">socket</span><span class="Other">:</span> <span class="Identifier">SocketHandle</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1325,9 +1325,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Changed in version 1.2.2: the socket is set to non-blocking mode.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_poll.nim#L55"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_poll.nim#L55"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_poll.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_poll.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="start"><a name="start,ptr.Poll,cint,PollCb"></a><pre><span class="Keyword">proc</span> <span class="Identifier">start</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Poll</span><span class="Other">;</span> <span class="Identifier">events</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Identifier">PollCb</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_poll_start&quot;</span><span class="Other">,</span>
@@ -1342,18 +1342,18 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Changed in version 1.9.0: Added the peDisconnect event.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_poll.nim#L61"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_poll.nim#L61"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_poll.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_poll.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="stop"><a name="stop,ptr.Poll"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stop</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Poll</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_poll_stop&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Stop polling the file descriptor, the callback will no longer be called.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_poll.nim#L81"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_poll.nim#L81"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_poll.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_poll.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1366,7 +1366,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:29 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:50 UTC</small>
       </div>
     </div>
   </div>

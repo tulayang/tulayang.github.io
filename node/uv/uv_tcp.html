@@ -1280,9 +1280,9 @@ function main() {
 <dd>
 TCP handle type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L19"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L19"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1294,9 +1294,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Initialize the handle. No socket is created as of yet.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L25"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L25"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="init"><a name="init,ptr.Loop,ptr.TCP,cuint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">init</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">;</span> <span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1306,9 +1306,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>New in version 1.7.0.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L28"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L28"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="open"><a name="open,ptr.TCP,SocketHandle"></a><pre><span class="Keyword">proc</span> <span class="Identifier">open</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">sock</span><span class="Other">:</span> <span class="Identifier">SocketHandle</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_tcp_open&quot;</span><span class="Other">,</span>
@@ -1319,9 +1319,9 @@ class="link-seesrc" target="_blank">Source</a>
 <blockquote><p>Note: The passed file descriptor or SOCKET is not checked for its type, but it’s required that it represents a valid stream socket.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L35"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setNoDelay"><a name="setNoDelay,ptr.TCP,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setNoDelay</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_tcp_nodelay&quot;</span><span class="Other">,</span>
@@ -1329,9 +1329,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Enable TCP_NODELAY, which disables Nagle’s algorithm.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L43"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L43"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setKeepAlive"><a name="setKeepAlive,ptr.TCP,cint,cuint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setKeepAlive</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">delay</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1339,9 +1339,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Enable / disable TCP keep-alive. <cite>delay</cite> is the initial delay in seconds, ignored when <cite>enable</cite> is zero.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L46"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L46"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="simultaneousAccepts"><a name="simultaneousAccepts,ptr.TCP,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">simultaneousAccepts</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">enable</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1351,9 +1351,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>This setting is used to tune a TCP server for the desired performance. Having simultaneous accepts can significantly improve the rate of accepting connections (which is why it is enabled by default) but may lead to uneven load distribution in multi-process setups.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L49"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L49"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="bindAddr"><a name="bindAddr,ptr.TCP,ptr.SockAddr,cuint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bindAddr</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">sockAddr</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">SockAddr</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1364,9 +1364,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>flags can contain TCP_IPV6ONLY, in which case dual-stack support is disabled and only IPv6 is used.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L57"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L57"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L57" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getSockName"><a name="getSockName,ptr.TCP,ptr.SockAddr,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSockName</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">SockAddr</span><span class="Other">;</span> <span class="Identifier">namelen</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1374,9 +1374,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Get the current address to which the handle is bound. addr must point to a valid and big enough chunk of memory, struct sockaddr_storage is recommended for IPv4 and IPv6 support.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L66"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L66"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPeerName"><a name="getPeerName,ptr.TCP,ptr.SockAddr,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPeerName</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">SockAddr</span><span class="Other">;</span> <span class="Identifier">namelen</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1384,9 +1384,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Get the address of the peer connected to the handle. addr must point to a valid and big enough chunk of memory, struct sockaddr_storage is recommended for IPv4 and IPv6 support.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L70"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L70"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="connect"><a name="connect,ptr.Connect,ptr.TCP,ptr.SockAddr,ConnectCb"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connect</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Connect</span><span class="Other">;</span> <span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TCP</span><span class="Other">;</span> <span class="Identifier">sockAddr</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">SockAddr</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Identifier">ConnectCb</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1396,9 +1396,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>The callback is made when the connection has been established or when a connection error happened.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tcp.nim#L74"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tcp.nim#L74"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tcp.nim#L74" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tcp.nim#L74" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1411,7 +1411,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:31 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:52 UTC</small>
       </div>
     </div>
   </div>

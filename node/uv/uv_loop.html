@@ -1275,9 +1275,9 @@ function main() {
 <dd>
 Loop data type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L14"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="RunMode"><a name="RunMode"></a><pre><span class="Identifier">RunMode</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1285,9 +1285,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L20"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L20"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="LoopOption"><a name="LoopOption"></a><pre><span class="Identifier">LoopOption</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1295,9 +1295,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Used by <tt class="docutils literal"><span class="pre">configure()</span></tt>.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L23"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1309,9 +1309,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Initializes the given Loop structure.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L26"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L26"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="configure"><a name="configure,ptr.Loop,LoopOption,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">configure</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">;</span> <span class="Identifier">option</span><span class="Other">:</span> <span class="Identifier">LoopOption</span><span class="Other">;</span> <span class="Identifier">signal</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1326,18 +1326,18 @@ class="link-seesrc" target="_blank">Source</a>
 </ul>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L29"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L29"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="close"><a name="close,ptr.Loop"></a><pre><span class="Keyword">proc</span> <span class="Identifier">close</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_loop_close&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Releases all internal loop resources. Call this function only when the loop has finished executing and all open handles and requests have been closed, or it will return <tt class="docutils literal"><span class="pre">EBUSY</span></tt>. After this function returns, the user can free the memory allocated for the loop.  
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L46"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L46"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getDefaultLoop"><a name="getDefaultLoop,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getDefaultLoop</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_default_loop&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1346,9 +1346,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>This function is just a convenient way for having a global loop throughout an application, the default loop is in no way different than the ones initialized with <tt class="docutils literal"><span class="pre">init()</span></tt>. As such, the　default loop can (and should) be closed with <tt class="docutils literal"><span class="pre">close()</span></tt> so the resources associated with it are freed.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L52"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L52"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="run"><a name="run,ptr.Loop,RunMode"></a><pre><span class="Keyword">proc</span> <span class="Identifier">run</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">;</span> <span class="Identifier">mode</span><span class="Other">:</span> <span class="Identifier">RunMode</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_run&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1359,18 +1359,18 @@ This function runs the event loop. It will act differently depending on the spec
 </ul>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L60"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L60"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="isAlive"><a name="isAlive,ptr.Loop"></a><pre><span class="Keyword">proc</span> <span class="Identifier">isAlive</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_loop_alive&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Returns non-zero if there are active handles or request in the loop.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L73"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L73"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L73" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L73" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="stop"><a name="stop,ptr.Loop"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stop</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_stop&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1380,18 +1380,18 @@ class="link-seesrc" target="_blank">Source</a>
 </dl>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L76"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L76"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L76" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L76" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="sizeofLoop"><a name="sizeofLoop,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">sizeofLoop</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">csize</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_loop_size&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Returns the size of the Loop structure. Useful for FFI binding writers who don’t want to know the structure layout.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L81"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L81"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L81" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBackendFd"><a name="getBackendFd,ptr.Loop"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBackendFd</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_backend_fd&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1401,9 +1401,9 @@ class="link-seesrc" target="_blank">Source</a>
 <blockquote><p>Note: Embedding a kqueue fd in another kqueue pollset doesn’t work on all platforms. It’s not an error to add the fd but it never generates events.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L85"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L85"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getBackendTimeout"><a name="getBackendTimeout,ptr.Loop"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getBackendTimeout</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_backend_timeout&quot;</span><span class="Other">,</span>
@@ -1411,9 +1411,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Get the poll timeout. The return value is in milliseconds, or -1 for no timeout.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L94"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L94"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L94" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L94" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="now"><a name="now,ptr.Loop"></a><pre><span class="Keyword">proc</span> <span class="Identifier">now</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">uint64</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_now&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1423,9 +1423,9 @@ class="link-seesrc" target="_blank">Source</a>
 <blockquote><p>Note: Use <tt class="docutils literal"><span class="pre">hrtime()</span></tt> if you need sub-millisecond granularity.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L97"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L97"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L97" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L97" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="updateTime"><a name="updateTime,ptr.Loop"></a><pre><span class="Keyword">proc</span> <span class="Identifier">updateTime</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_update_time&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1434,9 +1434,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>You won’t normally need to call this function unless you have callbacks that block the event loop for longer periods of time, where “longer” is somewhat subjective but probably on the order of a millisecond or more.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_loop.nim#L106"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_loop.nim#L106"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_loop.nim#L106" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_loop.nim#L106" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1449,7 +1449,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:28 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:49 UTC</small>
       </div>
     </div>
   </div>

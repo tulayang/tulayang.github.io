@@ -1278,9 +1278,9 @@ function main() {
 <dd>
 Pipe handle type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L19"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L19"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1293,9 +1293,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Initialize a pipe handle. The ipc argument is a boolean to indicate if this pipe will be used for handle passing between processes.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L25"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L25"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="open"><a name="open,ptr.Pipe,File"></a><pre><span class="Keyword">proc</span> <span class="Identifier">open</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Pipe</span><span class="Other">;</span> <span class="Identifier">file</span><span class="Other">:</span> <span class="Identifier">File</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_pipe_open&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1305,9 +1305,9 @@ class="link-seesrc" target="_blank">Source</a>
 <blockquote><p>Note: The passed file descriptor or HANDLE is not checked for its type, but it’s required that it represents a valid pipe.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L28"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L28"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="bindPipe"><a name="bindPipe,ptr.Pipe,cstring"></a><pre><span class="Keyword">proc</span> <span class="Identifier">bindPipe</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Pipe</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_pipe_bind&quot;</span><span class="Other">,</span>
@@ -1316,9 +1316,9 @@ class="link-seesrc" target="_blank">Source</a>
 Bind the pipe to a file path (Unix) or a name (Windows).<blockquote><p>Note: Paths on Unix get truncated to sizeof(sockaddr_un.sun_path) bytes, typically between 92 and 108 bytes.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L35"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="connect"><a name="connect,Connect,cstring,ConnectCb"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connect</span><span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">Connect</span><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Identifier">ConnectCb</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_pipe_connect&quot;</span><span class="Other">,</span>
@@ -1327,9 +1327,9 @@ class="link-seesrc" target="_blank">Source</a>
 Connect to the Unix domain socket or the named pipe.<blockquote><p>Note: Paths on Unix get truncated to sizeof(sockaddr_un.sun_path) bytes, typically between 92 and 108 bytes.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L40"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L40"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getSockName"><a name="getSockName,ptr.Pipe,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getSockName</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Pipe</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1340,9 +1340,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Changed in version 1.3.0: the returned length no longer includes the terminating null byte, and the buffer is not null terminated.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L45"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L45"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPeerName"><a name="getPeerName,ptr.Pipe,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPeerName</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Pipe</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1353,9 +1353,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>New in version 1.3.0.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L54"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L54"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L54" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L54" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="pendingInstances"><a name="pendingInstances,ptr.Pipe,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pendingInstances</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Pipe</span><span class="Other">;</span> <span class="Identifier">count</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1364,9 +1364,9 @@ class="link-seesrc" target="_blank">Source</a>
 Set the number of pending pipe instance handles when the pipe server is waiting for connections.<blockquote><p>Note: This setting applies to Windows only.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L63"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L63"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="pendingCount"><a name="pendingCount,ptr.Pipe"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pendingCount</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Pipe</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_pipe_pending_count&quot;</span><span class="Other">,</span>
@@ -1374,9 +1374,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L68"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L68"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L68" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="pendingType"><a name="pendingType,ptr.Pipe"></a><pre><span class="Keyword">proc</span> <span class="Identifier">pendingType</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Pipe</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">HandleType</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_pipe_pending_type&quot;</span><span class="Other">,</span>
@@ -1386,9 +1386,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>First - call <tt class="docutils literal"><span class="pre">pendingCount()</span></tt>, if it’s &gt; 0 then initialize a handle of the given type, returned by <tt class="docutils literal"><span class="pre">pendingType()</span></tt> and call <tt class="docutils literal"><span class="pre">accept(pipe, handle)</span></tt>.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_pipe.nim#L70"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_pipe.nim#L70"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_pipe.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_pipe.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1401,7 +1401,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:29 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:50 UTC</small>
       </div>
     </div>
   </div>

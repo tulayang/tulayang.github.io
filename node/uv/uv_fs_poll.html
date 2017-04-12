@@ -1267,9 +1267,9 @@ function main() {
 <dd>
 Fs Poll handle type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_poll.nim#L20"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_poll.nim#L20"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_poll.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_poll.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="FSPollCb"><a name="FSPollCb"></a><pre><span class="Identifier">FSPollCb</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">FSPoll</span><span class="Other">;</span> <span class="Identifier">status</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">prev</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stat</span><span class="Other">;</span> <span class="Identifier">curr</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Stat</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">cdecl</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1279,9 +1279,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>When status == 0, the callback receives pointers to the old and new <tt class="docutils literal"><span class="pre">Stat</span></tt> structs. They are valid for the duration of the callback only.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_poll.nim#L25"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_poll.nim#L25"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_poll.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_poll.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1294,9 +1294,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Initialize the handle.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_poll.nim#L33"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_poll.nim#L33"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_poll.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_poll.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="start"><a name="start,ptr.FSPoll,FSPollCb,cstring,cuint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">start</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">FSPoll</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Identifier">FSPollCb</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">interval</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1305,18 +1305,18 @@ class="link-seesrc" target="_blank">Source</a>
 Check the file at path for changes every interval milliseconds.<blockquote><p>Note: For maximum portability, use multi-second intervals. Sub-second intervals will not detect all changes on many file systems.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_poll.nim#L36"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_poll.nim#L36"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_poll.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_poll.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="stop"><a name="stop,ptr.FSPoll"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stop</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">FSPoll</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_fs_poll_stop&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Stop the handle, the callback will no longer be called.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_poll.nim#L41"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_poll.nim#L41"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_poll.nim#L41" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_poll.nim#L41" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPath"><a name="getPath,ptr.FSPoll,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPath</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">FSPoll</span><span class="Other">;</span> <span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1326,9 +1326,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Changed in version 1.3.0: the returned length no longer includes the terminating null byte, and the buffer is not null terminated.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_poll.nim#L44"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_poll.nim#L44"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_poll.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_poll.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1341,7 +1341,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:28 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:49 UTC</small>
       </div>
     </div>
   </div>

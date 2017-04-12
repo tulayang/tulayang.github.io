@@ -1273,9 +1273,9 @@ function main() {
 <dd>
 TTY handle type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tty.nim#L19"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L19"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tty.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="TTYMode"><a name="TTYMode"></a><pre><span class="Identifier">TTYMode</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1285,9 +1285,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 TTY mode type
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tty.nim#L25"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L25"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tty.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1310,9 +1310,9 @@ Initialize a new TTY stream with the given file descriptor. Usually the file des
 <p>Changed in version 1.5.0:: trying to initialize a TTY stream with a file descriptor that refers to a file returns EINVAL on UNIX.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tty.nim#L30"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tty.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="setMode"><a name="setMode,ptr.TTY,TTYMode"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMode</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TTY</span><span class="Other">;</span> <span class="Identifier">mode</span><span class="Other">:</span> <span class="Identifier">TTYMode</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_tty_set_mode&quot;</span><span class="Other">,</span>
@@ -1322,9 +1322,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Set the TTY using the specified terminal mode.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tty.nim#L53"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L53"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tty.nim#L53" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L53" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="resetTTYMode"><a name="resetTTYMode,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">resetTTYMode</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_tty_reset_mode&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
@@ -1333,9 +1333,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>This function is async signal-safe on Unix platforms but can fail with error code EBUSY if you call it when execution is inside <tt class="docutils literal"><span class="pre">setMode()</span></tt>.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tty.nim#L58"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L58"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tty.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getWindowSize"><a name="getWindowSize,ptr.TTY,cint,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getWindowSize</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TTY</span><span class="Other">;</span> <span class="Identifier">width</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1343,9 +1343,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Gets the current Window size. On success it returns 0.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_tty.nim#L64"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L64"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_tty.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1358,7 +1358,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:31 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:52 UTC</small>
       </div>
     </div>
   </div>

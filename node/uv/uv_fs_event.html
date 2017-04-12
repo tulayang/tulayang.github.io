@@ -1289,9 +1289,9 @@ function main() {
 <dd>
 Fs Event handle type.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_event.nim#L25"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_event.nim#L25"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_event.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_event.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="FSEventCb"><a name="FSEventCb"></a><pre><span class="Identifier">FSEventCb</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">FSEvent</span><span class="Other">;</span> <span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">events</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">status</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1299,9 +1299,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Callback passed to <tt class="docutils literal"><span class="pre">start()</span></tt> which will be called repeatedly after the handle is started. If the handle was started with a directory the filename parameter will be a relative path to a file contained in the directory. The events parameter is an ORed mask of FSEventType elements.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_event.nim#L30"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_event.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_event.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_event.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="FSEventType"><a name="FSEventType"></a><pre><span class="Identifier">FSEventType</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1309,9 +1309,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Event types that FSEvent handles monitor.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_event.nim#L34"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_event.nim#L34"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_event.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_event.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="FSEventFlag"><a name="FSEventFlag"></a><pre><span class="Identifier">FSEventFlag</span> <span class="Other">=</span> <span class="Keyword">enum</span>
@@ -1331,9 +1331,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Flags that can be passed to <tt class="docutils literal"><span class="pre">start()</span></tt> to control its behavior.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_event.nim#L37"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_event.nim#L37"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_event.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_event.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1346,9 +1346,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Initialize the handle.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_event.nim#L55"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_event.nim#L55"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_event.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_event.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="start"><a name="start,ptr.FSEvent,FSEventCb,cstring,cuint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">start</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">FSEvent</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Identifier">FSEventCb</span><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">cuint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1357,18 +1357,18 @@ class="link-seesrc" target="_blank">Source</a>
 Start the handle with the given callback, which will watch the specified path for changes. flags can be an ORed mask of <tt class="docutils literal"><span class="pre">FSEventFlags</span></tt>.<blockquote><p>Note: Currently the only supported flag is FS_EVENT_RECURSIVE and only on OSX and Windows.</p></blockquote>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_event.nim#L58"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_event.nim#L58"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_event.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_event.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="stop"><a name="stop,ptr.FSEvent"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stop</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">FSEvent</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_fs_event_stop&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
 Stop the handle, the callback will no longer be called.
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_event.nim#L63"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_event.nim#L63"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_event.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_event.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 <dt id="getPath"><a name="getPath,ptr.FSEvent,cstring,csize"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getPath</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">FSEvent</span><span class="Other">;</span> <span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">cstring</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">csize</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
@@ -1378,9 +1378,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Changed in version 1.3.0: the returned length no longer includes the terminating null byte, and the buffer is not null terminated.</p>
 
 &nbsp;&nbsp;<a
-href="/tree/master/node/uv/uv_fs_event.nim#L66"
+href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_fs_event.nim#L66"
 class="link-seesrc" target="_blank">Source</a>
-<a href="/edit/devel/node/uv/uv_fs_event.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_fs_event.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1393,7 +1393,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 11:14:28 UTC</small>
+        <small>Made with Nim. Generated: 2017-04-12 13:19:48 UTC</small>
       </div>
     </div>
   </div>
