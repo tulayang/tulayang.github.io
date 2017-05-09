@@ -1222,7 +1222,9 @@ nimble install node</pre>
 <li><a class="reference external" href="future.html">future</a> This module is basically equivalent to the Future of standard library, in addition to a few special procedures.</li>
 <li><a class="reference external" href="streams.html">streams</a> This module implements a duplex (readable, writable) stream based on libuv. A stream is an abstract interface which provides reading and writing for non-blocking I/O.</li>
 <li><a class="reference external" href="net.html">net</a> Provides an asynchronous network wrapper. It contains functions for creating both servers and clients (called streams).</li>
-<li><a class="reference external" href="http.html">http</a> Provides infrastructure for building flexible and efficient HTTP servers and clients.</li>
+<li><a class="reference external" href="httpcore.html">httpcore</a> Base utilities for processing http operations.</li>
+<li><a class="reference external" href="httpserver.html">httpserver</a> Provides infrastructure for building flexible and efficient HTTP server.</li>
+<li><a class="reference external" href="httpclient.html">httpclient</a> Provides infrastructure for building flexible and efficient HTTP client.</li>
 <li><a class="reference external" href="uv.html">uv</a> This module is a raw wrapper of libuv. It contains several sub modules.<ul class="simple"><li><a class="reference external" href="uv/uv_error.html">uv_error</a> In libuv errors are negative numbered constants. As a rule of thumb, whenever there is a status parameter, or an API functions returns an integer, a negative number will imply an error.</li>
 <li><a class="reference external" href="uv/uv_version.html">uv_version</a> Starting with version 1.0.0 libuv follows the semantic versioning scheme. This means that new APIs can be introduced throughout the lifetime of a major release. In this section you’ll find all macros and functions that will allow you to write or compile code conditionally, in order to work with multiple libuv versions.</li>
 <li><a class="reference external" href="uv/uv_loop.html">uv_loop</a> The event loop is the central part of libuv’s functionality. It takes care of polling for i/o and scheduling callbacks to be run based on different sources of events.</li>
@@ -1259,7 +1261,7 @@ nimble install node</pre>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-05-09 16:22:03 UTC</small>
+        <small>Made with Nim. Generated: 2017-05-09 16:38:34 UTC</small>
       </div>
     </div>
   </div>
