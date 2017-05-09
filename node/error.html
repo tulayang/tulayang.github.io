@@ -1263,11 +1263,14 @@ function main() {
   ETIMEDOUT = &quot;connection timed out&quot;, ETXTBSY = &quot;text file is busy&quot;,
   EXDEV = &quot;cross-device link not permitted&quot;, UNKNOWN = &quot;unknown error&quot;,
   EOF = &quot;end of file&quot;, ENXIO = &quot;no such device or address&quot;, EMLINK = &quot;too many links&quot;,
-  EHOSTDOWN = &quot;host is down&quot;, UNKNOWNSYS = &quot;unknown system error&quot;"><wbr />Node<wbr />Error<wbr />Code<span class="attachedType" style="visibility:hidden"></span></a></li>
+  EHOSTDOWN = &quot;host is down&quot;, UNKNOWNSYS = &quot;unknown system error&quot;,
+  END_WRHEAD = &quot;write duplicate head&quot;, END_WREND = &quot;write after end&quot;,
+  END_CRLF = &quot;invalid CRLF&quot;, END_OVERFLOW = &quot;internal buffer overflow&quot;,
+  END_CHUNKED = &quot;invalid chunked encoding&quot;, END_EXCESS = &quot;too many data&quot;,
+  END_UPGRADE = &quot;reuse upgraded request&quot;, END_FINISHED = &quot;operation not finished&quot;"><wbr />Node<wbr />Error<wbr />Code<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#NodeError"
     title="NodeError = object of Exception
-  errorCode*: NodeErrorCode    ## The ``NodeErrorCode`` value.
-  errorNo*: cint               ## The value corresponding to the libuv errorno."><wbr />Node<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
+  errorCode*: NodeErrorCode    ## The ``NodeErrorCode`` value."><wbr />Node<wbr />Error<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1276,6 +1279,8 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#newNodeError,cint"
     title="newNodeError(errorCode: cint): ref NodeError"><wbr />new<wbr />Node<wbr />Error<span class="attachedType" style="visibility:hidden">NodeError</span></a></li>
+  <li><a class="reference" href="#newNodeError,NodeErrorCode"
+    title="newNodeError(errorCode: NodeErrorCode): ref NodeError"><wbr />new<wbr />Node<wbr />Error<span class="attachedType" style="visibility:hidden">NodeErrorCode</span></a></li>
 
   </ul>
 </li>
@@ -1339,7 +1344,11 @@ function main() {
   <span class="Identifier">ETIMEDOUT</span> <span class="Other">=</span> <span class="StringLit">&quot;connection timed out&quot;</span><span class="Other">,</span> <span class="Identifier">ETXTBSY</span> <span class="Other">=</span> <span class="StringLit">&quot;text file is busy&quot;</span><span class="Other">,</span>
   <span class="Identifier">EXDEV</span> <span class="Other">=</span> <span class="StringLit">&quot;cross-device link not permitted&quot;</span><span class="Other">,</span> <span class="Identifier">UNKNOWN</span> <span class="Other">=</span> <span class="StringLit">&quot;unknown error&quot;</span><span class="Other">,</span>
   <span class="Identifier">EOF</span> <span class="Other">=</span> <span class="StringLit">&quot;end of file&quot;</span><span class="Other">,</span> <span class="Identifier">ENXIO</span> <span class="Other">=</span> <span class="StringLit">&quot;no such device or address&quot;</span><span class="Other">,</span> <span class="Identifier">EMLINK</span> <span class="Other">=</span> <span class="StringLit">&quot;too many links&quot;</span><span class="Other">,</span>
-  <span class="Identifier">EHOSTDOWN</span> <span class="Other">=</span> <span class="StringLit">&quot;host is down&quot;</span><span class="Other">,</span> <span class="Identifier">UNKNOWNSYS</span> <span class="Other">=</span> <span class="StringLit">&quot;unknown system error&quot;</span></pre></dt>
+  <span class="Identifier">EHOSTDOWN</span> <span class="Other">=</span> <span class="StringLit">&quot;host is down&quot;</span><span class="Other">,</span> <span class="Identifier">UNKNOWNSYS</span> <span class="Other">=</span> <span class="StringLit">&quot;unknown system error&quot;</span><span class="Other">,</span>
+  <span class="Identifier">END_WRHEAD</span> <span class="Other">=</span> <span class="StringLit">&quot;write duplicate head&quot;</span><span class="Other">,</span> <span class="Identifier">END_WREND</span> <span class="Other">=</span> <span class="StringLit">&quot;write after end&quot;</span><span class="Other">,</span>
+  <span class="Identifier">END_CRLF</span> <span class="Other">=</span> <span class="StringLit">&quot;invalid CRLF&quot;</span><span class="Other">,</span> <span class="Identifier">END_OVERFLOW</span> <span class="Other">=</span> <span class="StringLit">&quot;internal buffer overflow&quot;</span><span class="Other">,</span>
+  <span class="Identifier">END_CHUNKED</span> <span class="Other">=</span> <span class="StringLit">&quot;invalid chunked encoding&quot;</span><span class="Other">,</span> <span class="Identifier">END_EXCESS</span> <span class="Other">=</span> <span class="StringLit">&quot;too many data&quot;</span><span class="Other">,</span>
+  <span class="Identifier">END_UPGRADE</span> <span class="Other">=</span> <span class="StringLit">&quot;reuse upgraded request&quot;</span><span class="Other">,</span> <span class="Identifier">END_FINISHED</span> <span class="Other">=</span> <span class="StringLit">&quot;operation not finished&quot;</span></pre></dt>
 <dd>
 Internal error code corresponding libuv.
 &nbsp;&nbsp;<a
@@ -1350,14 +1359,13 @@ class="link-seesrc" target="_blank">Source</a>
 </dd>
 <dt id="NodeError"><a name="NodeError"></a><pre><span class="Identifier">NodeError</span> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">Exception</span>
   <span class="Identifier">errorCode</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">NodeErrorCode</span>    <span class="Comment">## The ``NodeErrorCode`` value.</span>
-  <span class="Identifier">errorNo</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span>               <span class="Comment">## The value corresponding to the libuv errorno.</span>
   </pre></dt>
 <dd>
 Raised if an internal operation failed.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/error.nim#L93"
+href="https://github.com/tulayang/nimnode/tree/master/node/error.nim#L102"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/error.nim#L93" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/error.nim#L102" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1369,9 +1377,18 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 Creates a new error caused by libuv operation. <tt class="docutils literal"><span class="pre">errorCode</span></tt> should be a libuv errorno.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/error.nim#L220"
+href="https://github.com/tulayang/nimnode/tree/master/node/error.nim#L229"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/error.nim#L220" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/error.nim#L229" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="newNodeError"><a name="newNodeError,NodeErrorCode"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newNodeError</span><span class="Other">(</span><span class="Identifier">errorCode</span><span class="Other">:</span> <span class="Identifier">NodeErrorCode</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+Creates a new error caused by libuv operation. 
+&nbsp;&nbsp;<a
+href="https://github.com/tulayang/nimnode/tree/master/node/error.nim#L244"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/error.nim#L244" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1384,7 +1401,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 15:23:19 UTC</small>
+        <small>Made with Nim. Generated: 2017-05-09 16:22:01 UTC</small>
       </div>
     </div>
   </div>

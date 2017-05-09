@@ -14,7 +14,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>Module uv_tty</title>
+<title>Module httpcore</title>
 <style type="text/css" >
 /*
 Stylesheet for use with Docutils/rst2html.
@@ -1193,7 +1193,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">Module uv_tty</h1>
+    <h1 class="title">Module httpcore</h1>
     <div class="row">
   <div class="three columns">
   <div>
@@ -1217,31 +1217,49 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#TTY"
-    title="TTY = object
-  loop*: ptr Loop               ## Pointer to the ``Loop`` where the handle is running on. Readonly.
-  typ*: HandleType             ## The ``HandleType``. Readonly.
-  data*: pointer               ## Space for user-defined arbitrary data. libuv does not use this field.
-  sizeOfWriteQueue*: csize     ## Contains the amount of queued bytes waiting to be sent. Readonly."><wbr />TTY<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#TTYMode"
-    title="TTYMode = enum
-  ttyNormal,                  ## Initial&#x2F;normal terminal mode
-  ttyRaw,                     ## Raw input mode (On Windows, ENABLE_WINDOW_INPUT is also enabled)
-  ttyIO                       ## Binary-safe I&#x2F;O mode for IPC (Unix-only)"><wbr />TTYMode<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#Line"
+    title="Line = object
+  err*: ref NodeError
+  base*: string
+  length: int
+  parse: LinePhase
+  ok*: bool"><wbr />Line<span class="attachedType" style="visibility:hidden"></span></a></li>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#10" id="60">Consts</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#HeaderBufSize"
+    title="HeaderBufSize = 1024"><wbr />Header<wbr />Buf<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#init,ptr.Loop,ptr.TTY,FileHandle,cint"
-    title="init(loop: ptr Loop; handle: ptr TTY; fd: FileHandle; readable: cint): cint"><wbr />init<span class="attachedType" style="visibility:hidden">TTY</span></a></li>
-  <li><a class="reference" href="#setMode,ptr.TTY,TTYMode"
-    title="setMode(handle: ptr TTY; mode: TTYMode): cint"><wbr />set<wbr />Mode<span class="attachedType" style="visibility:hidden">TTY</span></a></li>
-  <li><a class="reference" href="#resetTTYMode,"
-    title="resetTTYMode(): cint"><wbr />reset<wbr />TTYMode<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#getWindowSize,ptr.TTY,cint,cint"
-    title="getWindowSize(handle: ptr TTY; width: var cint; height: var cint): cint"><wbr />get<wbr />Window<wbr />Size<span class="attachedType" style="visibility:hidden">TTY</span></a></li>
+      <li><a class="reference" href="#clear,Line"
+    title="clear(line: var Line)"><wbr />clear<span class="attachedType" style="visibility:hidden">Line</span></a></li>
+  <li><a class="reference" href="#read,Line,pointer,int"
+    title="read(line: var Line; buf: pointer; size: int): int"><wbr />read<span class="attachedType" style="visibility:hidden">Line</span></a></li>
+  <li><a class="reference" href="#parseRequestProtocol,string,string,string,tuple[string,int,int]"
+    title="parseRequestProtocol(line: string; reqMethod, url: var string;
+                     protocol: var tuple[orig: string, major, minor: int])"><wbr />parse<wbr />Request<wbr />Protocol<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#parseResponseProtocol,string,int,string,tuple[string,int,int]"
+    title="parseResponseProtocol(line: string; statusCode: var int; statusMessage: var string;
+                      protocol: var tuple[orig: string, major, minor: int])"><wbr />parse<wbr />Response<wbr />Protocol<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#parseHeader,string,StringTableRef"
+    title="parseHeader(line: string; headers: StringTableRef)"><wbr />parse<wbr />Header<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#parseChunkSize,string"
+    title="parseChunkSize(line: string): int"><wbr />parse<wbr />Chunk<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#14" id="64">Iterators</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#splitProtocol.i,string"
+    title="splitProtocol(line: string): string"><wbr />split<wbr />Protocol<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1251,43 +1269,42 @@ function main() {
   </div>
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
-  <p class="module-desc"><p>TTY handles represent a stream for the console.</p>
-<p><tt class="docutils literal"><span class="pre">TTY</span></tt> is a ‘subclass’ of <tt class="docutils literal"><span class="pre">Stream</span></tt>.</p>
-<p><a class="reference external" href="http://docs.libuv.org/en/v1.x/tty.html">TTY handle &lt;libuv 1.10.3-dev API documentation&gt;</a></p>
-<blockquote><p>See also The <tt class="docutils literal"><span class="pre">Stream</span></tt> API functions also apply.</p></blockquote>
-</p>
+  <p class="module-desc">Base utilities for processing http operations.</p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="uv_loop.html">uv_loop</a>, <a class="reference external" href="uv_handle.html">uv_handle</a>, <a class="reference external" href="uv_stream.html">uv_stream</a>
+<a class="reference external" href="uv.html">uv</a>, <a class="reference external" href="error.html">error</a>, <a class="reference external" href="strtabs.html">strtabs</a>, <a class="reference external" href="strutils.html">strutils</a>, <a class="reference external" href="parseutils.html">parseutils</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<dt id="TTY"><a name="TTY"></a><pre><span class="Identifier">TTY</span> <span class="Other">=</span> <span class="Keyword">object</span>
-  <span class="Identifier">loop</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;loop&quot;</span></div><span class="Other pragmaend">.}</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span> <span class="Comment">## Pointer to the ``Loop`` where the handle is running on. Readonly.</span>
-  <span class="Identifier">typ</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;type&quot;</span></div><span class="Other pragmaend">.}</span><span class="Other">:</span> <span class="Identifier">HandleType</span> <span class="Comment">## The ``HandleType``. Readonly.</span>
-  <span class="Identifier">data</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;data&quot;</span></div><span class="Other pragmaend">.}</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Comment">## Space for user-defined arbitrary data. libuv does not use this field.</span>
-  <span class="Identifier">sizeOfWriteQueue</span><span class="Operator">*</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;write_queue_size&quot;</span></div><span class="Other pragmaend">.}</span><span class="Other">:</span> <span class="Identifier">csize</span> <span class="Comment">## Contains the amount of queued bytes waiting to be sent. Readonly.</span>
-  </pre></dt>
+<dt id="Line"><a name="Line"></a><pre><span class="Identifier">Line</span> <span class="Other">=</span> <span class="Keyword">object</span>
+  <span class="Identifier">err</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span>
+  <span class="Identifier">base</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">length</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">parse</span><span class="Other">:</span> <span class="Identifier">LinePhase</span>
+  <span class="Identifier">ok</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">bool</span>
+</pre></dt>
 <dd>
-TTY handle type.
+
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L19"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L20"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="TTYMode"><a name="TTYMode"></a><pre><span class="Identifier">TTYMode</span> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">ttyNormal</span><span class="Other">,</span>                  <span class="Comment">## Initial/normal terminal mode</span>
-  <span class="Identifier">ttyRaw</span><span class="Other">,</span>                     <span class="Comment">## Raw input mode (On Windows, ENABLE_WINDOW_INPUT is also enabled)</span>
-  <span class="Identifier">ttyIO</span>                       <span class="Comment">## Binary-safe I/O mode for IPC (Unix-only)</span></pre></dt>
+
+</dl></div>
+<div class="section" id="10">
+<h1><a class="toc-backref" href="#10">Consts</a></h1>
+<dl class="item">
+<dt id="HeaderBufSize"><a name="HeaderBufSize"></a><pre><span class="Identifier">HeaderBufSize</span> <span class="Other">=</span> <span class="DecNumber">1024</span></pre></dt>
 <dd>
-TTY mode type
+Buffer size for reading http header.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L25"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L14"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1295,57 +1312,78 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="init"><a name="init,ptr.Loop,ptr.TTY,FileHandle,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">init</span><span class="Other">(</span><span class="Identifier">loop</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">Loop</span><span class="Other">;</span> <span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TTY</span><span class="Other">;</span> <span class="Identifier">fd</span><span class="Other">:</span> <span class="Identifier">FileHandle</span><span class="Other">;</span> <span class="Identifier">readable</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_tty_init&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="clear"><a name="clear,Line"></a><pre><span class="Keyword">proc</span> <span class="Identifier">clear</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Line</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Initialize a new TTY stream with the given file descriptor. Usually the file descriptor will be:<ul class="simple"><li>0 = stdin</li>
-<li>1 = stdout</li>
-<li>2 = stderr</li>
-</ul>
-<p><cite>readable</cite>, specifies if you plan on calling <tt class="docutils literal"><span class="pre">stream.readStart()</span></tt> with this stream. stdin is readable, stdout is not.</p>
-<p>On Unix this function will determine the path of the fd of the terminal using <a class="reference external" href="http://linux.die.net/man/3/ttyname_r">ttyname_r(3)</a>, open it, and use it if the passed file descriptor refers to a TTY. This lets libuv put the tty in non-blocking mode without affecting other processes that share the tty.</p>
-<p>This function is not thread safe on systems that don’t support ioctl TIOCGPTN or TIOCPTYGNAME, for instance OpenBSD and Solaris.</p>
-<blockquote><p>Note: If reopening the TTY fails, libuv falls back to blocking writes for non-readable TTY streams.</p></blockquote>
-<p>Changed in version 1.9.0:: the path of the TTY is determined by <a class="reference external" href="http://linux.die.net/man/3/ttyname_r">ttyname_r(3)</a>. In earlier versions libuv opened /dev/tty instead.</p>
-<p>Changed in version 1.5.0:: trying to initialize a TTY stream with a file descriptor that refers to a file returns EINVAL on UNIX.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L30"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="setMode"><a name="setMode,ptr.TTY,TTYMode"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setMode</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TTY</span><span class="Other">;</span> <span class="Identifier">mode</span><span class="Other">:</span> <span class="Identifier">TTYMode</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_tty_set_mode&quot;</span><span class="Other">,</span>
-    <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="read"><a name="read,Line,pointer,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">read</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Line</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-<p>Changed in version 1.2.0:: the mode is specified as a TTYMode value.</p>
-<p>Set the TTY using the specified terminal mode.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L53"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L34"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L53" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="resetTTYMode"><a name="resetTTYMode,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">resetTTYMode</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_tty_reset_mode&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="parseRequestProtocol"><a name="parseRequestProtocol,string,string,string,tuple[string,int,int]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseRequestProtocol</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">reqMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span>
+                         <span class="Identifier">protocol</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">orig</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">major</span><span class="Other">,</span> <span class="Identifier">minor</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-<p>To be called when the program exits. Resets TTY settings to default values for the next process to take over.</p>
-<p>This function is async signal-safe on Unix platforms but can fail with error code EBUSY if you call it when execution is inside <tt class="docutils literal"><span class="pre">setMode()</span></tt>.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L58"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L85"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="getWindowSize"><a name="getWindowSize,ptr.TTY,cint,cint"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getWindowSize</span><span class="Other">(</span><span class="Identifier">handle</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">TTY</span><span class="Other">;</span> <span class="Identifier">width</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">height</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">importc</span><span class="Other">:</span> <span class="StringLit">&quot;uv_tty_get_winsize&quot;</span><span class="Other">,</span> <span class="Identifier">header</span><span class="Other">:</span> <span class="StringLit">&quot;uv.h&quot;</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="parseResponseProtocol"><a name="parseResponseProtocol,string,int,string,tuple[string,int,int]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseResponseProtocol</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">statusCode</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">int</span><span class="Other">;</span>
+                          <span class="Identifier">statusMessage</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span>
+                          <span class="Identifier">protocol</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">orig</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">major</span><span class="Other">,</span> <span class="Identifier">minor</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Gets the current Window size. On success it returns 0.
+
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/uv/uv_tty.nim#L64"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L108"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/uv/uv_tty.nim#L64" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L108" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="parseHeader"><a name="parseHeader,string,StringTableRef"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseHeader</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">StringTableRef</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L131"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L131" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="parseChunkSize"><a name="parseChunkSize,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseChunkSize</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L151"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L151" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+
+</dl></div>
+<div class="section" id="14">
+<h1><a class="toc-backref" href="#14">Iterators</a></h1>
+<dl class="item">
+<dt id="splitProtocol"><a name="splitProtocol.i,string"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">splitProtocol</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+
+&nbsp;&nbsp;<a
+href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L58"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1358,7 +1396,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-05-09 16:22:00 UTC</small>
+        <small>Made with Nim. Generated: 2017-05-09 16:22:03 UTC</small>
       </div>
     </div>
   </div>

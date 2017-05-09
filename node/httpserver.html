@@ -14,7 +14,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>Module timers</title>
+<title>Module httpserver</title>
 <style type="text/css" >
 /*
 Stylesheet for use with Docutils/rst2html.
@@ -1193,7 +1193,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">Module timers</h1>
+    <h1 class="title">Module httpserver</h1>
     <div class="row">
   <div class="three columns">
   <div>
@@ -1217,64 +1217,77 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#TimerEntity"
-    title="TimerEntity = object
-  delay: int
-  finishAt: float
-  callback: proc ()
-  active: bool
-  reusable: bool
-  joined: bool"><wbr />Timer<wbr />Entity<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#Timer"
-    title="Timer = distinct DoublyLinkedNode[TimerEntity]"><wbr />Timer<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#TimerQueue"
-    title="TimerQueue = ref object
-  handle: uv.Timer
-  entities: DoublyLinkedList[TimerEntity]
-  delay: int
-  length: int
-  running: bool
-  closed: bool"><wbr />Timer<wbr />Queue<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#TimerDispatcher"
-    title="TimerDispatcher = ref object
-  timers: Table[int, TimerQueue]"><wbr />Timer<wbr />Dispatcher<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#TickerDispatcher"
-    title="TickerDispatcher = ref object
-  handle: Idle
-  started: bool
-  entities: seq[proc ()]"><wbr />Ticker<wbr />Dispatcher<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#HttpServer"
+    title="HttpServer = ref object
+  onClientError*: proc (conn: TcpConnection; err: ref NodeError)
+  onRequest*: proc (req: ServerRequest; res: ServerResponse)
+  onUpgrade*: proc (conn: TcpConnection; req: ServerRequest;
+                  firstPacket: var array[BufSize, char]; size: int)
+  onClose*: proc (err: ref NodeError)
+  base: TcpServer"><wbr />Http<wbr />Server<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#ServerRequest"
+    title="ServerRequest = ref object
+  onData*: proc (data: var array[BufSize, char]; size: int)
+  onEnd*: proc ()
+  onClose*: proc (err: ref NodeError)
+  reqMethod*: string
+  url*: string
+  protocol*: tuple[orig: string, major, minor: int]
+  headers*: StringTableRef
+  conn: TcpConnection
+  line: Line
+  phase: ReadPhase
+  contentLength: int
+  chunkedTransferEncoding: bool
+  keepAlive: bool
+  connEnded: bool"><wbr />Server<wbr />Request<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#ServerResponse"
+    title="ServerResponse = ref object
+  onDrain*: proc ()
+  onFinish*: proc ()
+  onClose*: proc (err: ref NodeError)
+  req: ServerRequest
+  line: Line
+  statusCode: int
+  headers: StringTableRef
+  phase: WritePhase
+  chunkedTransferEncoding: bool
+  keepAlive: bool
+  needDrain: bool"><wbr />Server<wbr />Response<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#ClientRequest"
+    title="ClientRequest = ref object
+  onResponse*: proc (res: ClientResponse)
+  onNeedDrain*: proc ()
+  onDrain*: proc ()
+  onClose*: proc (err: ref NodeError)"><wbr />Client<wbr />Request<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#ClientResponse"
+    title="ClientResponse = ref object
+  onData*: proc (data: var array[BufSize, char]; size: int)
+  onEnd*: proc ()
+  onClose*: proc (err: ref NodeError)"><wbr />Client<wbr />Response<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#newTimerDispatcher,"
-    title="newTimerDispatcher(): TimerDispatcher"><wbr />new<wbr />Timer<wbr />Dispatcher<span class="attachedType" style="visibility:hidden">TimerDispatcher</span></a></li>
-  <li><a class="reference" href="#getGTimerDispatcher,"
-    title="getGTimerDispatcher(): TimerDispatcher"><wbr />get<wbr />GTimer<wbr />Dispatcher<span class="attachedType" style="visibility:hidden">TimerDispatcher</span></a></li>
-  <li><a class="reference" href="#newTimer,int,proc)"
-    title="newTimer(delay: int; cb: proc (); reusable = false): Timer"><wbr />new<wbr />Timer<span class="attachedType" style="visibility:hidden">Timer</span></a></li>
-  <li><a class="reference" href="#join,Timer"
-    title="join(t: Timer)"><wbr />join<span class="attachedType" style="visibility:hidden">Timer</span></a></li>
-  <li><a class="reference" href="#start,Timer"
-    title="start(t: Timer)"><wbr />start<span class="attachedType" style="visibility:hidden">Timer</span></a></li>
-  <li><a class="reference" href="#stop,Timer"
-    title="stop(t: Timer)"><wbr />stop<span class="attachedType" style="visibility:hidden">Timer</span></a></li>
-  <li><a class="reference" href="#clear,Timer"
-    title="clear(t: Timer)"><wbr />clear<span class="attachedType" style="visibility:hidden">Timer</span></a></li>
-  <li><a class="reference" href="#delay,Timer"
-    title="delay(t: Timer): int"><wbr />delay<span class="attachedType" style="visibility:hidden">Timer</span></a></li>
-  <li><a class="reference" href="#active,Timer"
-    title="active(t: Timer): bool"><wbr />active<span class="attachedType" style="visibility:hidden">Timer</span></a></li>
-  <li><a class="reference" href="#setTimeout,int,proc)"
-    title="setTimeout(delay: int; cb: proc (); resuable = false): Timer"><wbr />set<wbr />Timeout<span class="attachedType" style="visibility:hidden">Timer</span></a></li>
-  <li><a class="reference" href="#newTickerDispatcher,"
-    title="newTickerDispatcher(): TickerDispatcher"><wbr />new<wbr />Ticker<wbr />Dispatcher<span class="attachedType" style="visibility:hidden">TickerDispatcher</span></a></li>
-  <li><a class="reference" href="#getGTickerDispatcher,"
-    title="getGTickerDispatcher(): TickerDispatcher"><wbr />get<wbr />GTicker<wbr />Dispatcher<span class="attachedType" style="visibility:hidden">TickerDispatcher</span></a></li>
-  <li><a class="reference" href="#callSoon,proc)"
-    title="callSoon(cb: proc ())"><wbr />call<wbr />Soon<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#writeHead,ServerResponse,int,StringTableRef"
+    title="writeHead(res: ServerResponse; statusCode: int; headers: StringTableRef = nil)"><wbr />write<wbr />Head<span class="attachedType" style="visibility:hidden">ServerResponse</span></a></li>
+  <li><a class="reference" href="#write,ServerResponse,pointer,int,proc(ref.NodeError)"
+    title="write(res: ServerResponse; buf: pointer; size: int;
+      cb: proc (err: ref NodeError) = nil)"><wbr />write<span class="attachedType" style="visibility:hidden">ServerResponse</span></a></li>
+  <li><a class="reference" href="#write,ServerResponse,string,proc(ref.NodeError)"
+    title="write(res: ServerResponse; buf: string;
+      cb: proc (err: ref NodeError) = nil)"><wbr />write<span class="attachedType" style="visibility:hidden">ServerResponse</span></a></li>
+  <li><a class="reference" href="#writeEnd,ServerResponse"
+    title="writeEnd(res: ServerResponse)"><wbr />write<wbr />End<span class="attachedType" style="visibility:hidden">ServerResponse</span></a></li>
+  <li><a class="reference" href="#newHttpServer,int"
+    title="newHttpServer(maxConnections = 1024): HttpServer"><wbr />new<wbr />Http<wbr />Server<span class="attachedType" style="visibility:hidden">HttpServer</span></a></li>
+  <li><a class="reference" href="#close,HttpServer"
+    title="close(server: HttpServer)"><wbr />close<span class="attachedType" style="visibility:hidden">HttpServer</span></a></li>
+  <li><a class="reference" href="#serve,HttpServer,Port,string,int"
+    title="serve(server: HttpServer; port: Port; hostname = &quot;127.0.0.1&quot;; backlog = 511;
+      domain = Domain.AF_INET)"><wbr />serve<span class="attachedType" style="visibility:hidden">HttpServer</span></a></li>
 
   </ul>
 </li>
@@ -1284,83 +1297,101 @@ function main() {
   </div>
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
-  <p class="module-desc">This module implements a timer dispatcher and a ticker dispatcher. A timer delays an operation after some milliseconds. A ticker delays an operation to the next iteration.<blockquote><p><dl class="docutils"><dt>newTimer() -&gt; join() -&gt; start() -&gt; stop() -&gt; clear()</dt>
-<dd>-&gt; join() -&gt; ...</dd>
-</dl>
-<p>setTimeout() -&gt; clear()</p>
-</p></blockquote>
-</p>
+  <p class="module-desc">Provides infrastructure for building flexible and efficient HTTP server.</p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="uv.html">uv</a>, <a class="reference external" href="error.html">error</a>, <a class="reference external" href="tables.html">tables</a>, <a class="reference external" href="times.html">times</a>, <a class="reference external" href="lists.html">lists</a>, <a class="reference external" href="math.html">math</a>
+<a class="reference external" href="uv.html">uv</a>, <a class="reference external" href="error.html">error</a>, <a class="reference external" href="timers.html">timers</a>, <a class="reference external" href="streams.html">streams</a>, <a class="reference external" href="net.html">net</a>, <a class="reference external" href="httpcore.html">httpcore</a>, <a class="reference external" href="strtabs.html">strtabs</a>, <a class="reference external" href="strutils.html">strutils</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<dt id="TimerEntity"><a name="TimerEntity"></a><pre><span class="Identifier">TimerEntity</span> <span class="Other">=</span> <span class="Keyword">object</span>
-  <span class="Identifier">delay</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">finishAt</span><span class="Other">:</span> <span class="Identifier">float</span>
-  <span class="Identifier">callback</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span>
-  <span class="Identifier">active</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">reusable</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">joined</span><span class="Other">:</span> <span class="Identifier">bool</span>
+<dt id="HttpServer"><a name="HttpServer"></a><pre><span class="Identifier">HttpServer</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">onClientError</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">conn</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span><span class="Other">;</span> <span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onRequest</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">ServerRequest</span><span class="Other">;</span> <span class="Identifier">res</span><span class="Other">:</span> <span class="Identifier">ServerResponse</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onUpgrade</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">conn</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span><span class="Other">;</span> <span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">ServerRequest</span><span class="Other">;</span>
+                  <span class="Identifier">firstPacket</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">BufSize</span><span class="Other">,</span> <span class="Identifier">char</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onClose</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">base</span><span class="Other">:</span> <span class="Identifier">TcpServer</span>
 </pre></dt>
 <dd>
-Timer object.
+Abstraction of HTTP Server.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L21"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L12"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="Timer"><a name="Timer"></a><pre><span class="Identifier">Timer</span> <span class="Other">=</span> <span class="Keyword">distinct</span> <span class="Identifier">DoublyLinkedNode</span><span class="Other">[</span><span class="Identifier">TimerEntity</span><span class="Other">]</span></pre></dt>
-<dd>
-Timer object.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L29"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="TimerQueue"><a name="TimerQueue"></a><pre><span class="Identifier">TimerQueue</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
-  <span class="Identifier">handle</span><span class="Other">:</span> <span class="Identifier">uv</span><span class="Other">.</span><span class="Identifier">Timer</span>
-  <span class="Identifier">entities</span><span class="Other">:</span> <span class="Identifier">DoublyLinkedList</span><span class="Other">[</span><span class="Identifier">TimerEntity</span><span class="Other">]</span>
-  <span class="Identifier">delay</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">length</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">running</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">closed</span><span class="Other">:</span> <span class="Identifier">bool</span>
+<dt id="ServerRequest"><a name="ServerRequest"></a><pre><span class="Identifier">ServerRequest</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">onData</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">data</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">BufSize</span><span class="Other">,</span> <span class="Identifier">char</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onEnd</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onClose</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">reqMethod</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">url</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">protocol</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">orig</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">major</span><span class="Other">,</span> <span class="Identifier">minor</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">]</span>
+  <span class="Identifier">headers</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">StringTableRef</span>
+  <span class="Identifier">conn</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span>
+  <span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">Line</span>
+  <span class="Identifier">phase</span><span class="Other">:</span> <span class="Identifier">ReadPhase</span>
+  <span class="Identifier">contentLength</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">chunkedTransferEncoding</span><span class="Other">:</span> <span class="Identifier">bool</span>
+  <span class="Identifier">keepAlive</span><span class="Other">:</span> <span class="Identifier">bool</span>
+  <span class="Identifier">connEnded</span><span class="Other">:</span> <span class="Identifier">bool</span>
 </pre></dt>
 <dd>
-Timer queue for one delay.
+Abstraction of HTTP request on server.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L31"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L26"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="TimerDispatcher"><a name="TimerDispatcher"></a><pre><span class="Identifier">TimerDispatcher</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
-  <span class="Identifier">timers</span><span class="Other">:</span> <span class="Identifier">Table</span><span class="Other">[</span><span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">TimerQueue</span><span class="Other">]</span>
+<dt id="ServerResponse"><a name="ServerResponse"></a><pre><span class="Identifier">ServerResponse</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">onDrain</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onFinish</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onClose</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">ServerRequest</span>
+  <span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">Line</span>
+  <span class="Identifier">statusCode</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">StringTableRef</span>
+  <span class="Identifier">phase</span><span class="Other">:</span> <span class="Identifier">WritePhase</span>
+  <span class="Identifier">chunkedTransferEncoding</span><span class="Other">:</span> <span class="Identifier">bool</span>
+  <span class="Identifier">keepAlive</span><span class="Other">:</span> <span class="Identifier">bool</span>
+  <span class="Identifier">needDrain</span><span class="Other">:</span> <span class="Identifier">bool</span>
 </pre></dt>
 <dd>
-
+Abstraction of HTTP response on server.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L39"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L42"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="TickerDispatcher"><a name="TickerDispatcher"></a><pre><span class="Identifier">TickerDispatcher</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
-  <span class="Identifier">handle</span><span class="Other">:</span> <span class="Identifier">Idle</span>
-  <span class="Identifier">started</span><span class="Other">:</span> <span class="Identifier">bool</span>
-  <span class="Identifier">entities</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span><span class="Other">]</span>
+<dt id="ClientRequest"><a name="ClientRequest"></a><pre><span class="Identifier">ClientRequest</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">onResponse</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">res</span><span class="Other">:</span> <span class="Identifier">ClientResponse</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onNeedDrain</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onDrain</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onClose</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
 </pre></dt>
 <dd>
-
+Abstraction of HTTP request on client.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L42"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L55"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="ClientResponse"><a name="ClientResponse"></a><pre><span class="Identifier">ClientResponse</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
+  <span class="Identifier">onData</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">data</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">array</span><span class="Other">[</span><span class="Identifier">BufSize</span><span class="Other">,</span> <span class="Identifier">char</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onEnd</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onClose</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+</pre></dt>
+<dd>
+Abstraction of HTTP response on client.
+&nbsp;&nbsp;<a
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1368,128 +1399,78 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="newTimerDispatcher"><a name="newTimerDispatcher,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newTimerDispatcher</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TimerDispatcher</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="writeHead"><a name="writeHead,ServerResponse,int,StringTableRef"></a><pre><span class="Keyword">proc</span> <span class="Identifier">writeHead</span><span class="Other">(</span><span class="Identifier">res</span><span class="Other">:</span> <span class="Identifier">ServerResponse</span><span class="Other">;</span> <span class="Identifier">statusCode</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">StringTableRef</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Creates new dispatcher for timeout tasks.
+Sends a response header to the request. 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L53"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L99"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L53" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L99" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="getGTimerDispatcher"><a name="getGTimerDispatcher,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getGTimerDispatcher</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TimerDispatcher</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="write"><a name="write,ServerResponse,pointer,int,proc(ref.NodeError)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">write</span><span class="Other">(</span><span class="Identifier">res</span><span class="Other">:</span> <span class="Identifier">ServerResponse</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span>
+          <span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Returns the global dispatcher of timeout tasks.
+Sends a chunk of the response body. 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L60"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L122"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L122" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="newTimer"><a name="newTimer,int,proc)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newTimer</span><span class="Other">(</span><span class="Identifier">delay</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span><span class="Other">;</span> <span class="Identifier">reusable</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Timer</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="write"><a name="write,ServerResponse,string,proc(ref.NodeError)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">write</span><span class="Other">(</span><span class="Identifier">res</span><span class="Other">:</span> <span class="Identifier">ServerResponse</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+          <span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Creates a new timer. <tt class="docutils literal"><span class="pre">cb</span></tt> will be executed after <tt class="docutils literal"><span class="pre">delay</span></tt> milliseconds. <tt class="docutils literal"><span class="pre">reusable</span></tt> pointed out whether this node could be used again.
+Sends a chunk of the response body. 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L117"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L153"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L117" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L153" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="join"><a name="join,Timer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">join</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">Timer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="writeEnd"><a name="writeEnd,ServerResponse"></a><pre><span class="Keyword">proc</span> <span class="Identifier">writeEnd</span><span class="Other">(</span><span class="Identifier">res</span><span class="Other">:</span> <span class="Identifier">ServerResponse</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span>
+                                  <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Join <tt class="docutils literal"><span class="pre">t</span></tt> to the timeout queue.
+Signals to the server that all of the response headers and body have been sent; that server should consider this message complete. The method must be called on each response.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L128"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L183"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L128" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L183" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="start"><a name="start,Timer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">start</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">Timer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TimeEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="newHttpServer"><a name="newHttpServer,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newHttpServer</span><span class="Other">(</span><span class="Identifier">maxConnections</span> <span class="Other">=</span> <span class="DecNumber">1024</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">HttpServer</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-<p>Starts <tt class="docutils literal"><span class="pre">t</span></tt> to begin timing and <tt class="docutils literal"><span class="pre">t</span></tt> is turn to active.</p>
-<p><tt class="docutils literal"><span class="pre">t</span></tt> should has joined in timeout queue.</p>
-
+Create a new HTTP Server.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L141"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L203"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L141" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L203" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="stop"><a name="stop,Timer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">stop</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">Timer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="close"><a name="close,HttpServer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">close</span><span class="Other">(</span><span class="Identifier">server</span><span class="Other">:</span> <span class="Identifier">HttpServer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Stops <tt class="docutils literal"><span class="pre">t</span></tt>. <tt class="docutils literal"><span class="pre">t</span></tt> is no longer active.
+Close <cite>server</cite> to close the file descriptors and release internal resources. 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L156"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L209"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L156" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L209" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="clear"><a name="clear,Timer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">clear</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">Timer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="serve"><a name="serve,HttpServer,Port,string,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">serve</span><span class="Other">(</span><span class="Identifier">server</span><span class="Other">:</span> <span class="Identifier">HttpServer</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">Port</span><span class="Other">;</span> <span class="Identifier">hostname</span> <span class="Other">=</span> <span class="StringLit">&quot;127.0.0.1&quot;</span><span class="Other">;</span> <span class="Identifier">backlog</span> <span class="Other">=</span> <span class="DecNumber">511</span><span class="Other">;</span>
+          <span class="Identifier">domain</span> <span class="Other">=</span> <span class="Identifier">Domain</span><span class="Other">.</span><span class="Identifier">AF_INET</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span>
+                                  <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Clears <tt class="docutils literal"><span class="pre">t</span></tt> from timeout queue before excution.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L162"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L162" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="delay"><a name="delay,Timer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">delay</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">Timer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Returns the delay times (milliseconds) of <tt class="docutils literal"><span class="pre">t</span></tt>.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L175"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L175" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="active"><a name="active,Timer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">active</span><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <span class="Identifier">Timer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Returns if <tt class="docutils literal"><span class="pre">t</span></tt> is active.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L179"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L179" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="setTimeout"><a name="setTimeout,int,proc)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setTimeout</span><span class="Other">(</span><span class="Identifier">delay</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span><span class="Other">;</span> <span class="Identifier">resuable</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Timer</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">discardable</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">KeyError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TimeEffect</span><span class="Other">,</span> <span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-<p>Adds a new timer to the timeout queue.</p>
-<p>Equivalent to:</p>
-<blockquote><p>node = newTimer(delay, cb, resuable) join(node) start(node)</p></blockquote>
+<p>Start the process of listening for incoming TCP connections on the specified <tt class="docutils literal"><span class="pre">hostname</span></tt> and <tt class="docutils literal"><span class="pre">port</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">backlog</span></tt> specifies the length of the queue for pending connections. When the queue fills, new clients attempting to connect fail with ECONNREFUSED until the server calls accept to accept a connection from the queue.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L183"
+href="https://github.com/tulayang/nimnode/tree/master/node/httpserver.nim#L213"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L183" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="newTickerDispatcher"><a name="newTickerDispatcher,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newTickerDispatcher</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TickerDispatcher</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Creates new dispatcher for tickers.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L198"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L198" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="getGTickerDispatcher"><a name="getGTickerDispatcher,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">getGTickerDispatcher</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TickerDispatcher</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L208"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L208" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="callSoon"><a name="callSoon,proc)"></a><pre><span class="Keyword">proc</span> <span class="Identifier">callSoon</span><span class="Other">(</span><span class="Identifier">cb</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-<tt class="docutils literal"><span class="pre">cb</span></tt> will be deferred to the next iteration to excute.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/timers.nim#L222"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/timers.nim#L222" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/httpserver.nim#L213" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1502,7 +1483,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-05-09 16:22:01 UTC</small>
+        <small>Made with Nim. Generated: 2017-05-09 16:22:03 UTC</small>
       </div>
     </div>
   </div>

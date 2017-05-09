@@ -1227,15 +1227,16 @@ function main() {
   <li><a class="reference" href="#KeepAliveDelay"
     title="KeepAliveDelay = distinct cuint"><wbr />Keep<wbr />Alive<wbr />Delay<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#TcpConnection"
-    title="TcpConnection = ref object of LibuvStream"><wbr />Tcp<wbr />Connection<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#TcpConnector"
-    title="TcpConnector = ref object of RootObj
-  req: Connect
-  defaultFut: Future[TcpConnection]"><wbr />Tcp<wbr />Connector<span class="attachedType" style="visibility:hidden"></span></a></li>
+    title="TcpConnection = ref object of LibuvStream
+  onConnect*: proc ()"><wbr />Tcp<wbr />Connection<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#TcpServer"
-    title="TcpServer = ref object of RootObj
-  handle: TCP
+    title="TcpServer = ref object
   onConnection*: proc (conn: TcpConnection)
+  onClose*: proc (err: ref NodeError)
+  handle: TCP
+  maxConnections: int
+  connections: int
+  allowHalfOpen: bool
   closed: bool"><wbr />Tcp<wbr />Server<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
@@ -1243,22 +1244,17 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#init,TcpConnection"
-    title="init(c: TcpConnection)"><wbr />init<span class="attachedType" style="visibility:hidden">TcpConnection</span></a></li>
-  <li><a class="reference" href="#setKeepAlive,TcpConnection,KeepAliveDelay"
-    title="setKeepAlive(c: TcpConnection; delay: KeepAliveDelay)"><wbr />set<wbr />Keep<wbr />Alive<span class="attachedType" style="visibility:hidden">TcpConnection</span></a></li>
-  <li><a class="reference" href="#setNoDelay,TcpConnection,bool"
-    title="setNoDelay(c: TcpConnection; noDelay: bool)"><wbr />set<wbr />No<wbr />Delay<span class="attachedType" style="visibility:hidden">TcpConnection</span></a></li>
-  <li><a class="reference" href="#init,TcpConnector"
-    title="init(c: TcpConnector)"><wbr />init<span class="attachedType" style="visibility:hidden">TcpConnector</span></a></li>
-  <li><a class="reference" href="#connect,Port,string"
-    title="connect(port: Port; hostname = &quot;127.0.0.1&quot;; domain = AF_INET): Future[TcpConnection]"><wbr />connect<span class="attachedType" style="visibility:hidden">Port</span></a></li>
-  <li><a class="reference" href="#init,TcpServer"
-    title="init(s: TcpServer)"><wbr />init<span class="attachedType" style="visibility:hidden">TcpServer</span></a></li>
-  <li><a class="reference" href="#close,TcpServer"
-    title="close(s: TcpServer)"><wbr />close<span class="attachedType" style="visibility:hidden">TcpServer</span></a></li>
+      <li><a class="reference" href="#newTcpConnection,"
+    title="newTcpConnection(allowHalfOpen = false): TcpConnection"><wbr />new<wbr />Tcp<wbr />Connection<span class="attachedType" style="visibility:hidden">TcpConnection</span></a></li>
+  <li><a class="reference" href="#close,TcpServer,ref.NodeError"
+    title="close(server: TcpServer; err: ref NodeError = nil)"><wbr />close<span class="attachedType" style="visibility:hidden">TcpServer</span></a></li>
+  <li><a class="reference" href="#newTcpServer,int"
+    title="newTcpServer(maxConnections = 1024; allowHalfOpen = false): TcpServer"><wbr />new<wbr />Tcp<wbr />Server<span class="attachedType" style="visibility:hidden">TcpServer</span></a></li>
   <li><a class="reference" href="#serve,TcpServer,Port,string,int"
-    title="serve(s: TcpServer; port: Port; hostname = &quot;127.0.0.1&quot;; backlog = 511; domain = AF_INET)"><wbr />serve<span class="attachedType" style="visibility:hidden">TcpServer</span></a></li>
+    title="serve(server: TcpServer; port: Port; hostname = &quot;127.0.0.1&quot;; backlog = 511;
+      domain = AF_INET)"><wbr />serve<span class="attachedType" style="visibility:hidden">TcpServer</span></a></li>
+  <li><a class="reference" href="#connect,Port,string"
+    title="connect(port: Port; hostname = &quot;127.0.0.1&quot;; domain = AF_INET; allowHalfOpen = false): TcpConnection"><wbr />connect<span class="attachedType" style="visibility:hidden">Port</span></a></li>
 
   </ul>
 </li>
@@ -1272,7 +1268,7 @@ function main() {
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="uv.html">uv</a>, <a class="reference external" href="error.html">error</a>, <a class="reference external" href="timers.html">timers</a>, <a class="reference external" href="future.html">future</a>, <a class="reference external" href="streams.html">streams</a>
+<a class="reference external" href="uv.html">uv</a>, <a class="reference external" href="error.html">error</a>, <a class="reference external" href="timers.html">timers</a>, <a class="reference external" href="streams.html">streams</a>, <a class="reference external" href="nativesockets.html">nativesockets</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
@@ -1307,7 +1303,9 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="TcpConnection"><a name="TcpConnection"></a><pre><span class="Identifier">TcpConnection</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">LibuvStream</span></pre></dt>
+<dt id="TcpConnection"><a name="TcpConnection"></a><pre><span class="Identifier">TcpConnection</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">LibuvStream</span>
+  <span class="Identifier">onConnect</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+</pre></dt>
 <dd>
 Abstraction of TCP connection. 
 &nbsp;&nbsp;<a
@@ -1316,29 +1314,21 @@ class="link-seesrc" target="_blank">Source</a>
 <a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="TcpConnector"><a name="TcpConnector"></a><pre><span class="Identifier">TcpConnector</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootObj</span>
-  <span class="Identifier">req</span><span class="Other">:</span> <span class="Identifier">Connect</span>
-  <span class="Identifier">defaultFut</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">TcpConnection</span><span class="Other">]</span>
-</pre></dt>
-<dd>
-Connector to conect TCP server.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L26"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="TcpServer"><a name="TcpServer"></a><pre><span class="Identifier">TcpServer</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootObj</span>
-  <span class="Identifier">handle</span><span class="Other">:</span> <span class="Identifier">TCP</span>
+<dt id="TcpServer"><a name="TcpServer"></a><pre><span class="Identifier">TcpServer</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
   <span class="Identifier">onConnection</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">conn</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">onClose</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">closure</span><span class="Other">,</span> <span class="Identifier">gcsafe</span></div><span class="Other pragmaend">.}</span>
+  <span class="Identifier">handle</span><span class="Other">:</span> <span class="Identifier">TCP</span>
+  <span class="Identifier">maxConnections</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">connections</span><span class="Other">:</span> <span class="Identifier">int</span>
+  <span class="Identifier">allowHalfOpen</span><span class="Other">:</span> <span class="Identifier">bool</span>
   <span class="Identifier">closed</span><span class="Other">:</span> <span class="Identifier">bool</span>
 </pre></dt>
 <dd>
 Abstraction of TCP server.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L30"
+href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1346,81 +1336,56 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<dt id="init"><a name="init,TcpConnection"></a><pre><span class="Keyword">proc</span> <span class="Identifier">init</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="newTcpConnection"><a name="newTcpConnection,"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newTcpConnection</span><span class="Other">(</span><span class="Identifier">allowHalfOpen</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Initialize TCP connection <tt class="docutils literal"><span class="pre">c</span></tt>. Connection must be initialized before using it.
+Create a new TCP connection.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L40"
+href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L36"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="setKeepAlive"><a name="setKeepAlive,TcpConnection,KeepAliveDelay"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setKeepAlive</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span><span class="Other">;</span> <span class="Identifier">delay</span><span class="Other">:</span> <span class="Identifier">KeepAliveDelay</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="close"><a name="close,TcpServer,ref.NodeError"></a><pre><span class="Keyword">proc</span> <span class="Identifier">close</span><span class="Other">(</span><span class="Identifier">server</span><span class="Other">:</span> <span class="Identifier">TcpServer</span><span class="Other">;</span> <span class="Identifier">err</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Enable TCP keep-alive if <tt class="docutils literal"><span class="pre">delay &gt; 0</span></tt> else disable TCP keep-alive. <tt class="docutils literal"><span class="pre">delay</span></tt> is the initial delay in seconds.
+Close <cite>server</cite> to close the file descriptors and release internal resources. 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L46"
+href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L51"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L46" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="setNoDelay"><a name="setNoDelay,TcpConnection,bool"></a><pre><span class="Keyword">proc</span> <span class="Identifier">setNoDelay</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span><span class="Other">;</span> <span class="Identifier">noDelay</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="newTcpServer"><a name="newTcpServer,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">newTcpServer</span><span class="Other">(</span><span class="Identifier">maxConnections</span> <span class="Other">=</span> <span class="DecNumber">1024</span><span class="Other">;</span> <span class="Identifier">allowHalfOpen</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TcpServer</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Enable TCP_NODELAY, which disables Nagle’s algorithm.
+Create a new TCP server.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L52"
+href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L61"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-<dt id="init"><a name="init,TcpConnector"></a><pre><span class="Keyword">proc</span> <span class="Identifier">init</span><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Identifier">TcpConnector</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="serve"><a name="serve,TcpServer,Port,string,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">serve</span><span class="Other">(</span><span class="Identifier">server</span><span class="Other">:</span> <span class="Identifier">TcpServer</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">Port</span><span class="Other">;</span> <span class="Identifier">hostname</span> <span class="Other">=</span> <span class="StringLit">&quot;127.0.0.1&quot;</span><span class="Other">;</span> <span class="Identifier">backlog</span> <span class="Other">=</span> <span class="DecNumber">511</span><span class="Other">;</span>
+          <span class="Identifier">domain</span> <span class="Other">=</span> <span class="Identifier">AF_INET</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
 <dd>
-Initialize TCP connector <tt class="docutils literal"><span class="pre">c</span></tt>.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L56"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L56" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="connect"><a name="connect,Port,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connect</span><span class="Other">(</span><span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">Port</span><span class="Other">;</span> <span class="Identifier">hostname</span> <span class="Other">=</span> <span class="StringLit">&quot;127.0.0.1&quot;</span><span class="Other">;</span> <span class="Identifier">domain</span> <span class="Other">=</span> <span class="Identifier">AF_INET</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">TcpConnection</span><span class="Other">]</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">FutureError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Establishs an IPv4 or IPv6 TCP connection and returns a new <tt class="docutils literal"><span class="pre">TcpConnection</span></tt> if if successfully connected or raise <tt class="docutils literal"><span class="pre">NodeError</span></tt>. 
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L72"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L72" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="init"><a name="init,TcpServer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">init</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">TcpServer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Initialize TCP server <tt class="docutils literal"><span class="pre">c</span></tt>.
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L111"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L111" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="close"><a name="close,TcpServer"></a><pre><span class="Keyword">proc</span> <span class="Identifier">close</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">TcpServer</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-Close server <cite>s</cite> to close the file descriptors and release internal resources. 
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L121"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L121" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="serve"><a name="serve,TcpServer,Port,string,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">serve</span><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <span class="Identifier">TcpServer</span><span class="Other">;</span> <span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">Port</span><span class="Other">;</span> <span class="Identifier">hostname</span> <span class="Other">=</span> <span class="StringLit">&quot;127.0.0.1&quot;</span><span class="Other">;</span> <span class="Identifier">backlog</span> <span class="Other">=</span> <span class="DecNumber">511</span><span class="Other">;</span>
-          <span class="Identifier">domain</span> <span class="Other">=</span> <span class="Identifier">AF_INET</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">NodeError</span><span class="Other">,</span> <span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-<p>Starts the process of listening for incoming TCP connections on the specified <tt class="docutils literal"><span class="pre">hostname</span></tt> and <tt class="docutils literal"><span class="pre">port</span></tt>.</p>
+<p>Start the process of listening for incoming TCP connections on the specified <tt class="docutils literal"><span class="pre">hostname</span></tt> and <tt class="docutils literal"><span class="pre">port</span></tt>.</p>
 <p><tt class="docutils literal"><span class="pre">backlog</span></tt> specifies the length of the queue for pending connections. When the queue fills, new clients attempting to connect fail with ECONNREFUSED until the server calls accept to accept a connection from the queue.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L153"
+href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L107"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L153" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L107" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+<dt id="connect"><a name="connect,Port,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">connect</span><span class="Other">(</span><span class="Identifier">port</span><span class="Other">:</span> <span class="Identifier">Port</span><span class="Other">;</span> <span class="Identifier">hostname</span> <span class="Other">=</span> <span class="StringLit">&quot;127.0.0.1&quot;</span><span class="Other">;</span> <span class="Identifier">domain</span> <span class="Other">=</span> <span class="Identifier">AF_INET</span><span class="Other">;</span> <span class="Identifier">allowHalfOpen</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">TcpConnection</span> <span class="Other pragmabegin">{.</span><div class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">,</span> <span class="Identifier">NodeError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dd>
+Establishs an IPv4 or IPv6 TCP connection and returns a fresh <tt class="docutils literal"><span class="pre">TcpConnection</span></tt>.
+&nbsp;&nbsp;<a
+href="https://github.com/tulayang/nimnode/tree/master/node/net.nim#L129"
+class="link-seesrc" target="_blank">Source</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/net.nim#L129" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1433,7 +1398,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-04-12 15:23:21 UTC</small>
+        <small>Made with Nim. Generated: 2017-05-09 16:22:02 UTC</small>
       </div>
     </div>
   </div>
