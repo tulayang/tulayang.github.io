@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- Favicon -->
 <link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA=="/>
 
@@ -14,7 +16,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>Module httpcore</title>
+<title>Module nettype</title>
 <style type="text/css" >
 /*
 Stylesheet for use with Docutils/rst2html.
@@ -1193,7 +1195,7 @@ function main() {
 <body onload="main()">
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">Module httpcore</h1>
+    <h1 class="title">Module nettype</h1>
     <div class="row">
   <div class="three columns">
   <div>
@@ -1217,49 +1219,15 @@ function main() {
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#Line"
-    title="Line = object
-  err*: ref NodeError
-  base*: string
-  length: int
-  parse: LinePhase
-  ok*: bool"><wbr />Line<span class="attachedType" style="visibility:hidden"></span></a></li>
-
-  </ul>
-</li>
-<li>
-  <a class="reference reference-toplevel" href="#10" id="60">Consts</a>
-  <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#HeaderBufSize"
-    title="HeaderBufSize = 1024"><wbr />Header<wbr />Buf<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
-
-  </ul>
-</li>
-<li>
-  <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
-  <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#clear,Line"
-    title="clear(line: var Line)"><wbr />clear<span class="attachedType" style="visibility:hidden">Line</span></a></li>
-  <li><a class="reference" href="#read,Line,pointer,int"
-    title="read(line: var Line; buf: pointer; size: int): int"><wbr />read<span class="attachedType" style="visibility:hidden">Line</span></a></li>
-  <li><a class="reference" href="#parseRequestProtocol,string,string,string,tuple[string,int,int]"
-    title="parseRequestProtocol(line: string; reqMethod, url: var string;
-                     protocol: var tuple[orig: string, major, minor: int])"><wbr />parse<wbr />Request<wbr />Protocol<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#parseResponseProtocol,string,int,string,tuple[string,int,int]"
-    title="parseResponseProtocol(line: string; statusCode: var int; statusMessage: var string;
-                      protocol: var tuple[orig: string, major, minor: int])"><wbr />parse<wbr />Response<wbr />Protocol<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#parseHeader,string,StringTableRef"
-    title="parseHeader(line: string; headers: StringTableRef)"><wbr />parse<wbr />Header<span class="attachedType" style="visibility:hidden"></span></a></li>
-  <li><a class="reference" href="#parseChunkSize,string"
-    title="parseChunkSize(line: string): int"><wbr />parse<wbr />Chunk<wbr />Size<span class="attachedType" style="visibility:hidden"></span></a></li>
-
-  </ul>
-</li>
-<li>
-  <a class="reference reference-toplevel" href="#14" id="64">Iterators</a>
-  <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#splitProtocol.i,string"
-    title="splitProtocol(line: string): string"><wbr />split<wbr />Protocol<span class="attachedType" style="visibility:hidden"></span></a></li>
+      <li><a class="reference" href="#Port"
+    title="Port = distinct uint16"><wbr />Port<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#Domain"
+    title="Domain = enum
+  AF_UNIX,                    ## for local socket (using a file). Unsupported on Windows.
+  AF_INET = 2,                  ## for network protocol IPv4 or
+  AF_INET6 = 23                 ## for network protocol IPv6."><wbr />Domain<span class="attachedType" style="visibility:hidden"></span></a></li>
+  <li><a class="reference" href="#KeepAliveDelay"
+    title="KeepAliveDelay = distinct cuint"><wbr />Keep<wbr />Alive<wbr />Delay<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -1269,121 +1237,43 @@ function main() {
   </div>
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
-  <p class="module-desc">Base utilities for processing http operations.</p>
+  <p class="module-desc"></p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="uv.html">uv</a>, <a class="reference external" href="error.html">error</a>, <a class="reference external" href="strtabs.html">strtabs</a>, <a class="reference external" href="strutils.html">strutils</a>, <a class="reference external" href="parseutils.html">parseutils</a>
+<a class="reference external" href="nativesockets.html">nativesockets</a>
 </dl></div>
 <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
-<dt id="Line"><a name="Line"></a><pre><span class="Identifier">Line</span> <span class="Other">=</span> <span class="Keyword">object</span>
-  <span class="Identifier">err</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ref</span> <span class="Identifier">NodeError</span>
-  <span class="Identifier">base</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
-  <span class="Identifier">length</span><span class="Other">:</span> <span class="Identifier">int</span>
-  <span class="Identifier">parse</span><span class="Other">:</span> <span class="Identifier">LinePhase</span>
-  <span class="Identifier">ok</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">bool</span>
-</pre></dt>
+<dt id="Port"><a name="Port"></a><pre><span class="Identifier">Port</span> <span class="Other">=</span> <span class="Keyword">distinct</span> <span class="Identifier">uint16</span></pre></dt>
 <dd>
-
+Port type.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L20"
+href="https://github.com/tulayang/nimnode/tree/master/node/nettype.nim#L10"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/nettype.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-
-</dl></div>
-<div class="section" id="10">
-<h1><a class="toc-backref" href="#10">Consts</a></h1>
-<dl class="item">
-<dt id="HeaderBufSize"><a name="HeaderBufSize"></a><pre><span class="Identifier">HeaderBufSize</span> <span class="Other">=</span> <span class="DecNumber">1024</span></pre></dt>
+<dt id="Domain"><a name="Domain"></a><pre><span class="Identifier">Domain</span> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">AF_UNIX</span><span class="Other">,</span>                    <span class="Comment">## for local socket (using a file). Unsupported on Windows.</span>
+  <span class="Identifier">AF_INET</span> <span class="Other">=</span> <span class="DecNumber">2</span><span class="Other">,</span>                  <span class="Comment">## for network protocol IPv4 or</span>
+  <span class="Identifier">AF_INET6</span> <span class="Other">=</span> <span class="DecNumber">23</span>                 <span class="Comment">## for network protocol IPv6.</span></pre></dt>
 <dd>
-Buffer size for reading http header.
+specifies the protocol family of the created socket. Other domains than those that are listed here are unsupported.
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L14"
+href="https://github.com/tulayang/nimnode/tree/master/node/nettype.nim#L12"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L14" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/nettype.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
-
-</dl></div>
-<div class="section" id="12">
-<h1><a class="toc-backref" href="#12">Procs</a></h1>
-<dl class="item">
-<dt id="clear"><a name="clear,Line"></a><pre><span class="Keyword">proc</span> <span class="Identifier">clear</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Line</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
+<dt id="KeepAliveDelay"><a name="KeepAliveDelay"></a><pre><span class="Identifier">KeepAliveDelay</span> <span class="Other">=</span> <span class="Keyword">distinct</span> <span class="Identifier">cuint</span></pre></dt>
 <dd>
 
 &nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L27"
+href="https://github.com/tulayang/nimnode/tree/master/node/nettype.nim#L19"
 class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="read"><a name="read,Line,pointer,int"></a><pre><span class="Keyword">proc</span> <span class="Identifier">read</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Line</span><span class="Other">;</span> <span class="Identifier">buf</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L34"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="parseRequestProtocol"><a name="parseRequestProtocol,string,string,string,tuple[string,int,int]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseRequestProtocol</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">reqMethod</span><span class="Other">,</span> <span class="Identifier">url</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span>
-                         <span class="Identifier">protocol</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">orig</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">major</span><span class="Other">,</span> <span class="Identifier">minor</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L85"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L85" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="parseResponseProtocol"><a name="parseResponseProtocol,string,int,string,tuple[string,int,int]"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseResponseProtocol</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">statusCode</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">int</span><span class="Other">;</span>
-                          <span class="Identifier">statusMessage</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span>
-                          <span class="Identifier">protocol</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">orig</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">major</span><span class="Other">,</span> <span class="Identifier">minor</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">]</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">OverflowError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L108"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L108" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="parseHeader"><a name="parseHeader,string,StringTableRef"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseHeader</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">headers</span><span class="Other">:</span> <span class="Identifier">StringTableRef</span><span class="Other">)</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L131"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L131" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-<dt id="parseChunkSize"><a name="parseChunkSize,string"></a><pre><span class="Keyword">proc</span> <span class="Identifier">parseChunkSize</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L151"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L151" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-
-</dl></div>
-<div class="section" id="14">
-<h1><a class="toc-backref" href="#14">Iterators</a></h1>
-<dl class="item">
-<dt id="splitProtocol"><a name="splitProtocol.i,string"></a><pre><span class="Keyword">iterator</span> <span class="Identifier">splitProtocol</span><span class="Other">(</span><span class="Identifier">line</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other pragmabegin">{.</span><div class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></div><span class="Other pragmaend">.}</span></pre></dt>
-<dd>
-
-&nbsp;&nbsp;<a
-href="https://github.com/tulayang/nimnode/tree/master/node/httpcore.nim#L58"
-class="link-seesrc" target="_blank">Source</a>
-<a href="https://github.com/tulayang/nimnode/edit/master/node/httpcore.nim#L58" class="link-seesrc" target="_blank" >Edit</a>
+<a href="https://github.com/tulayang/nimnode/edit/master/node/nettype.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 
@@ -1396,7 +1286,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2017-05-09 16:22:03 UTC</small>
+        <small>Made with Nim. Generated: 2017-09-17 10:05:20 UTC</small>
       </div>
     </div>
   </div>
