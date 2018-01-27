@@ -1,0 +1,214 @@
+route module ------ 路由处理
+===============================
+
+在 webship framework 中，主要的编程目标是编写路由。路由规定如何对用户的请求执行操作。
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    const router = createRouter()
+
+    router.get('/:username/blog/:id', async () => {
+      console.log('a')
+    })
+
+    router.post('/:username/blog/:id', async () => {
+      console.log('b')
+    })
+
+    router.get('/', async () => {
+      console.log('c')
+    })
+
+interface 
+-------------------------------
+
+AsyncCb
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  interface AsyncCb {
+    (...context: Array<any>) => any
+  }
+
+路由操作，本质上是对不同的请求路径编写函数，这个接口规定了这些函数的规范。
+
+.. note:: 
+
+  这些函数可以是 ``async await`` 异步函数。
+
+Params
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  interface Params {
+    [key: string]: string
+  }
+
+路径参数，一个 key-value 的数据对象。
+
+class 
+-------------------------------
+
+Router
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+  
+  class Router
+
+路由器，内部维护一个路由函数表。使用路由器来注册路由函数。
+
+.. code-block:: ts
+
+  constructor(isRegisterOnce = false)
+
+``isRegisterOnce`` 指定是否允许对同一个路径注册多个路由函数。比如路径 ``/:username/blog/:id`` 表示 **用户/博客/号码**，``isRegisterOnce`` 设置为 ``true`` 后，该路径只能注册一个路由函数，否则可以注册多个路由函数。
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    const router = createRouter(isRegisterOnce = false)
+
+    // Ok
+    router.get('/:username/blog/:id', async () => {
+      console.log('1')
+    })
+
+    // Ok
+    router.get('/:username/blog/:id', async () => {
+      console.log('2')
+    })
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    const router = createRouter(isRegisterOnce = true)       
+
+    // Ok
+    router.get('/:username/blog/:id', async () => {
+      console.log('1')
+    })      
+
+    // Error
+    router.get('/:username/blog/:id', async () => {
+      console.log('2')
+    })  
+
+.. code-block:: ts
+
+  public register(method: string, pathnameOfExp: string, ...cbs: Array<AsyncCb>)
+
+注册一个路由函数。
+
+- ``method`` 指定 HTTP 方法，包括：  
+  
+  - ``GET``
+  - ``POST``
+  - ``PUT``
+  - ``DELETE``
+  - ``HEAD``
+  - ``OPTIONS``  
+
+- ``pathnameOfExp`` 指定路径（一个模糊正则表达式），比如 ``/:username/blog/:id``，其中的 ``:username`` ``:id`` 表示是一个变量  
+
+- ``cbs`` 指定路由函数（可以是一个或多个）  
+
+.. code-block:: ts
+
+  public find(method: string, pathname: string): [Route, Params]
+
+根据 HTTP 方法 ``method`` 和路径 ``pathname`` 查找路由。如果存在则返回该路由和路径参数，路径参数包含模糊路径变量的替换值；否则返回 ``[null, null]``。
+
+比如以下路由：
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    const router = createRouter(isRegisterOnce = false)
+
+    router.get('/:username/blog/:id', async () => {
+      console.log('1')
+    })
+
+当使用 ``find`` 查找时：
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    const [route, params] = router.find('GET', '/xiaoming/blod/1')
+
+返回路由和路径参数，路径参数 ``params`` 的值是：
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    {
+      username: 'xiaoming',
+      id: '1'
+    }
+
+.. note:: 
+
+  通常，这个方法是 webship 内部使用的，你不需要用到这个函数。
+
+.. code-block:: ts
+
+  public head(pathnameOfExp: string, ...cbs: Array<AsyncCb>)
+
+注册一个路由函数，HTTP 方法指定为 ``HEAD``。
+
+.. code-block:: ts
+
+  public options(pathnameOfExp: string, ...cbs: Array<AsyncCb>)
+
+注册一个路由函数，HTTP 方法指定为 ``OPTIONS``。
+
+.. code-block:: ts
+
+  public get(pathnameOfExp: string, ...cbs: Array<AsyncCb>)
+
+注册一个路由函数，HTTP 方法指定为 ``GET``。
+
+.. code-block:: ts
+
+  public post(pathnameOfExp: string, ...cbs: Array<AsyncCb>)
+
+注册一个路由函数，HTTP 方法指定为 ``POST``。
+
+.. code-block:: ts
+
+  public put(pathnameOfExp: string, ...cbs: Array<AsyncCb>)
+
+注册一个路由函数，HTTP 方法指定为 ``PUT``。
+
+.. code-block:: ts
+
+  public delete(pathnameOfExp: string, ...cbs: Array<AsyncCb>)  
+
+注册一个路由函数，HTTP 方法指定为 ``DELETE``。
+
+
+function 
+--------------------------------
+
+createRouter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  function createRouter(isRegisterOnce = false): Router
+
+创建一个 ``Router``。
+
+.. note:: 
+  
+  通常，你应该使用 ``createRouter()`` 函数，而不是 ``new Router()``。``createRouter()`` 可以避免漏写 ``new`` 关键字。

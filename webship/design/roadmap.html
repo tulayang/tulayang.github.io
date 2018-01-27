@@ -1,0 +1,316 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>开发计划 &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="编程文档和手册" href="../programming/docs.html" />
+    <link rel="prev" title="Development Process" href="development.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../programming/docs.html" title="编程文档和手册"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="development.html" title="Development Process"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webship 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>开发计划<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="roadmap">
+<h2>指挥中心 Roadmap<a class="headerlink" href="#roadmap" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>用户<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<p>用户，是系统的主要使用角色，每一个系统用户都是独立的、不相关的。</p>
+<div class="table docutils container">
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="11%" />
+<col width="22%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">状态</th>
+<th class="head">功能</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#160;</td>
+<td>登录</td>
+<td>用户使用给定的用户名、密码登录</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>退出</td>
+<td>用户退出当前账户</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>查看</td>
+<td>用户可以查看自己的账户信息；<strong>TODO：是否可以查看其他用户的账户信息？</strong></td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>更新</td>
+<td>用户可以修改自己的部分信息 <strong>TODO：可以修改哪些信息？</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>组织<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>组织，是多个用户的组成的一个群体。组织的用户有不同的角色，每个角色可以使用的权限不同。</p>
+<div class="table docutils container">
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="11%" />
+<col width="22%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">状态</th>
+<th class="head">功能</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>X</td>
+<td>创建</td>
+<td>创建一个新的组织，比如中铁集团。<strong>不对用户开放这个功能，由服务器管理系统完成</strong></td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>列出</td>
+<td>列出某个组织内的所有用户</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>查看</td>
+<td>查看某个组织内的用户</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>添加</td>
+<td>添加一个新的已知用户，并授予组织角色</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>更新</td>
+<td>更新某个组织内的用户的角色</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>删除</td>
+<td>删除某个组织内的用户</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>工程<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>工程，该软件系统的主要资源。通常，一个工程由一个组织的高级管理者创建，由组织内的多个用户共同管理。</p>
+<div class="table docutils container">
+<table border="1" class="colwidths-given docutils">
+<colgroup>
+<col width="11%" />
+<col width="22%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">状态</th>
+<th class="head">功能</th>
+<th class="head">描述</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#160;</td>
+<td>创建</td>
+<td>创建某个组织内一个新的工程</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>列出</td>
+<td>列出某个组织内的所有工程</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>查看</td>
+<td>查看某个组织内的某个工程 <strong>TODO：具体的内容</strong></td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>更新</td>
+<td>更新某个组织内的某个工程 <strong>TODO：具体的内容</strong></td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>删除</td>
+<td>删除某个组织内的某个工程</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="永久链接至标题">¶</a></h2>
+<p>开发组计划分为 <strong>前端（前）、后端（后）、图像（图）</strong> 3 个常规单元，分别进行各领域的任务。根据进程的推进，会适时演化（变动）出 <strong>移动端（移）、运维（运）</strong> 等等。这些分组的成员不必是固定或者专有的，根据情况需要，进行动态变化和兼任。</p>
+<p>总体任务包括：</p>
+<ul class="simple">
+<li>设计</li>
+<li>开发</li>
+<li>基础功能测试</li>
+<li>流量和错误测试</li>
+<li>部署</li>
+<li>监控</li>
+<li>日志记录</li>
+<li>反馈、回答、更新</li>
+<li>迭代，直到可用</li>
+</ul>
+<p>第一个周期的 TODO list 包括：</p>
+<ul>
+<li><p class="first">了解以下关键字相关联的基础知识，已经熟知的略过，还未了解的使用搜狗搜索、百度搜索、bing 搜索等查找相关的信息做些了解：</p>
+<ul>
+<li><p class="first">JavaScript 基础 [所有]</p>
+<p>ECMAscript, ECMAscript 6, ECMAscript 7, JavaScript class, JavaScript module, JavaScript 迭代器，for of，什么是 JavaScript 异步，什么是事件驱动，回调函数，面向对象，什么是继承，什么是接口，什么是抽象</p>
+</li>
+<li><p class="first">JavaScript [前端]</p>
+<p>ajax，reactjs 是什么，reactjs component 是什么，reactjs props 是什么，reactjs state 是什么，reactjs render 是什么，reactjs componentDidMount 是什么</p>
+</li>
+<li><p class="first">JavaScript [后端]</p>
+<p>node.js 是什么，node.js 怎么安装，npm 是什么，如何使用 10 行代码编写一个 http 服务器，node.js 的流是什么，node.js 的可读流，node.js 的可写流，node.js 的双工流</p>
+<p>服务器日志，并发，并行，阻塞，非阻塞，异步，同步</p>
+</li>
+<li><p class="first">http [所有]</p>
+<p>HTTP 协议，HTTP 请求方法，HTTP 请求路径，HTTP 请求头，HTTP 请求体，HTTP 响应状态码，HTTP 响应头，HTTP 响应体，HTTP MIME</p>
+<p>json，HTTP 静态文件，HTTP 动态内容</p>
+</li>
+<li><p class="first">代码仓库 [所有]</p>
+<p>git，github，gitlab，git clone，git push，git pull，git merge，Pull Request，git commit，提交，合并，版本控制，代码仓库</p>
+</li>
+</ul>
+</li>
+<li><p class="first">访问 <a class="reference external" href="https://gitlab.com/">https://gitlab.com/</a> 网站，注册一个用户。这个用户将会成为你在编写代码时的主要用户 [所有]</p>
+</li>
+<li><p class="first">熟悉 <a class="reference external" href="https://gitlab.com/">https://gitlab.com/</a> 网站 [所有]</p>
+</li>
+<li><p class="first">编写一个 ReactJs 的例子 Demo [前端]</p>
+</li>
+<li><p class="first">编写一个 Node.js HTTP 服务器 的例子 Demo [后端]</p>
+</li>
+<li><p class="first">构建两个以上的 3D 模型，可以通过网页访问（交互） [图像]</p>
+</li>
+<li><p class="first">阅读 <a class="reference external" href="http://blog.jobbole.com/113230/">漫画解读软件开发模式</a> [所有]</p>
+</li>
+<li><p class="first">构建开发组织和代码仓库（部署在 gitlab）  [-]</p>
+</li>
+<li><p class="first">确定“指挥中心”的 vertsion 0.1.0 的功能 [-]</p>
+</li>
+<li><p class="first">定义“指挥中心”的 vertsion 0.1.0 的原型图 [-]</p>
+</li>
+<li><p class="first">定义“指挥中心”的 vertsion 0.1.0 的路由 [-]</p>
+</li>
+<li><p class="first">补充“指挥中心“Roadmap [-]</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">开发计划</a><ul>
+<li><a class="reference internal" href="#roadmap">指挥中心 Roadmap</a><ul>
+<li><a class="reference internal" href="#id2">用户</a></li>
+<li><a class="reference internal" href="#id3">组织</a></li>
+<li><a class="reference internal" href="#id4">工程</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#todo">TODO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="development.html"
+                        title="上一章">Development Process</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="../programming/docs.html"
+                        title="下一章">编程文档和手册</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/design/roadmap.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../programming/docs.html" title="编程文档和手册"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="development.html" title="Development Process"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webship 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>

@@ -1,0 +1,942 @@
+JavaScript 快速开始
+===============================
+
+
+ECMAScript 6 (2015) 和 ECMAScript 7 (Next Version)
+------------------------------------------------------
+
+ECMAScript 是一种由 Ecma 国际（前身为欧洲计算机制造商协会）通过 ECMA-262 标准化的脚本程序设计的语言。ECMAScript 是 JavaScript 在语法和语义上的标准。JavaScript 由 ECMAScript （语言标准）、DOM （网页文档描述） 和 BOM （浏览器客户端） 三者组成的。
+
+2015 年，Ecma 国际大会宣布正式批准 ECMA-262 第 6 版，亦即 ECMAScript 2015 （曾用名 ECMAScript 6、ES6） 的语言规范。ES6 是继 ES5 之后的一次主要改进，语言规范由 ES5.1 时代的 245 页扩充至 600 页。ES6 增添了许多必要的特性，例如：模块和类，以及一些实用特性，例如 Maps、Sets、Promises、Generators 等。
+
+2016 年，Ecma 国际大会批准了第 7 版的 ECMAScript 语言规范（ECMAScript 2016）。
+
+目前，ECMAScript 2017 正在指定当中。
+
+模板字符串
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+一个简单的例子：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    var name = 'XiaoMing'
+    var msg = `Hello, ${name}` 
+
+上面的 `msg` 中的变量被替换，生成： 
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    Hello, XiaoMing
+
+你可以使用函数封装模板字符串：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    function renderText(name, age) {
+      return `
+    <h1>Hello World</h1>
+    <p>${name}<p>
+    <p>${age}</p>
+    `
+    }
+
+调用函数 `renderText('XiaoMing', 21)`，返回：
+
+.. container:: coder
+
+  .. code-block:: html
+
+    <h1>Hello World</h1>
+    <p>XiaoMing<p>
+    <p>21</p>
+
+迭代器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+迭代器是无损耗的高性能循环的抽象，当程序运行前，代码会被预编译为循环 --- 这和尾递归优化有异曲同工之秒。一个简单的例子：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    function* items() {
+      var list = [1, 2, 3]
+      for (var i = 0; i < 3; i++) {
+        yield list[i] * list[i]
+      }
+    }
+
+上面创建了一个迭代器。迭代器可以通过 `for of` 使用：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    for (let item of items()) {
+      console.log(item) 
+    } 
+
+上面依次输出：
+
+.. container:: coder
+
+  .. code-block:: md
+  
+    1
+    4
+    9
+
+确切的说，这叫做**内联迭代器 inline-iterator**，还有另外一种叫做**闭包迭代器 closure-iterator** （这里不做介绍）。在 JavaScript 虚拟机中，内联迭代器会预编译为循环。
+
+类
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ES 6 提供了类的概念，用于面向对象编程：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    class Person {
+      constructor(name, age) {
+        this.name = name
+        this.age = age
+      }
+      
+      sayHello() {
+        console.log('Hello World!')
+      }
+    }
+
+    var person = new Person('XiaoMing', 21)
+    person.sayHello()
+    person.age = 16
+
+模块
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ES 6 提供了标准的模块概念，通常使用一个文件作为模块，多个文件可以组合成为一个更大的模块。
+
+使用 export 对外暴露模块中的符号：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    export var a = 1
+    export function f() {
+    }
+
+使用 import 导入模块：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    import * as F from './f'
+    import {Person} from './person'
+
+async await 和 Promise
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ES 7 提供了原生的 `async/await` 编程范式，简化异步编程。
+
+下面是一个定时器的封装，time 秒后返回参数的倍数；如果这个参数小于 0，则返回一个错误：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    async function sleep(x, time) {
+      return new Promise(function (complete, fail) {
+        setTimeout(function () {
+          if (typeof x === 'number' && x > 0) {
+          complete(x * x)    
+          } else {
+            fail(new Error('bad number'))
+          }
+        }, time)
+      })
+    }
+
+下面，我们来使用这个定时器：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    async function main() {
+      try {
+        const a = await sleep(1, 1000)
+        console.log(a)
+        
+        const b = await sleep(2, 1000)
+        console.log(b)
+        
+        const c = await sleep(-1, 1000)
+        console.log(c)
+      } catch (e) {
+        console.log('Catch a error:', e.msg)
+        console.log('.....................')
+      }
+    }
+
+    main()
+
+上面输出：
+
+.. container:: coder
+
+  .. code:: ts
+  
+    // 等待 1 秒后
+    10000
+    // 等待 1 秒后
+    4
+    // 出现错误
+    Catch a error: bad number
+    .....................
+
+箭头函数
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+你可以使用箭头函数简化匿名函数的语法。比如下面这个数组迭代函数：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    [1, 2, 3].map(function (item) {
+      return item % 2 === 0
+    })
+
+可以简化：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    [1, 2, 3].map((item) => {
+      return item % 2 === 0
+    })
+
+如果函数只有一条语句，则可以省略 `{}`：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    [1, 2, 3].map((item) => item % 2 === 0)
+
+如果参数只有一个，则可以省略 `()`：
+
+.. container:: coder
+
+  .. code-block:: ts
+  
+    [1, 2, 3].map(item => item % 2 === 0)
+
+TypeScript 
+-------------------------------------------------------
+
+> TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Any browser. Any host. Any OS. Open source.
+
+一些 modern language (吸收了 C C++ Lisp Haskell Pascal 等语言的优点，21 世纪之后出现的语言) 的一个功能是把 ECMAScript （JavaScript 语言标准） 作为目标代码。编写非 ECMAScript 代码，通过编译器生成 ECMAScript 代码。
+
+.. container:: coder
+
+  .. code-block:: md
+  
+    +------------+      +----------+      +------------+
+    | lang codes | ---> | compiler | ---> | ECMAScript | ===> run in Browser or (JS) VM
+    +------------+      +----------+      +------------+
+
+使用 TypeScript 的好处：
+
+- 不需要学习新的语法和语义
+- 可以直接使用 JavaScript 库，编写的代码可以为 JavaScript 调用，你仍然可以和不懂 TypeScript 的一起协作
+- 提供静态的类型检查，获得只有静态语言才有的类型安全，并且支持类型推导
+- 模块化，抽象化 --- 构建大型工程的基石
+- 提前使用 ECMAScript 6 和 ECMAScript 7 规范
+
+`TypeScript 官方文档 <http://www.typescriptlang.org/docs/handbook/basic-types.html>`_
+`TypeScript 中文文档 <http://www.css88.com/doc/typescript>`_
+
+数据类型
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* number
+  
+  .. container:: coder
+
+    .. code-block:: ts
+    
+      var a = 1
+      var b: number = 100
+      var c = -1.1
+      
+      typeof a === 'number'
+
+* string
+  
+  .. container:: coder
+
+    .. code-block:: ts
+  
+      var a = "a"
+      var b: string = "hello"
+
+      var c: string      // 声明
+      c = "hello world"  // 赋值
+
+      typeof a === 'string'
+
+* boolean
+
+  .. container:: coder
+
+    .. code-block:: ts
+
+      var a: boolean = true
+      var b = false
+
+      typeof a === 'boolean'
+
+* `object`
+
+  .. container:: coder
+
+    .. code-block:: ts
+
+      var a = {name: "XiaoMing", age: 21}
+      typeof a === "object"
+
+      var b = Object.create(null)
+      b.name = "Tom"
+  
+  .. container:: coder
+
+    .. code-block:: ts
+
+      class Person {
+          public name: string  
+      }
+      
+      var person = new Person()
+      person.name = "Lili"
+      typeof person === "object"
+
+* `null` 和 `undefined`
+
+  `null` 和 `undefined` 是其他任何类型的子类型。但是，通常最好不使用 `undefined`，除非没有更好的选择。对于 `null`，当你使用 `object` 的类型时，当没有赋值的时候，可以选择赋予 `null` 值。
+
+  .. container:: coder
+
+    .. code-block:: ts
+
+      var a = null
+      var b: null = null
+
+      var c: string = null // 声明，赋予 `null`，表示只申请了 c 地址的内存
+      c = "abc"            // 分配一块内存存储 `abc`，将这个地址赋予 c
+  
+* void
+
+  .. container:: coder
+
+    .. code-block:: ts
+
+      function f(): void {
+        console.log(100)
+      }
+
+      function g() {
+        console.log(100)
+      }
+
+* any
+
+  忽略类型检查，相当于直接编写 ECMAScript
+
+  .. container:: coder
+
+    .. code-block:: ts
+
+      var a: any = 100
+      var c: any = "abc"
+      var e: any = {name: "Tom"}
+
+
+* Array
+
+  .. container:: coder
+
+    .. code-block:: ts
+
+      var a = [1,2,3,4,5,6]
+      var b: Array<number> = [1, 2, 3]
+
+      var c: Array<string> = []
+      c[0] = "hello"
+      c[1] = "world"
+
+* tuple
+
+  tuple 是一个数据领域用来表示一个数据项的标准格式。TypeScript 使用一个固定数组表示：
+
+  .. container:: coder
+
+    .. code-block:: ts
+
+      var a = ["Tom", 21, "red"]
+
+      var b: [string, number, string]
+      b = ["XiaoMing", 31, "blue"]
+
+* enum  
+
+  枚举，常用在算法表示各个状态：
+  
+  .. container:: coder
+
+    .. code-block:: ts
+
+      enum Color {
+          RED, GREEN, BLUE
+      }
+
+      var a: Color = Color.RED
+
+      switch (a) {
+      case Color.RED:
+          // do something
+          break
+      case Color.GREEN:
+          // do something
+          break
+      case Color.BLUE:
+          // do something
+          break
+      default:
+          break
+      }
+
+* class types
+  
+ .. container:: coder
+
+    .. code-block:: ts
+
+      class Person {
+          public name: string
+          public age: number
+          constructor (name: string, age: number) {
+              this.name = name
+              this.age = age
+          } 
+          public sayHello() {
+              console.log(this.name + ': ' + 'Hello World!')
+          }
+      }
+
+抽象类和类的继承
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+抽象类用于放置共同方法和数据（不能使用 new 实例化），下面定义了一个形状类： 
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    abstract class Shape {
+      public x: number
+      public y: number
+      public color: string
+
+      public draw(ctx) {
+        ctx.draw(this.x, this.y, 100, 100, this.color)
+      }
+
+      abstract print(): void
+    }
+
+一般，抽象类作为基类使用，继承抽象类的其他类成为派生类。比如，下面定义了一个矩形类：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    class Rect extends Shape {
+      public print() {
+        console.log("A Rect")
+      }
+    }
+
+使用这个矩形类：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    var ctx = ......
+    var rect = new Rect()
+    rect.draw(ctx)
+    rect.print()   // A Rect
+
+接口
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+接口用于某些多态的场景，描述外部应该提供的变量、函数、对象、或者其他内容。一个接口定义如下：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    interface Shape {
+      draw: (ctx) => void
+      print: () => void
+    }
+
+这个接口 `Shape` 描述了两个方法：`draw` 和 `print`。你可以编写类来实现这个接口：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    class MyShape implements Shape {
+      public draw(ctx) {
+
+      }
+
+      public print() {
+
+      }
+    }
+
+一旦 `MyShape` 实现了这个接口，任何和这个接口有关系的函数、方法、对象等等，都可以互相操作：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    function f(shape: Shape) {
+      shape.print()
+      console.log('Hello World!')
+    }
+
+    var ctx = ......
+    var s = new MyShape()
+    s.draw(ctx)
+    f(s)
+
+类型别名
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+你可以使用关键字 `type` 定义类型的别名，这是一种 C-style 的类型定义方式：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    type N = number
+    var a: N = 1
+
+    type String = string
+    var b: String = 'abc'
+
+    type Person = {
+      name: string
+      age: number
+    }
+    var c: Person = {
+      name: 'XiaoMing',
+      age: 33
+    }
+
+泛型
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+泛型可以提供多样的数据类型。数组本身就是泛型的：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    var a: Array<number> = []
+    a.push(100)
+
+    var b: Array<string> = []
+    b.push('abc')
+
+    var c: Array<{name: string, age: number}> = []
+    c.push({
+      name: 'XiaoMing',
+      age: 33
+    })
+
+你可以定义自己的泛型类：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    class My<T> {
+      private value: T
+
+      constructor(value: T) {
+        this.value = value
+      }
+
+      getValue(): T {
+        return this.value
+      }
+    }
+
+    var my1 = new My<number>(100)
+    my1.getValue()
+
+    var my2 = new My<string>('abc')
+    my2.getValue()
+
+迭代器
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+在 TypeScript 中，迭代器有几个明确的类型表示：内联迭代器是 Iterable<T>，闭包迭代器是 Iterator<T>。下面是一个内敛迭代器的例子：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    function* items(): Iterable<number> {
+      var list = [1, 2, 3]
+      for (var i = 0; i < 3; i++) {
+        yield list[i] * list[i]
+      }
+    }
+
+React
+--------------------------------------------------------
+
+React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在 2013 年 5 月开源。
+
+> 当前最新版本 0.16 是使用 MIT 许可协议。
+
+Hello React
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. container:: coder
+
+  .. code:: html
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Demo</title>
+      <script src="react.js"></script>
+      <script src="react-dom.js"></script>
+    </head>
+    <body>
+      <div id="wrapper"></div>
+      <script>
+        class Message extends React.Component {
+          render() {
+            return <div>Hello World</div>
+          }
+        }
+
+        ReactDOM.render(<Message/>, document.getElementById('wrapper'))
+      </script>
+    </body>
+    </html>
+
+React 的两个主要元素分别是：位于 react.js 模块的 `Component` 基类，位于 react-dom.js 的 `render` 函数。通常，你需要编写每个 UI 组件类，这些类应该继承自 react.js 模块的 `Component` 基类；最后，使用 react-dom.js 的 `render` 函数来渲染整个 HTML 文档树。
+
+HTML DOM 和 React DOM
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+HTML DOM 是网页描述的原生文档：
+
+.. container:: coder
+
+  .. code-block:: html
+
+    <div id="wrapper">
+      <div>Hello World</div>
+    </div>
+
+在 JavaScript 中，HTML DOM 以对象表示，比如：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    var wrapper: HTMLElement = document.getElementById('wrapper')
+
+React DOM 是 React 运行时内部的虚拟 DOM，这层 DOM 保存了 Rect 内部的操作资源，当需要的时候，生成 HTML DOM。一个例子：
+
+.. container:: coder
+
+  .. code:: ts
+
+    class Message extends React.Component<null, null> {
+      render(): JSX.Element {
+        return <div>Hello World</div>
+      }
+    }
+
+    ReactDOM.render(<Message/>, document.getElementById('wrapper'))
+
+使用 props 注入数据
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+和模板引擎一样，React 支持数据的渲染 --- 一个模板字符串 + 数据 ==> 最终的字符文本。React 使用称为 **JSX** 的语法表示这些模板字符串，里面是 React DOM （包括 HTML DOM） 的内容。每个 `React.Component` 派生的类有一个 `props` 属性，这个属性可以携带任何数据，这就是你放置外部数据的地方。
+
+例子：
+
+.. container:: coder
+
+  .. code:: ts
+
+      <div>{this.props.name}</div>
+
+另一个例子：
+
+.. container:: coder
+
+  .. code:: ts
+
+    <TipItem>
+      <span>{this.props.name}</span>
+    <TipItem>
+
+一个完整的组件：
+
+.. container:: coder
+
+  .. code:: ts
+
+    // 定义一个数据接口
+    interface User {
+      name: string 
+      age: number
+    }
+
+    // 定义 MyCom1 需要的 props 接口
+    interface MyComProps {
+      users: Array<User>
+    }
+
+    // 定义 MyCom1
+    class MyCom1 extends React.Component<MyComProps, null> {
+      public render(): JSX.Element {
+        var items: Array<JSX.Element> = []
+        for (let user of this.props.users) {
+          items.push(
+            <li>
+              <button>{user.name}</button>
+              <button>{user.age}</button>
+            </li>
+          )
+        }
+
+        return (
+          <ul>
+            {items}
+          </ul>
+        )
+      }
+    }
+
+    // 定义 MyCom2，这个组件使用 MyCom1
+    class MyCom2 extends React.Component<MyComProps, null> {
+      public render(): JSX.Element {
+        var users = [{name: 'XiaoMing', age: 33}, {name: 'Lili', age: 26}]
+        return (
+          <div>
+            <MyCom1 users={users} />
+            <button>Submit</button>
+          </div>
+        )
+      }
+    }
+
+添加事件
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+你可以为每一个 HTML DOM 绑定事件，例子：
+
+.. container:: coder
+
+  .. code:: ts
+
+    class MyCom2 extends React.Component<MyComProps, null> {
+      public render(): JSX.Element {
+        var users = [{name: 'XiaoMing', age: 33}, {name: 'Lili', age: 26}]
+        return (
+          <div>
+            <MyCom1 users={users} />
+            <button onClick={this.onDidSubmit.bind(this)}>Submit</button>
+          </div>
+        )
+      }
+
+      private onDidSubmit(e) {
+        console.log('click submit button')
+      }
+    }
+
+当点击这个按钮 `button` 时，则会运行 `onDidSubmit` 这个回调函数。
+
+使用 setState({}) 改变状态，重新运行 render
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+组件有一个 `setState` 函数，当调用时，会运行一系列的函数操作，并且检查 `render` 函数中的组件数据是否发生变化，如果发生就重新渲染。例子：
+
+.. container:: coder
+
+  .. code:: ts
+
+    class MyCom2 extends React.Component<MyComProps, null> {
+      private x: number
+
+      constructor(props: MyComProps) {
+        super(props)
+        this.x = 0
+      }
+
+      public render(): JSX.Element {
+        var users = [{name: 'XiaoMing', age: 33}, {name: 'Lili', age: 26}]
+        var xElem: JSX.Element = null
+        if (this.x > 0) {
+          xElem = <p>The x is {this.x}</p>
+        }
+        return (
+          <div>
+            <MyCom1 users={users} />
+            <button onClick={this.onDidSubmit.bind(this)}>Submit</button>
+            {xElem}
+          </div>
+        )
+      }
+
+      private onDidSubmit(e) {
+        console.log('click submit button')
+        this.x = this.x + 1
+        this.setState({})
+      }
+    }
+
+当点击这个按钮 `button` 时，`x` 值加 `1`，调用 `setState` 重新运行 React 的渲染，当运行到 `render` 时，发现 `x` 的值 `> 0`，那么得到新的 DOM `xElem = <p>The x is {this.x}</p>`，这个组件重新渲染这个 HTML DOM。
+
+使用 ref 绑定 DOM 的引用
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+你可以使用 `ref` 属性绑定 DOM 的引用。例子：
+
+.. container:: coder
+
+  .. code:: ts
+
+    class MyCom2 extends React.Component<MyComProps, null> {
+      private button: HTMLElement
+      private com1: MyCom1
+
+      constructor(props: MyComProps) {
+        super(props)
+        this.button = null
+        this.com1 = null
+      }
+
+      public render(): JSX.Element {
+        var users = [{name: 'XiaoMing', age: 33}, {name: 'Lili', age: 26}]
+        return (
+          <div>
+            <MyCom1 users={users} ref={o => this.com1 = o} />
+            <button ref={o => this.button = o}>Submit</button>
+          </div>
+        )
+      }
+
+      public doSomething() {
+        console.log(this.button)
+        console.log(this.com1)
+      }
+    }
+
+每当运行 `render` 时，`ref` 会绑定变量到所在的 HTML DOM 或者 React DOM。这样，你可以在程序中调用这些 DOM 的函数。
+
+> `{o => this.com1 = o}` 是 ES 6 箭头函数的写法，等价于 `{ function (o) { this.com1 = o; } }`
+
+React Lifecycle
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. image:: https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/images/component-lifecycle.jpg
+
+一个完整的组件例子：
+
+.. container:: coder
+
+  .. code-block:: ts
+
+    interface HelloProps {
+      name: string
+    }
+
+    class Hello extends React.Component<HelloProps, null> {
+      constructor(props: MyComProps) {
+        super(props)
+      }
+
+      // React 提供的回调接口
+
+      public render(): JSX.Element {}
+      public componentWillMount() {}
+      public componentWillReceiveProps() {}
+      public shouldComponentUpdate() {}
+      public componentWillUpdate() {}
+      public componentDidMount() {}
+      public componentWillUnmount() {}
+
+      // 你的自定义外部接口
+
+      public sayHello() {
+      }
+    }
+
+CSS 和 HTML
+----------------------------------------------------------
+
+- `HTML 手册 <http://www.w3school.com.cn/html/index.asp>`_  
+- `CSS 手册 <http://www.w3school.com.cn/css/index.asp>`_  
+- `Stylus 手册 <http://www.zhangxinxu.com/jq/stylus/>`_  
+
+你必须应该知道并且熟练的常用 CSS 属性： 
+
+* `display` 
+* `position`
+* `padding`
+* `margin`
+* `overflow`
+* `float`
+* `width`
+* `height`
+* `text-align`
+* `vertical-align`
+* `color`
+* `background-color`
+* `font-size`
+* `font-weight`
+* `line-height`
+* `word-wrap`
+* `word-space`
+* `boarder`
+* ......
+

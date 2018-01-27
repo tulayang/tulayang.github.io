@@ -1,0 +1,29 @@
+开发者文档
+----------------------------------------------------------
+
+当你需要对代码库有更多的描述，并且无法通过注释说明时，你应该创建开发者文档。开发者文档使用 Markdown 标记语言创建，并且容易阅读。开发者文档应该放置在 docs 目录。
+
+Markdown
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Markdown 的目标是实现「易读易写」。
+
+可读性，无论如何，都是最重要的。一份使用 Markdown 格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown 语法受到一些既有 text-to-HTML 格式的影响，包括 Setext、atx、Textile、reStructuredText、Grutatext 和 EtText，而最大灵感来源其实是纯文本电子邮件的格式。
+
+总之， Markdown 的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。
+
+- `Markdown 教程 <https://www.appinn.com/markdown/index.html>`_    
+- `Markdown 入门指南 <http://www.jianshu.com/p/1e402922ee32>`_    
+- `Markdown 在线编辑器 --- 马克飞象 <https://maxiang.io/>`_    
+
+
+reStructuredText
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+reStructuredText 是轻量级标记语言的一种，被设计为容易阅读和编写的纯文本，是 Python 编程语言的 Docutils 项目的一部分，类似于 Java 的 JavaDoc 或 Perl 的 POD 项目。Docutils 从 Python 程序中提取注释和信息，格式化成程序文档。
+
+reStructuredText 可以转换为 HTML 或 PDF 等多种格式，或由 Sphinx-Doc 这样的程序转换为 LaTex、man 等更多格式。文件扩展名为 .rst 。
+
+- `reStructuredText 教程 <http://jwch.sdut.edu.cn/book/rst.html>`_  
+
+

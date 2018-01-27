@@ -1,0 +1,261 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>error module —— 错误处理 &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../../_static/logo.png"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="route module —— 路由处理" href="route.html" />
+    <link rel="prev" title="API Documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="route.html" title="route module —— 路由处理"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="API Documentation"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Webship Framework</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">API Documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="error-module">
+<h1>error module —— 错误处理<a class="headerlink" href="#error-module" title="永久链接至标题">¶</a></h1>
+<p>在 webship framework 中，主要的编程目标是编写路由。路由规定如何对用户的请求执行操作。当路由操作出现错误的时候，webship 使用 <code class="docutils literal"><span class="pre">WebshipError</span></code> 类型表示这个错误。这个错误包含了当时的 HTTP 状态码 （statusCode）、错误消息 （message）、错误的栈跟踪 （stack trace）。</p>
+<p>通常来讲，你不需要直接创建 <code class="docutils literal"><span class="pre">WebshipError</span></code>，你可以使用 <code class="docutils literal"><span class="pre">cond</span></code> 函数：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="nx">cond</span><span class="p">(</span><span class="nx">x</span> <span class="o">===</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">ErrorCode</span><span class="p">.</span><span class="nx">INTERNAL_SERVER_ERROR</span><span class="p">,</span> <span class="s1">&#39;服务器出现错误&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>另外，webship 内部在发现某些 HTTP 错误的时候，也会抛出 <code class="docutils literal"><span class="pre">WebshipError</span></code>。</p>
+<div class="section" id="enum">
+<h2>enum<a class="headerlink" href="#enum" title="永久链接至标题">¶</a></h2>
+<div class="section" id="errorcode">
+<h3>ErrorCode<a class="headerlink" href="#errorcode" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">enum</span> <span class="nx">ErrorCode</span> <span class="p">{</span>
+  <span class="nx">BAD_REQEUST</span><span class="p">,</span>                   <span class="c1">// 400 常用</span>
+  <span class="nx">UNAUTHORIZED</span><span class="p">,</span>                  <span class="c1">// 401 常用</span>
+  <span class="nx">FORBIDDEN</span><span class="p">,</span>                     <span class="c1">// 403 常用</span>
+  <span class="nx">NOT_FOUND</span><span class="p">,</span>                     <span class="c1">// 404 常用</span>
+  <span class="nx">METHOD_NOT_ALLOWED</span><span class="p">,</span>            <span class="c1">// 405</span>
+  <span class="nx">NOT_ACCEPTABLE</span><span class="p">,</span>                <span class="c1">// 406</span>
+  <span class="nx">PROXY_AUTHENTICATION_REQUIRED</span><span class="p">,</span> <span class="c1">// 407</span>
+  <span class="nx">REQUEST_TIMEOUT</span><span class="p">,</span>               <span class="c1">// 408</span>
+  <span class="nx">CONFLIT</span><span class="p">,</span>                       <span class="c1">// 409</span>
+  <span class="nx">INTERNAL_SERVER_ERROR</span><span class="p">,</span>         <span class="c1">// 500 常用</span>
+  <span class="nx">BAD_GATEWAY</span><span class="p">,</span>                   <span class="c1">// 502</span>
+  <span class="nx">GATEWAY_TIMEOUT</span>                <span class="c1">// 504</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>错误状态码，每一个值表示一个 HTTP 状态。</p>
+<p>创建一个 <code class="docutils literal"><span class="pre">WebshipError</span></code> 的时候 (<code class="docutils literal"><span class="pre">new</span> <span class="pre">WebshipError(code,</span> <span class="pre">msg)</span></code>)，需要指定 <code class="docutils literal"><span class="pre">code</span></code>，它是一个 <code class="docutils literal"><span class="pre">ErrorCode</span></code> 值。<code class="docutils literal"><span class="pre">WebshipError</span></code> 根据这个值设定对应的 HTTP 错误消息。</p>
+</div>
+</div>
+<div class="section" id="class">
+<h2>class<a class="headerlink" href="#class" title="永久链接至标题">¶</a></h2>
+<div class="section" id="webshiperror">
+<h3>WebshipError<a class="headerlink" href="#webshiperror" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">WebshipError</span> <span class="kr">extends</span> <span class="nb">Error</span>
+</pre></div>
+</div>
+<p>webship 的路由操作出现错误时，应该使用 <code class="docutils literal"><span class="pre">WebshipError</span></code> 表示错误。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">(</span><span class="nx">code</span>: <span class="kt">ErrorCode</span><span class="p">,</span> <span class="nx">msg?</span>: <span class="kt">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">code</span></code> 指定错误的类型，通常是一个 HTTP 错误状态。<code class="docutils literal"><span class="pre">msg</span></code> 是可选的，如果不指定则使用默认的消息文本，否则使用 <code class="docutils literal"><span class="pre">msg</span></code> 作为消息文本。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">readonly</span> <span class="nx">statusCode</span>: <span class="kt">number</span>
+</pre></div>
+</div>
+<p>获取 HTTP （错误）状态码。只读的。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">readonly</span> <span class="nx">message</span>: <span class="kt">string</span>
+</pre></div>
+</div>
+<p>获取 HTTP （错误）消息文本。只读的。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errBadRequest</span> <span class="o">=</span> <span class="s1">&#39;Bad Request&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 400 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errUnauthorized</span> <span class="o">=</span> <span class="s1">&#39;Unauthorized&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 401 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errForbidden</span> <span class="o">=</span> <span class="s1">&#39;Forbidden&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 403 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errNotFound</span> <span class="o">=</span> <span class="s1">&#39;Not Found&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 404 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errMethodNotAllowed</span> <span class="o">=</span> <span class="s1">&#39;Method Not Allowed&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 405 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errNotAcceptable</span> <span class="o">=</span> <span class="s1">&#39;Not Acceptable&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 406 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errProxyAuthenticationRequired</span> <span class="o">=</span> <span class="s1">&#39;Proxy Authentication Required&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 407 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errRequestTimeout</span> <span class="o">=</span> <span class="s1">&#39;Request Timeout&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 408 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errConflit</span> <span class="o">=</span> <span class="s1">&#39;Conflit&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 409 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errInternalServer</span> <span class="o">=</span> <span class="s1">&#39;Internal Server Error&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 500 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errBadGateway</span> <span class="o">=</span> <span class="s1">&#39;Bad Gateway&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 502 （错误）消息文本。可以修改。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="kr">static</span> <span class="nx">errGatewayTimeout</span> <span class="o">=</span> <span class="s1">&#39;Gateway Timeout&#39;</span>
+</pre></div>
+</div>
+<p>HTTP 504 （错误）消息文本。可以修改。</p>
+</div>
+</div>
+<div class="section" id="function">
+<h2>function<a class="headerlink" href="#function" title="永久链接至标题">¶</a></h2>
+<div class="section" id="cond">
+<h3>cond<a class="headerlink" href="#cond" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">cond</span><span class="p">(</span><span class="nx">condition</span>: <span class="kt">boolean</span><span class="p">,</span> <span class="nx">code</span>: <span class="kt">ErrorCode</span><span class="p">,</span> <span class="nx">msg?</span>: <span class="kt">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这个函数是一个语法糖，可以用来方便的检测条件。当 <code class="docutils literal"><span class="pre">condition</span></code> 错误的时候，抛出 <code class="docutils literal"><span class="pre">WebshipError</span></code> 错误，使用 <code class="docutils literal"><span class="pre">code</span></code> 和 <code class="docutils literal"><span class="pre">msg</span></code> 作为参数。</p>
+</div>
+<div class="section" id="createwebshiperror">
+<h3>createWebshipError<a class="headerlink" href="#createwebshiperror" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createWebshipError</span><span class="p">(</span><span class="nx">code</span>: <span class="kt">ErrorCode</span><span class="p">,</span> <span class="nx">msg?</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="nx">WebshipError</span>
+</pre></div>
+</div>
+<p>创建一个 <code class="docutils literal"><span class="pre">WebshipError</span></code>。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">通常，你应该使用 <code class="docutils literal"><span class="pre">createWebshipError()</span></code> 函数，而不是 <code class="docutils literal"><span class="pre">new</span> <span class="pre">WebshipError()</span></code>。<code class="docutils literal"><span class="pre">createWebshipError()</span></code> 可以避免漏写 <code class="docutils literal"><span class="pre">new</span></code> 关键字。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">error module —— 错误处理</a><ul>
+<li><a class="reference internal" href="#enum">enum</a><ul>
+<li><a class="reference internal" href="#errorcode">ErrorCode</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class">class</a><ul>
+<li><a class="reference internal" href="#webshiperror">WebshipError</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function">function</a><ul>
+<li><a class="reference internal" href="#cond">cond</a></li>
+<li><a class="reference internal" href="#createwebshiperror">createWebshipError</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="index.html"
+                        title="上一章">API Documentation</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="route.html"
+                        title="下一章">route module —— 路由处理</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nodejs/webship/api/error.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="route.html" title="route module —— 路由处理"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="API Documentation"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Webship Framework</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >API Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>

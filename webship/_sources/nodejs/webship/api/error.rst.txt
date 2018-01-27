@@ -1,0 +1,168 @@
+error module ------ 错误处理
+===============================
+
+在 webship framework 中，主要的编程目标是编写路由。路由规定如何对用户的请求执行操作。当路由操作出现错误的时候，webship 使用 ``WebshipError`` 类型表示这个错误。这个错误包含了当时的 HTTP 状态码 （statusCode）、错误消息 （message）、错误的栈跟踪 （stack trace）。
+
+通常来讲，你不需要直接创建 ``WebshipError``，你可以使用 ``cond`` 函数：
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    cond(x === y, ErrorCode.INTERNAL_SERVER_ERROR, '服务器出现错误')
+
+另外，webship 内部在发现某些 HTTP 错误的时候，也会抛出 ``WebshipError``。
+
+enum 
+-------------------------------
+
+ErrorCode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  enum ErrorCode {
+    BAD_REQEUST,                   // 400 常用
+    UNAUTHORIZED,                  // 401 常用
+    FORBIDDEN,                     // 403 常用
+    NOT_FOUND,                     // 404 常用
+    METHOD_NOT_ALLOWED,            // 405
+    NOT_ACCEPTABLE,                // 406
+    PROXY_AUTHENTICATION_REQUIRED, // 407
+    REQUEST_TIMEOUT,               // 408 
+    CONFLIT,                       // 409
+    INTERNAL_SERVER_ERROR,         // 500 常用
+    BAD_GATEWAY,                   // 502
+    GATEWAY_TIMEOUT                // 504 
+  }
+
+错误状态码，每一个值表示一个 HTTP 状态。
+
+创建一个 ``WebshipError`` 的时候 (``new WebshipError(code, msg)``)，需要指定 ``code``，它是一个 ``ErrorCode`` 值。``WebshipError`` 根据这个值设定对应的 HTTP 错误消息。
+
+class 
+-------------------------------
+
+WebshipError
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+  
+  class WebshipError extends Error
+
+webship 的路由操作出现错误时，应该使用 ``WebshipError`` 表示错误。
+
+.. code-block:: ts
+
+  constructor(code: ErrorCode, msg?: string)
+
+``code`` 指定错误的类型，通常是一个 HTTP 错误状态。``msg`` 是可选的，如果不指定则使用默认的消息文本，否则使用 ``msg`` 作为消息文本。
+
+.. code-block:: ts
+
+  public readonly statusCode: number
+
+获取 HTTP （错误）状态码。只读的。 
+
+.. code-block:: ts
+
+  public readonly message: string
+
+获取 HTTP （错误）消息文本。只读的。
+
+.. code-block:: ts
+
+  public static errBadRequest = 'Bad Request'
+
+HTTP 400 （错误）消息文本。可以修改。 
+
+.. code-block:: ts
+
+  public static errUnauthorized = 'Unauthorized'
+
+HTTP 401 （错误）消息文本。可以修改。
+
+.. code-block:: ts
+
+  public static errForbidden = 'Forbidden'
+
+HTTP 403 （错误）消息文本。可以修改。
+
+.. code-block:: ts
+
+  public static errNotFound = 'Not Found'
+
+HTTP 404 （错误）消息文本。可以修改。
+  
+.. code-block:: ts
+
+  public static errMethodNotAllowed = 'Method Not Allowed'
+
+HTTP 405 （错误）消息文本。可以修改。
+  
+.. code-block:: ts
+
+  public static errNotAcceptable = 'Not Acceptable'
+
+HTTP 406 （错误）消息文本。可以修改。
+  
+.. code-block:: ts
+
+  public static errProxyAuthenticationRequired = 'Proxy Authentication Required'
+
+HTTP 407 （错误）消息文本。可以修改。
+  
+.. code-block:: ts
+
+  public static errRequestTimeout = 'Request Timeout'
+
+HTTP 408 （错误）消息文本。可以修改。
+  
+.. code-block:: ts
+
+  public static errConflit = 'Conflit'
+
+HTTP 409 （错误）消息文本。可以修改。
+  
+.. code-block:: ts
+
+  public static errInternalServer = 'Internal Server Error'
+
+HTTP 500 （错误）消息文本。可以修改。
+  
+.. code-block:: ts
+
+  public static errBadGateway = 'Bad Gateway'
+
+HTTP 502 （错误）消息文本。可以修改。
+  
+.. code-block:: ts
+
+  public static errGatewayTimeout = 'Gateway Timeout'
+
+HTTP 504 （错误）消息文本。可以修改。
+
+function 
+-------------------------------
+
+cond
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  function cond(condition: boolean, code: ErrorCode, msg?: string)
+
+这个函数是一个语法糖，可以用来方便的检测条件。当 ``condition`` 错误的时候，抛出 ``WebshipError`` 错误，使用 ``code`` 和 ``msg`` 作为参数。
+
+createWebshipError
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  function createWebshipError(code: ErrorCode, msg?: string): WebshipError
+
+创建一个 ``WebshipError``。
+
+.. note:: 
+  
+  通常，你应该使用 ``createWebshipError()`` 函数，而不是 ``new WebshipError()``。``createWebshipError()`` 可以避免漏写 ``new`` 关键字。

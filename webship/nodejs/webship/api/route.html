@@ -1,0 +1,313 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>route module —— 路由处理 &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../../_static/logo.png"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="dispatch module —— 调度器" href="dispatch.html" />
+    <link rel="prev" title="error module —— 错误处理" href="error.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="dispatch.html" title="dispatch module —— 调度器"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="error.html" title="error module —— 错误处理"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Webship Framework</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">API Documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="route-module">
+<h1>route module —— 路由处理<a class="headerlink" href="#route-module" title="永久链接至标题">¶</a></h1>
+<p>在 webship framework 中，主要的编程目标是编写路由。路由规定如何对用户的请求执行操作。</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">()</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/:username/blog/:id&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/:username/blog/:id&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interface">
+<h2>interface<a class="headerlink" href="#interface" title="永久链接至标题">¶</a></h2>
+<div class="section" id="asynccb">
+<h3>AsyncCb<a class="headerlink" href="#asynccb" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">AsyncCb</span> <span class="p">{</span>
+  <span class="p">(...</span><span class="nx">context</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">any</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>路由操作，本质上是对不同的请求路径编写函数，这个接口规定了这些函数的规范。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这些函数可以是 <code class="docutils literal"><span class="pre">async</span> <span class="pre">await</span></code> 异步函数。</p>
+</div>
+</div>
+<div class="section" id="params">
+<h3>Params<a class="headerlink" href="#params" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">Params</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nx">key</span>: <span class="kt">string</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>路径参数，一个 key-value 的数据对象。</p>
+</div>
+</div>
+<div class="section" id="class">
+<h2>class<a class="headerlink" href="#class" title="永久链接至标题">¶</a></h2>
+<div class="section" id="router">
+<h3>Router<a class="headerlink" href="#router" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Router</span>
+</pre></div>
+</div>
+<p>路由器，内部维护一个路由函数表。使用路由器来注册路由函数。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">(</span><span class="nx">isRegisterOnce</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">isRegisterOnce</span></code> 指定是否允许对同一个路径注册多个路由函数。比如路径 <code class="docutils literal"><span class="pre">/:username/blog/:id</span></code> 表示 <strong>用户/博客/号码</strong>，<code class="docutils literal"><span class="pre">isRegisterOnce</span></code> 设置为 <code class="docutils literal"><span class="pre">true</span></code> 后，该路径只能注册一个路由函数，否则可以注册多个路由函数。</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">(</span><span class="nx">isRegisterOnce</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
+
+<span class="c1">// Ok</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/:username/blog/:id&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1">// Ok</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/:username/blog/:id&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">(</span><span class="nx">isRegisterOnce</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span>
+
+<span class="c1">// Ok</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/:username/blog/:id&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1">// Error</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/:username/blog/:id&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">register</span><span class="p">(</span><span class="nx">method</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">pathnameOfExp</span>: <span class="kt">string</span><span class="p">,</span> <span class="p">...</span><span class="nx">cbs</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="nx">AsyncCb</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注册一个路由函数。</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">method</span></code> 指定 HTTP 方法，包括：<ul>
+<li><code class="docutils literal"><span class="pre">GET</span></code></li>
+<li><code class="docutils literal"><span class="pre">POST</span></code></li>
+<li><code class="docutils literal"><span class="pre">PUT</span></code></li>
+<li><code class="docutils literal"><span class="pre">DELETE</span></code></li>
+<li><code class="docutils literal"><span class="pre">HEAD</span></code></li>
+<li><code class="docutils literal"><span class="pre">OPTIONS</span></code></li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">pathnameOfExp</span></code> 指定路径（一个模糊正则表达式），比如 <code class="docutils literal"><span class="pre">/:username/blog/:id</span></code>，其中的 <code class="docutils literal"><span class="pre">:username</span></code> <code class="docutils literal"><span class="pre">:id</span></code> 表示是一个变量</li>
+<li><code class="docutils literal"><span class="pre">cbs</span></code> 指定路由函数（可以是一个或多个）</li>
+</ul>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">find</span><span class="p">(</span><span class="nx">method</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">pathname</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="p">[</span><span class="nx">Route</span><span class="p">,</span> <span class="nx">Params</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>根据 HTTP 方法 <code class="docutils literal"><span class="pre">method</span></code> 和路径 <code class="docutils literal"><span class="pre">pathname</span></code> 查找路由。如果存在则返回该路由和路径参数，路径参数包含模糊路径变量的替换值；否则返回 <code class="docutils literal"><span class="pre">[null,</span> <span class="pre">null]</span></code>。</p>
+<p>比如以下路由：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">(</span><span class="nx">isRegisterOnce</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/:username/blog/:id&#39;</span><span class="p">,</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<p>当使用 <code class="docutils literal"><span class="pre">find</span></code> 查找时：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="p">[</span><span class="nx">route</span><span class="p">,</span> <span class="nx">params</span><span class="p">]</span> <span class="o">=</span> <span class="nx">router</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;/xiaoming/blod/1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>返回路由和路径参数，路径参数 <code class="docutils literal"><span class="pre">params</span></code> 的值是：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;xiaoming&#39;</span><span class="p">,</span>
+  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;1&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">通常，这个方法是 webship 内部使用的，你不需要用到这个函数。</p>
+</div>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">head</span><span class="p">(</span><span class="nx">pathnameOfExp</span>: <span class="kt">string</span><span class="p">,</span> <span class="p">...</span><span class="nx">cbs</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="nx">AsyncCb</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注册一个路由函数，HTTP 方法指定为 <code class="docutils literal"><span class="pre">HEAD</span></code>。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">options</span><span class="p">(</span><span class="nx">pathnameOfExp</span>: <span class="kt">string</span><span class="p">,</span> <span class="p">...</span><span class="nx">cbs</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="nx">AsyncCb</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注册一个路由函数，HTTP 方法指定为 <code class="docutils literal"><span class="pre">OPTIONS</span></code>。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">get</span><span class="p">(</span><span class="nx">pathnameOfExp</span>: <span class="kt">string</span><span class="p">,</span> <span class="p">...</span><span class="nx">cbs</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="nx">AsyncCb</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注册一个路由函数，HTTP 方法指定为 <code class="docutils literal"><span class="pre">GET</span></code>。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">post</span><span class="p">(</span><span class="nx">pathnameOfExp</span>: <span class="kt">string</span><span class="p">,</span> <span class="p">...</span><span class="nx">cbs</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="nx">AsyncCb</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注册一个路由函数，HTTP 方法指定为 <code class="docutils literal"><span class="pre">POST</span></code>。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="nx">put</span><span class="p">(</span><span class="nx">pathnameOfExp</span>: <span class="kt">string</span><span class="p">,</span> <span class="p">...</span><span class="nx">cbs</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="nx">AsyncCb</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注册一个路由函数，HTTP 方法指定为 <code class="docutils literal"><span class="pre">PUT</span></code>。</p>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">public</span> <span class="k">delete</span><span class="p">(</span><span class="nx">pathnameOfExp</span>: <span class="kt">string</span><span class="p">,</span> <span class="p">...</span><span class="nx">cbs</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="nx">AsyncCb</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注册一个路由函数，HTTP 方法指定为 <code class="docutils literal"><span class="pre">DELETE</span></code>。</p>
+</div>
+</div>
+<div class="section" id="function">
+<h2>function<a class="headerlink" href="#function" title="永久链接至标题">¶</a></h2>
+<div class="section" id="createrouter">
+<h3>createRouter<a class="headerlink" href="#createrouter" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">createRouter</span><span class="p">(</span><span class="nx">isRegisterOnce</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span><span class="o">:</span> <span class="nx">Router</span>
+</pre></div>
+</div>
+<p>创建一个 <code class="docutils literal"><span class="pre">Router</span></code>。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">通常，你应该使用 <code class="docutils literal"><span class="pre">createRouter()</span></code> 函数，而不是 <code class="docutils literal"><span class="pre">new</span> <span class="pre">Router()</span></code>。<code class="docutils literal"><span class="pre">createRouter()</span></code> 可以避免漏写 <code class="docutils literal"><span class="pre">new</span></code> 关键字。</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">route module —— 路由处理</a><ul>
+<li><a class="reference internal" href="#interface">interface</a><ul>
+<li><a class="reference internal" href="#asynccb">AsyncCb</a></li>
+<li><a class="reference internal" href="#params">Params</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class">class</a><ul>
+<li><a class="reference internal" href="#router">Router</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function">function</a><ul>
+<li><a class="reference internal" href="#createrouter">createRouter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="error.html"
+                        title="上一章">error module —— 错误处理</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="dispatch.html"
+                        title="下一章">dispatch module —— 调度器</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nodejs/webship/api/route.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="dispatch.html" title="dispatch module —— 调度器"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="error.html" title="error module —— 错误处理"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Webship Framework</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >API Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>

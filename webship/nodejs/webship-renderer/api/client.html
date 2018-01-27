@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>client module —— 客户端工具 &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../../_static/logo.png"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="React Framework" href="../../react/index.html" />
+    <link rel="prev" title="server module —— 服务器" href="server.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../react/index.html" title="React Framework"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="server.html" title="server module —— 服务器"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Webship-Renderer</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">API Documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="client-module">
+<h1>client module  —— 客户端工具<a class="headerlink" href="#client-module" title="永久链接至标题">¶</a></h1>
+<p>这个模块提供一些浏览器客户端的工具，帮助方便的与 webship-renderer 服务器协作。</p>
+<div class="section" id="interface">
+<h2>interface<a class="headerlink" href="#interface" title="永久链接至标题">¶</a></h2>
+<div class="section" id="params">
+<h3>Params<a class="headerlink" href="#params" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">Params</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nx">key</span>: <span class="kt">string</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>路径参数，注册路由时的动态参数。</p>
+</div>
+</div>
+<div class="section" id="function">
+<h2>function<a class="headerlink" href="#function" title="永久链接至标题">¶</a></h2>
+<div class="section" id="get">
+<h3>get<a class="headerlink" href="#get" title="永久链接至标题">¶</a></h3>
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">get</span><span class="p">(</span><span class="nx">pathnameOfExp</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">cb</span><span class="o">:</span> <span class="p">(</span><span class="nx">params</span>: <span class="kt">Params</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">ReactComponent</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span>
+</pre></div>
+</div>
+<p>注册一个路由。<code class="docutils literal"><span class="pre">pathnameOfExp</span></code> 指定路径（模糊正则表达式，比如 <code class="docutils literal"><span class="pre">/:username/blog/:blogId</span></code> <code class="docutils literal"><span class="pre">/news</span></code>），<code class="docutils literal"><span class="pre">cb</span></code> 指定回调函数，这个回调函数必须返回一个 React Component 。</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../../index.html">
+              <img class="logo" src="../../../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../../index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">client module  —— 客户端工具</a><ul>
+<li><a class="reference internal" href="#interface">interface</a><ul>
+<li><a class="reference internal" href="#params">Params</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#function">function</a><ul>
+<li><a class="reference internal" href="#get">get</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="server.html"
+                        title="上一章">server module  —— 服务器</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="../../react/index.html"
+                        title="下一章">React Framework</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nodejs/webship-renderer/api/client.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../react/index.html" title="React Framework"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="server.html" title="server module —— 服务器"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Webship-Renderer</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >API Documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>

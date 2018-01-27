@@ -1,0 +1,67 @@
+3D 建模和 Web 访问
+===============================
+
+示例
+-------------------------------
+
+以下以 `加载倾斜摄影模型 <http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadObliqueModel_OperateTopic.html>`_ 为例：
+
+.. container:: coder
+
+  .. code:: md
+
+                      iDesktop                     
+    多个 *.osgb 文件  ==========> 一个 *.scp 配置文件 
+
+                      iDesktop
+                     ==========> 多个 *.s3m 文件 
+                    
+                      iDesktop
+                     ==========> 发布到本地或远程服务器，实现 Web 网络资源共享
+
+                      iServer
+                     ==========> 获取三维数据 url 地址
+
+                      iClient
+                     ==========> 使用 iClient for WebGL 呈现图像 
+
+参考文档
+-------------------------------
+
+- `iClient for WebGL <http://support.supermap.com.cn:8090/webgl/index.html>`_
+
+- `飞行管理专题 <http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/FlyManagerTopic.html>`_
+  
+  .. figure:: http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadBIM_BrowseModel.jpg 
+    :width: 400 px 
+
+- `加载倾斜摄影模型 <http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadObliqueModel_OperateTopic.html>`_
+  
+  .. figure:: http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadOblique_BrowseResult.jpg
+    :width: 400 px 
+
+- `倾斜摄影模型单体化与属性查询 <http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/AttributeQueryofObliqueModel_OperateTopic.html>`_  
+  
+  .. figure:: http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/AttributeQueryofObliqueModel_BrowseResult.jpg  
+    :width: 400 px 
+
+- `加载地形数据 <http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadTerrain_OperateTopic.html>`_
+  
+  .. figure:: http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadTerrain_BrowseResult.jpg
+    :width: 400 px 
+
+- `加载gltf三维模型 <http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadGltfModel_OperateTopic.html>`_  
+  
+  .. figure:: http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadGltf_BrowseGltf.jpg
+    :width: 400 px 
+
+- `加载影像数据 <http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadImagery_OperateTopic.html>`_
+  
+  .. figure:: http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadTerrain_BrowseResult.jpg
+    :width: 400 px 
+
+- `加载 BIM 及精细模型 <http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadBIM_OperateTopic.html#>`_ 
+
+  .. figure:: http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadBIM_BrowseModel.jpg
+    :width: 400 px 
+

@@ -1,0 +1,158 @@
+dispatch module ------ 调度器
+===============================
+
+这个模块实现了 webship 的调度器。调度器维护一个或者多个路由器，根据网络请求，在路由器中查找分配路由。
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    const disp = createDispatcher({formUploadDir: '/tmp'})       // 创建调度器
+    const router1 = createRouter()                               // 创建路由器 1
+    const router2 = createRouter()                               // 创建路由器 2
+     
+    disp.addRouter(route1)                                       // 添加路由器 1
+    disp.addRouter(route2)                                       // 添加路由器 2
+
+    disp.on('begin', (req, res) => {})                           // 监听 begin 事件
+    disp.on('finish', (req, res) => {})                          // 监听 finish 事件
+    disp.on('error', (err) => {})                                // 监听 error 事件
+
+    const server = require('http').createServer(disp.callback()) // 创建 HTTP 服务器，绑定调度器，
+                                                                 // HTTP 请求交由调度器处理
+
+interface 
+-------------------------------
+
+Settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  interface Settings {
+    formKeepExtensions?: boolean     // 当客户端上传文件时，保存该文件后，保留文件的扩展名
+    formUploadDir?: string           // 当客户端上传文件时，保存该文件的目录
+    formMaxFieldsSize?: number       // 当客户端上传数据时，最大字段长度
+    formMaxFields?: number           // 当客户端上传数据时，最大字段个数
+    formMultiples?: boolean          // 当客户端上传数据时，是否允许上传多个文件
+  }
+
+调度器的配置。
+
+IncomingMessage
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  interface IncomingMessage {
+    rawRequest: Http.IncomingMessage  // nodejs 原有的 HTTP 请求对象
+    method: string                    // HTTP 方法
+    headers: Http.IncomingHttpHeaders // HTTP 请求头，key-value 对象
+    protocol: {                       // HTTP 协议
+      orig: string                    
+      major: number
+      minor: number
+    }
+    uri: Url.Url                      // HTTP 请求路径，一个对象
+    params: Route.Params              // 路由查找后，得到的路径参数  
+    cookies: Cookies                  // HTTP cookies
+    body: string | Buffer | any       // HTTP 请求内容
+  }
+
+表示 HTTP 请求对象。
+
+ServerResponse
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  interface ServerResponse {
+    rawResponse: Http.ServerResponse  // nodejs 原有的 HTTP 响应对象
+    headers: Http.OutgoingHttpHeaders // HTTP 响应头
+    statusCode: number                // HTTP 响应状态码
+    body: string | Buffer | any       // HTTP 响应内容
+  }
+
+表示 HTTP 响应对象。
+
+class 
+-------------------------------
+
+Dispatcher
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+  
+  class Dispatcher<T> extends Events.EventEmitter
+
+调度器。为了方便自定义行为，这个调度器包含 3 个事件：
+
+.. table:: 
+
+   ==========  ==============================
+     事件       描述
+   ==========  ==============================
+   ``begin``   每当有新的 HTTP 请求时触发
+   ``finsih``  每当一个 HTTP 请求完成时触发
+   ``error``   每当处理 HTTP 请求出现错误时触发
+   ==========  ==============================
+
+.. code-block:: ts
+
+  constructor(settings: Settings, context?: T)
+
+你可以为调度器指定额外的 ``context``，作为一个环境变量传递给路由函数。编写路由函数时，通过第三个参数访问这个环境变量。
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    const disp = createDispatcher({formUploadDir: '/tmp'}, {x: 100})
+    const router = createRouter()
+
+    disp.addRouter(router)
+
+    router.get('/', (req, res, context) {
+      console.log(context.x === 100)
+    })
+
+.. code-block:: ts
+
+  public addRouter(router: Route.Router): number
+
+添加一个路由器。
+
+.. code-block:: ts
+
+  public delRouter(i: number)
+
+删除一个路由器。
+
+.. code-block:: ts
+
+  public callback(): (rawRequest: Http.IncomingMessage, rawResponse: Http.ServerResponse) => void
+
+获取回调处理器，返回的结果可以作为 nodejs http 服务器处理 ``request`` 事件的处理器。
+
+.. container:: coder 
+
+  .. code-block:: ts
+
+    const disp = createDispatcher({formUploadDir: '/tmp'}, {x: 100})
+    const server = require('http').createServer(disp.callback())
+
+function 
+--------------------------------
+
+createDispatcher 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: ts
+
+  function createDispatcher<T>(settings: Settings, context?: T): Dispatcher<T>
+
+创建一个 ``Dispatcher``。
+
+.. note:: 
+  
+  通常，你应该使用 ``createDispatcher()`` 函数，而不是 ``new Displacher()``。``createDispatcher()`` 可以避免漏写 ``new`` 关键字。

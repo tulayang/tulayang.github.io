@@ -1,0 +1,236 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>System Design &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Development Process" href="development.html" />
+    <link rel="prev" title="Welcome to Webship’s Documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="development.html" title="Development Process"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to Webship’s Documentation"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webship 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="system-design">
+<h1>System Design<a class="headerlink" href="#system-design" title="永久链接至标题">¶</a></h1>
+<p>这套系统可以称之为 d-sys，其工作由许多更小的子系统完成。系统的结构图如下：</p>
+<div class="img docutils container">
+<div class="code md highlight-default"><div class="highlight"><pre><span></span>      Client                                                                     Server
+
++----------------+                +------------------------------------------------------------------------------------------------+
+| +------------+ |                | +---+      Load Balance                           +-------------------+                        |
+| | Browser    | |                | | F |                                GET (HTML)   |                   |                        |
+| +------------+ |                | | I |     +-----------+           .-------------→ |  Renderer Server  | ←--⬝                   |
+|                |                | | R |     |           |           |               |                   |    |                   |
+| +------------+ |   GET POST     | | E |     |           |           |               +-------------------+    |                   |
+| | Android    | | ←------------→ | |   | ←-→ |   NGINX   | ←-------→ |                                        |                   |
+| +------------+ |   PUT DELETE   | | W |     |           |           |               +-------------------+    |                   |
+|                |                | | A |     |           |           |  GET POST     |                   |    |                   |
+| +------------+ |                | | L |     +-----------+           .-------------→ |  API Server       | ←----⬝                 |
+| | IPhone     | |                | | L |                                PUT DELETE   |                   |    | |                 |
+| +------------+ |                | +---+                                             +-------------------+    | |                 |
++----------------+                |                                                                            | |                 |
+                                  |                                                                            | |                 |
+                                  |                                     ⬝--------------------------------------⬝ |                 |
+                                  |                                     | ⬝---------------------⬝-⬝--------------⬝                 |
+                                  |                                     | |                     | |                                |
+                                  |                                     | |                     | |                                |
+                                  |                                     | |                     | |                                |
+                                  |                              +------| |------------+        | |        +---------------------+ |
+                                  |                              | +----↓ ↓----------+ |        | |        | +-----------------+ | |
+                                  |                              | | session |  ...  | |        | |        | |  Python         | | |
+                                  |                              | |-----------------| |        | |        | +-----------------+ | |
+                                  |                              | |                 | |        | |        | +-----------------+ | |
+                                  |                              | |  Redis          | |        | |        | |  JavaScript     | | |
+                                  |                              | |                 | |        | |        | +-----------------+ | |
+                                  |                              | +-----------------+ |        | |        | +-----------------+ | |
+                                  |                              |                     |        | |        | |  C/C++          | | |
+                                  |                              | +-----------------+ |        | |        | +-----------------+ | |
+                                  |                              | |                 | |        | |        | +-----------------+ | |
+                                  |                              | |  MySQL          | | ←------⬝ ⬝------→ | |  Java           | | |
+                                  |                              | |                 | |                   | +-----------------+ | |
+                                  |                              | +-----------------+ |                   | +-----------------+ | |
+                                  |                              |                     |                   | |  Nim/Rust/Go    | | |
+                                  |                              | +-----------------+ |                   | +-----------------+ | |
+                                  |                              | |                 | |                   | +-----------------+ | |
+                                  |                              | |  MongoDB        | |                   | |  ...            | | |
+                                  |                              | |                 | |                   | +-----------------+ | |
+                                  |                              | +-----------------+ |                   |                     | |
+                                  |                              +---------------------+                   +---------------------+ |
+                                  |                                                                                                |
+                                  |                                    Data Center                           Algorithm services    |
+                                  +------------------------------------------------------------------------------------------------+
+</pre></div>
+</div>
+</div>
+<br /><br /><br /><br /><img alt="../_images/system_img_1.svg" src="../_images/system_img_1.svg" /><ul>
+<li><p class="first">客户端 （Client）包括 3 个部分，分别为 Browser、Android、IPhone 。客户端的构建遵循以下规则：</p>
+<ul>
+<li><div class="first line-block">
+<div class="line">Browser 基于 JavaScript React 构建</div>
+</div>
+</li>
+<li><p class="first">Android IPhone 基于 JavaScript React 构建单页应用，使用 cordava 等工具编译到移动设备，以 WebView 的方式运行</p>
+</li>
+<li><p class="first">Android IPhone 在需要的情况下，使用 Java / Android 和 Obj-C Swift /IPhone 构建原生应用</p>
+</li>
+</ul>
+</li>
+<li><p class="first">防火墙 （FIRE WALL） 提供流量安全，防范 ddos、IP 黑名单、数据流量控制、… 防火墙直接使用云服务商的服务</p>
+</li>
+<li><p class="first">前端代理使用 NGINX，提供负载均衡、静态文件服务。基于负载均衡，形成应用服务器的水平扩展。前端代理直接使用云服务商的服务</p>
+</li>
+<li><p class="first">应用服务器包括 2 个：渲染服务器（Renderer Server）、调度服务器（API Server）:</p>
+<ul>
+<li><div class="first line-block">
+<div class="line">Renderer Server 基于 node.js webship 提供 HTTP 服务器引擎，只支持 HTTP GET 请求方法，也就是说，这个服务器只提供获取的操作，不提供创建、修改、删除的操作。开发者不关心服务器路由的开发（由 webship 引擎后台自动完成），只专注 HTML 页面 （使用 JavaScript React 组件） 的呈现</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">渲染服务器（Renderer Server） grass 只输出 HTML 页面。</p>
+</div>
+</li>
+<li><p class="first">API Server 基于 node.js webship 提供 HTTP 服务器引擎，支持所有标准 HTTP 请求方法，即提供获取、创建、修改、删除的操作。这个服务器不输出 HTML 页面，只输出数据，大部分是 application/json （JSON） 的格式。开发者只关心服务器路由的开发 ——- 即系统数据资源、计算资源的调度</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">调度服务器（API Server） rocket 不输出 HTML 页面，只输出数据。</p>
+</div>
+</li>
+</ul>
+</li>
+<li><p class="first">数据中心（Data Center）至少包括 3 个：Redis、MySQL、MongoDB：</p>
+<ul>
+<li><div class="first line-block">
+<div class="line">Redis 提供会话数据存储、重要数据缓存、消息队列数据存储的服务</div>
+</div>
+</li>
+<li><p class="first">MySQL 提供重要的、安全的、不允许丢失的数据存储，比如用户账户、金融账单、…</p>
+</li>
+<li><p class="first">MongoDB 提供采集的、基本不需要修改的只需要获取的、允许丢失的数据存储，比如地理坐标、矿石属性、…</p>
+</li>
+</ul>
+</li>
+<li><p class="first">算法服务（Algorithm services）提供特定的算法服务（包括图形生成），根据使用的算法技术使用不同的编程语言，比如 GIS 地图服务器、散点高密度计算、…：</p>
+<ul>
+<li><div class="first line-block">
+<div class="line">Python 使用 django、flask 提供输出服务</div>
+</div>
+</li>
+<li><p class="first">JavaScript 使用 webship 提供输出服务</p>
+</li>
+<li><p class="first">C/C++ 使用 libuv 提供输出服务</p>
+</li>
+<li><p class="first">Java 使用 netty 提供输出服务</p>
+</li>
+<li><p class="first">Nim 使用 jester 提供输出服务</p>
+</li>
+<li><p class="first">Rust 使用 mio 提供输出服务</p>
+</li>
+<li><p class="first">Go 使用 fasthttp 提供输出服务</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">以上所列的服务框架仅为推荐，而非限定</p>
+</div>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="../index.html"
+                        title="上一章">Welcome to Webship’s Documentation</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="development.html"
+                        title="下一章">Development Process</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/design/system.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="development.html" title="Development Process"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to Webship’s Documentation"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webship 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>

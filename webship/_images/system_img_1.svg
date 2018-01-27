@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="51cm" height="36cm" viewBox="179 -1081 1001 701" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="180" y="-1060" width="160" height="260"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="180" y="-1060" width="160" height="260"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="260" y="-926">
+      <tspan x="260" y="-926"></tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #0088cc" x="200" y="-1040" width="120" height="60"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="200" y="-1040" width="120" height="60"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="260" y="-1006">
+      <tspan x="260" y="-1006">Browser</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #0088cc" x="200" y="-880" width="120" height="60"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="200" y="-880" width="120" height="60"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="260" y="-846">
+      <tspan x="260" y="-846">IOS</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #0088cc" x="200" y="-960" width="120" height="60"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="200" y="-960" width="120" height="60"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="260" y="-926">
+      <tspan x="260" y="-926">Android</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="440" y="-1080" width="740" height="700"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="440" y="-1080" width="740" height="700"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="810" y="-726">
+      <tspan x="810" y="-726"></tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ff0000" x="460" y="-990.484" width="60.1307" height="120.261"/>
+    <polygon style="fill: #ff0000" points="460,-990.484 520.131,-990.484 527.647,-998 467.516,-998 "/>
+    <polygon style="fill: #ff0000" points="520.131,-990.484 527.647,-998 527.647,-877.739 520.131,-870.222 "/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="460" y1="-978.458" x2="520.131" y2="-978.458"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="527.647" y1="-985.974" x2="520.131" y2="-978.458"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="478.039" y1="-990.484" x2="478.039" y2="-978.458"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="478.039" y1="-990.484" x2="485.556" y2="-998"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="460" y1="-954.405" x2="520.131" y2="-954.405"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="527.647" y1="-961.922" x2="520.131" y2="-954.405"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="502.092" y1="-978.458" x2="502.092" y2="-954.405"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="460" y1="-930.353" x2="520.131" y2="-930.353"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="527.647" y1="-937.869" x2="520.131" y2="-930.353"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="478.039" y1="-954.405" x2="478.039" y2="-930.353"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="460" y1="-906.301" x2="520.131" y2="-906.301"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="527.647" y1="-913.817" x2="520.131" y2="-906.301"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="502.092" y1="-930.353" x2="502.092" y2="-906.301"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="460" y1="-882.248" x2="520.131" y2="-882.248"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="527.647" y1="-889.765" x2="520.131" y2="-882.248"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="478.039" y1="-906.301" x2="478.039" y2="-882.248"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #ffffff" x1="502.092" y1="-882.248" x2="502.092" y2="-870.222"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.3; stroke: #333333" x1="460" y1="-990.484" x2="520.131" y2="-990.484"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.3; stroke: #333333" x1="520.131" y1="-870.222" x2="520.131" y2="-990.484"/>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.3; stroke: #333333" x1="520.131" y1="-990.484" x2="527.647" y2="-998"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.3; stroke: #333333" points="460,-990.484 467.516,-998 527.647,-998 527.647,-877.739 520.131,-870.222 460,-870.222 460,-990.484 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="490.065" y="-852.209">
+      <tspan x="490.065" y="-852.209"></tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #f46015" x="580" y="-1060" width="100" height="260"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="580" y="-1060" width="100" height="260"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="630" y="-926">
+      <tspan x="630" y="-926">NGINX</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #82cc00" x="840" y="-1060" width="160" height="120"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="840" y="-1060" width="160" height="120"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="920" y="-996">
+      <tspan x="920" y="-996">Renderer Server</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #82cc00" x="840" y="-920" width="160" height="120"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="840" y="-920" width="160" height="120"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="920" y="-856">
+      <tspan x="920" y="-856">API Server</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1000" y="-740" width="160" height="340"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="1000" y="-740" width="160" height="340"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="1080" y="-566">
+      <tspan x="1080" y="-566"></tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #d8e5e5" x="1000" y="-740" width="160" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="1000" y="-740" width="160" height="38"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="1080" y="-717">
+      <tspan x="1080" y="-717">Python</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #d8e5e5" x="1000" y="-680" width="160" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="1000" y="-680" width="160" height="38"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="1080" y="-657">
+      <tspan x="1080" y="-657">JavaScript</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #d8e5e5" x="1000" y="-620" width="160" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="1000" y="-620" width="160" height="38"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="1080" y="-597">
+      <tspan x="1080" y="-597">C / C++</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #d8e5e5" x="1000" y="-560" width="160" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="1000" y="-560" width="160" height="38"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="1080" y="-537">
+      <tspan x="1080" y="-537">Java</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #d8e5e5" x="1000" y="-500" width="160" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="1000" y="-500" width="160" height="38"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="1080" y="-477">
+      <tspan x="1080" y="-477">Nim / Rust / Go</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #d8e5e5" x="1000" y="-440" width="160" height="40"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="1000" y="-440" width="160" height="40"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="1080" y="-416">
+      <tspan x="1080" y="-416">...</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="680" y="-740" width="160" height="340"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="680" y="-740" width="160" height="340"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="760" y="-566">
+      <tspan x="760" y="-566"></tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffaa0b" x="680" y="-740" width="160" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="680" y="-740" width="160" height="100"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="760" y="-694">
+      <tspan x="760" y="-694"></tspan>
+      <tspan x="760" y="-678">Redis</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffaa0b" x="680" y="-500" width="160" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="680" y="-500" width="160" height="100"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="760" y="-446">
+      <tspan x="760" y="-446">Mysql</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffaa0b" x="680" y="-620" width="160" height="100"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="680" y="-620" width="160" height="100"/>
+    <text font-size="12.8" style="fill: #ffffff;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="760" y="-566">
+      <tspan x="760" y="-566">MongoDB</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffaa0b" x="680" y="-740" width="80" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="680" y="-740" width="80" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="720" y="-717">
+      <tspan x="720" y="-717">session</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffaa0b" x="760" y="-740" width="80" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x="760" y="-740" width="80" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:Fira Code;font-style:normal;font-weight:700" x="800" y="-717">
+      <tspan x="800" y="-717">...</tspan>
+    </text>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x1="681.342" y1="-816" x2="838.658" y2="-816"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="690.671,-821 680.671,-816 690.671,-811 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="829.329,-811 839.329,-816 829.329,-821 "/>
+  </g>
+  <text font-size="14.6756" style="fill: #000099;text-anchor:start;font-family:Fira Code;font-style:normal;font-weight:700" x="720" y="-1042">
+    <tspan x="720" y="-1042">GET</tspan>
+  </text>
+  <text font-size="14.6756" style="fill: #000099;text-anchor:start;font-family:Fira Code;font-style:normal;font-weight:700" x="720" y="-876">
+    <tspan x="720" y="-876">POST</tspan>
+  </text>
+  <text font-size="14.6756" style="fill: #000099;text-anchor:start;font-family:Fira Code;font-style:normal;font-weight:700" x="720" y="-849">
+    <tspan x="720" y="-849">PUT</tspan>
+  </text>
+  <text font-size="14.6756" style="fill: #000099;text-anchor:start;font-family:Fira Code;font-style:normal;font-weight:700" x="718" y="-823">
+    <tspan x="718" y="-823">DELETE</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x1="681.342" y1="-841" x2="838.658" y2="-841"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="690.671,-846 680.671,-841 690.671,-836 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="829.329,-836 839.329,-841 829.329,-846 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x1="681.342" y1="-1036" x2="838.658" y2="-1036"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="690.671,-1041 680.671,-1036 690.671,-1031 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="829.329,-1031 839.329,-1036 829.329,-1041 "/>
+  </g>
+  <text font-size="14.6756" style="fill: #000099;text-anchor:start;font-family:Fira Code;font-style:normal;font-weight:700" x="720" y="-900">
+    <tspan x="720" y="-900">GET</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x1="681.342" y1="-865.008" x2="838.658" y2="-865.992"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="690.639,-870.067 680.671,-865.004 690.702,-860.067 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="829.361,-860.933 839.329,-865.996 829.298,-870.933 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="1001.34,-1000 1020,-1000 1020,-780 700,-780 700,-741.342 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="1010.67,-1005 1000.67,-1000 1010.67,-995 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="695,-750.671 700,-740.671 705,-750.671 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="1001.34,-860 1040,-860 1040,-760 740,-760 740,-741.342 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="1010.67,-865 1000.67,-860 1010.67,-855 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="735,-750.671 740,-740.671 745,-750.671 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="1001.63,-860 1040,-860 1040,-760 920,-760 920,-570 841.342,-570 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="1010.96,-865 1000.96,-860 1010.96,-855 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="850.671,-575 840.671,-570 850.671,-565 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="1001.63,-860 1040,-860 1040,-760 920,-760 920,-570 998.658,-570 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="1010.96,-865 1000.96,-860 1010.96,-855 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="989.329,-565 999.329,-570 989.329,-575 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x1="681.342" y1="-893.008" x2="838.658" y2="-893.992"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="690.639,-898.067 680.671,-893.004 690.702,-888.067 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="829.361,-888.933 839.329,-893.996 829.298,-898.933 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x1="341.641" y1="-930.125" x2="458.358" y2="-930.304"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="350.963,-935.14 340.97,-930.124 350.978,-925.14 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="449.036,-925.29 459.029,-930.305 449.021,-935.29 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" x1="529.277" y1="-930.254" x2="578.361" y2="-930.13"/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="538.619,-935.23 528.607,-930.256 538.594,-925.231 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 0.6; stroke: #333333" points="569.019,-925.154 579.032,-930.129 569.044,-935.154 "/>
+  </g>
+</svg>

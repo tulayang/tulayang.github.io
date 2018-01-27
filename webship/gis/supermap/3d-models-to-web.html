@@ -1,0 +1,189 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>3D 建模和 Web 访问 &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Development Process" href="../../logicflow/development.html" />
+    <link rel="prev" title="Features" href="features.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../../logicflow/development.html" title="Development Process"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="features.html" title="Features"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Supermap</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="d-web">
+<h1>3D 建模和 Web 访问<a class="headerlink" href="#d-web" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>示例<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>以下以 <a class="reference external" href="http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadObliqueModel_OperateTopic.html">加载倾斜摄影模型</a> 为例：</p>
+<div class="coder docutils container">
+<div class="code md highlight-default"><div class="highlight"><pre><span></span>                  iDesktop
+多个 *.osgb 文件  ==========&gt; 一个 *.scp 配置文件
+
+                  iDesktop
+                 ==========&gt; 多个 *.s3m 文件
+
+                  iDesktop
+                 ==========&gt; 发布到本地或远程服务器，实现 Web 网络资源共享
+
+                  iServer
+                 ==========&gt; 获取三维数据 url 地址
+
+                  iClient
+                 ==========&gt; 使用 iClient for WebGL 呈现图像
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>参考文档<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first"><a class="reference external" href="http://support.supermap.com.cn:8090/webgl/index.html">iClient for WebGL</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/FlyManagerTopic.html">飞行管理专题</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadBIM_BrowseModel.jpg"><img alt="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadBIM_BrowseModel.jpg" src="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadBIM_BrowseModel.jpg" style="width: 400px;" /></a>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadObliqueModel_OperateTopic.html">加载倾斜摄影模型</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadOblique_BrowseResult.jpg"><img alt="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadOblique_BrowseResult.jpg" src="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadOblique_BrowseResult.jpg" style="width: 400px;" /></a>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/AttributeQueryofObliqueModel_OperateTopic.html">倾斜摄影模型单体化与属性查询</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/AttributeQueryofObliqueModel_BrowseResult.jpg"><img alt="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/AttributeQueryofObliqueModel_BrowseResult.jpg" src="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/AttributeQueryofObliqueModel_BrowseResult.jpg" style="width: 400px;" /></a>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadTerrain_OperateTopic.html">加载地形数据</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadTerrain_BrowseResult.jpg"><img alt="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadTerrain_BrowseResult.jpg" src="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadTerrain_BrowseResult.jpg" style="width: 400px;" /></a>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadGltfModel_OperateTopic.html">加载gltf三维模型</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadGltf_BrowseGltf.jpg"><img alt="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadGltf_BrowseGltf.jpg" src="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadGltf_BrowseGltf.jpg" style="width: 400px;" /></a>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadImagery_OperateTopic.html">加载影像数据</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadTerrain_BrowseResult.jpg"><img alt="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadTerrain_BrowseResult.jpg" src="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadTerrain_BrowseResult.jpg" style="width: 400px;" /></a>
+</div>
+</li>
+<li><p class="first"><a class="reference external" href="http://support.supermap.com.cn:8090/webgl/examples/TopicDoc/LoadBIM_OperateTopic.html#">加载 BIM 及精细模型</a></p>
+<div class="figure">
+<a class="reference internal image-reference" href="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadBIM_BrowseModel.jpg"><img alt="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadBIM_BrowseModel.jpg" src="http://support.supermap.com.cn:8090/webgl/examples/images/TopicDOC/LoadBIM_BrowseModel.jpg" style="width: 400px;" /></a>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">3D 建模和 Web 访问</a><ul>
+<li><a class="reference internal" href="#id1">示例</a></li>
+<li><a class="reference internal" href="#id3">参考文档</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="features.html"
+                        title="上一章">Features</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="../../logicflow/development.html"
+                        title="下一章">Development Process</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/gis/supermap/3d-models-to-web.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../../logicflow/development.html" title="Development Process"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="features.html" title="Features"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Supermap</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>

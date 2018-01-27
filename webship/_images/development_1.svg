@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created by diasvg.py -->
+<svg width="36.980cm" height="34.000cm" viewBox="17.950 0.950 54.930 34.950"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect x="18.000" y="1.000" width="10.000" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="1.000" width="10.000" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="2.218"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+定义原型图</text>
+<rect x="18.000" y="5.000" width="10.000" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="5.000" width="10.000" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="6.218"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+定义数据库</text>
+<rect x="18.000" y="9.000" width="10.000" height="2.000" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="9.000" width="10.000" height="2.000" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="10.268"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+定义路由</text>
+<rect x="18.000" y="13.000" width="10.000" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="13.000" width="10.000" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="14.217"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+定义算法，图像处理</text>
+<rect x="18.000" y="21.000" width="10.000" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="21.000" width="10.000" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="22.218"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+构建任务池，设定里程碑</text>
+<rect x="32.000" y="29.000" width="22.880" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="32.000" y="29.000" width="22.880" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="43.440" y="30.218"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+周评估 + 反馈 / 回答 + 日志记录 + 头脑风暴 + 聊天室讨论 + 动态例会 + issure</text>
+<line x1="23.000" y1="2.900" x2="23.000" y2="4.749" stroke="#000000" stroke-width="0.100" />
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="22.750,4.361 23.000,4.861 23.250,4.361 "/>
+<line x1="23.000" y1="6.900" x2="23.000" y2="8.727" stroke="#000000" stroke-width="0.100" />
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="22.750,8.339 23.000,8.839 23.250,8.339 "/>
+<line x1="23.000" y1="14.900" x2="23.000" y2="16.749" stroke="#000000" stroke-width="0.100" />
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="22.750,16.361 23.000,16.861 23.250,16.361 "/>
+<line x1="23.000" y1="11.000" x2="23.000" y2="12.776" stroke="#000000" stroke-width="0.100" />
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="22.750,12.388 23.000,12.888 23.250,12.388 "/>
+<rect x="18.000" y="29.000" width="10.000" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="29.000" width="10.000" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="30.218"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+In Action</text>
+<rect x="18.000" y="25.000" width="10.000" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="25.000" width="10.000" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="26.218"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+TODO</text>
+<rect x="18.000" y="33.000" width="10.000" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="33.000" width="10.000" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="34.218"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+Done</text>
+<line x1="23.000" y1="22.950" x2="23.000" y2="24.726" stroke="#000000" stroke-width="0.100" />
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="22.750,24.338 23.000,24.838 23.250,24.338 "/>
+<line x1="23.000" y1="26.950" x2="23.000" y2="28.726" stroke="#000000" stroke-width="0.100" />
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="22.750,28.338 23.000,28.838 23.250,28.338 "/>
+<line x1="23.000" y1="30.900" x2="23.000" y2="32.749" stroke="#000000" stroke-width="0.100" />
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="22.750,32.361 23.000,32.861 23.250,32.361 "/>
+<path stroke="#000000" fill="none" stroke-width="0.100"  d ="M 28.050,33.940 A 53.887,53.887 0 0,0 43.229,30.974 "/>
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="42.947,31.340 43.335,30.937 42.780,30.869 "/>
+<path stroke="#000000" fill="none" stroke-width="0.100"  d ="M 41.466,28.950 A 32.299,32.299 0 0,0 28.224,25.952 "/>
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="28.613,25.702 28.112,25.950 28.611,26.202 "/>
+<rect x="18.000" y="17.000" width="10.000" height="1.900" fill="#FFFFFF" stroke="none" stroke-width="0"/>
+<rect x="18.000" y="17.000" width="10.000" height="1.900" fill="none" stroke="#000000" stroke-width="0.100" />
+<text x="23.000" y="18.218"  fill="#000000" text-anchor="middle" font-size="0.80" font-family="sans" font-style="normal" font-weight="400">
+定义动态任务</text>
+<line x1="23.000" y1="18.950" x2="23.000" y2="20.726" stroke="#000000" stroke-width="0.100" />
+<polyline fill="none" stroke="#000000" stroke-width="0.100"  points="22.750,20.338 23.000,20.838 23.250,20.338 "/>
+</svg>

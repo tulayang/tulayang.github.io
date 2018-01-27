@@ -1,0 +1,159 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Development Process &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="3D 建模和 Web 访问" href="../gis/supermap/3d-models-to-web.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../gis/supermap/3d-models-to-web.html" title="3D 建模和 Web 访问"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webship 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="development-process">
+<h1>Development Process<a class="headerlink" href="#development-process" title="永久链接至标题">¶</a></h1>
+<div class="img docutils container">
+<div class="code md highlight-default"><div class="highlight"><pre><span></span>勾画原型图 ------ 完整定义图形交互；每个用户界面应该独立、完整、简洁、交互保持最小原则（尽可能的少的交互，只有必要的交互）
+
+    |
+    |
+    ↓
+
+定义数据库的数据结构 ------ 以松散、关联为主；包括 Mysql 和 MongoDB 的事务相关
+
+    |
+    |
+    ↓
+
+定义路由，包括 HTTP 请求方法、请求路径、请求头、请求体、响应状态码、响应头、响应体
+
+    |
+    |
+    ↓
+
+定义特定算法的约定
+
+    |
+    |
+    ↓
+
+构建任务池，分配任务，设定里程碑 ------ TODO → In Action → Done
+
+    |
+    |
+    ↓
+
+周评 + 反馈 / 回答 + 记录 + 头脑风暴 + 聊天室讨论 + 动态例会 + issure
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>系统<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>在总体上，系统一定不要设计的太细。大多数细粒度的想法在正式实施的时候，都不符合实际</li>
+<li>系统应该是多个子系统组成的，这些子系统在设计上是粗粒度的，毫无干涉关系的。也就是说，你可以在以后随时更改其中的某些子系统，而不影响到其他的子系统（除了保持接口一直外）；而且，可以随时扩展更多的子系统</li>
+<li>对于数据端和算法端，可以是多的、一直处于扩展的子系统</li>
+<li>调度系统是复杂的，能够把一个程序拆分成多个独立的程序，就尽可能拆分</li>
+<li>算法是简洁明了的，输入和输出！所以，尽可能把他们独立的放置到简洁的接口子系统中</li>
+<li>对于图形界面，则比较复杂，必须良好的设计核心图形界面和不重要图形界面，让他们可以独立的合作，又不需要互相知道。他们应该是并存的，独立的，合作的</li>
+<li>不过多的设计（对外接口）特别复杂的图形界面组件，尽可能设定一个边界，这个边界内可以由多个小的图形部件组合完成。但是，这个边界外，这个图形界面组件不对外产生影响</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Development Process</a><ul>
+<li><a class="reference internal" href="#id1">系统</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="../gis/supermap/3d-models-to-web.html"
+                        title="上一章">3D 建模和 Web 访问</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/logicflow/development.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../gis/supermap/3d-models-to-web.html" title="3D 建模和 Web 访问"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webship 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>

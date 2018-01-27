@@ -1,0 +1,981 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>JavaScript 快速开始 &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Git 代码仓库工作流" href="git.html" />
+    <link rel="prev" title="开发者文档" href="progdoc.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="git.html" title="Git 代码仓库工作流"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="progdoc.html" title="开发者文档"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webship 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="javascript">
+<h1>JavaScript 快速开始<a class="headerlink" href="#javascript" title="永久链接至标题">¶</a></h1>
+<div class="section" id="ecmascript-6-2015-ecmascript-7-next-version">
+<h2>ECMAScript 6 (2015) 和 ECMAScript 7 (Next Version)<a class="headerlink" href="#ecmascript-6-2015-ecmascript-7-next-version" title="永久链接至标题">¶</a></h2>
+<p>ECMAScript 是一种由 Ecma 国际（前身为欧洲计算机制造商协会）通过 ECMA-262 标准化的脚本程序设计的语言。ECMAScript 是 JavaScript 在语法和语义上的标准。JavaScript 由 ECMAScript （语言标准）、DOM （网页文档描述） 和 BOM （浏览器客户端） 三者组成的。</p>
+<p>2015 年，Ecma 国际大会宣布正式批准 ECMA-262 第 6 版，亦即 ECMAScript 2015 （曾用名 ECMAScript 6、ES6） 的语言规范。ES6 是继 ES5 之后的一次主要改进，语言规范由 ES5.1 时代的 245 页扩充至 600 页。ES6 增添了许多必要的特性，例如：模块和类，以及一些实用特性，例如 Maps、Sets、Promises、Generators 等。</p>
+<p>2016 年，Ecma 国际大会批准了第 7 版的 ECMAScript 语言规范（ECMAScript 2016）。</p>
+<p>目前，ECMAScript 2017 正在指定当中。</p>
+<div class="section" id="id1">
+<h3>模板字符串<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h3>
+<p>一个简单的例子：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;XiaoMing&#39;</span>
+<span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span>
+</pre></div>
+</div>
+</div>
+<p>上面的 <cite>msg</cite> 中的变量被替换，生成：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="nx">Hello</span><span class="p">,</span> <span class="nx">XiaoMing</span>
+</pre></div>
+</div>
+</div>
+<p>你可以使用函数封装模板字符串：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">renderText</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="sb">`</span>
+<span class="sb">&lt;h1&gt;Hello World&lt;/h1&gt;</span>
+<span class="sb">&lt;p&gt;</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">&lt;p&gt;</span>
+<span class="sb">&lt;p&gt;</span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb">&lt;/p&gt;</span>
+<span class="sb">`</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>调用函数 <cite>renderText(‘XiaoMing’, 21)</cite>，返回：</p>
+<div class="coder docutils container">
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello World<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>XiaoMing<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>21<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>迭代器<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<p>迭代器是无损耗的高性能循环的抽象，当程序运行前，代码会被预编译为循环 — 这和尾递归优化有异曲同工之秒。一个简单的例子：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="o">*</span> <span class="nx">items() {</span>
+  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">yield</span> <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">*</span> <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>上面创建了一个迭代器。迭代器可以通过 <cite>for of</cite> 使用：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">item</span> <span class="nx">of</span> <span class="nx">items</span><span class="p">())</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>上面依次输出：</p>
+<div class="coder docutils container">
+<div class="highlight-md"><div class="highlight"><pre><span></span>1
+4
+9
+</pre></div>
+</div>
+</div>
+<p>确切的说，这叫做**内联迭代器 inline-iterator**，还有另外一种叫做**闭包迭代器 closure-iterator** （这里不做介绍）。在 JavaScript 虚拟机中，内联迭代器会预编译为循环。</p>
+</div>
+<div class="section" id="id3">
+<h3>类<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>ES 6 提供了类的概念，用于面向对象编程：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+  <span class="p">}</span>
+
+  <span class="nx">sayHello() {</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;XiaoMing&#39;</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">sayHello</span><span class="p">()</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>模块<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>ES 6 提供了标准的模块概念，通常使用一个文件作为模块，多个文件可以组合成为一个更大的模块。</p>
+<p>使用 export 对外暴露模块中的符号：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">export</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">f() {</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>使用 import 导入模块：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">F</span> <span class="nx">from</span> <span class="s1">&#39;./f&#39;</span>
+<span class="kr">import</span> <span class="p">{</span><span class="nx">Person</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./person&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="async-await-promise">
+<h3>async await 和 Promise<a class="headerlink" href="#async-await-promise" title="永久链接至标题">¶</a></h3>
+<p>ES 7 提供了原生的 <cite>async/await</cite> 编程范式，简化异步编程。</p>
+<p>下面是一个定时器的封装，time 秒后返回参数的倍数；如果这个参数小于 0，则返回一个错误：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="nx">async</span> <span class="kd">function</span> <span class="nx">sleep</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">time</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">complete</span><span class="p">,</span> <span class="nx">fail</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">x</span> <span class="o">===</span> <span class="s1">&#39;number&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">complete</span><span class="p">(</span><span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">)</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">fail</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;bad number&#39;</span><span class="p">))</span>
+      <span class="p">}</span>
+    <span class="p">},</span> <span class="nx">time</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>下面，我们来使用这个定时器：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="nx">async</span> <span class="kd">function</span> <span class="nx">main() {</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+
+    <span class="kr">const</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+
+    <span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">sleep</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Catch a error:&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">msg</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;.....................&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>上面输出：</p>
+<div class="coder docutils container">
+<div class="code ts highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">等待</span> <span class="mi">1</span> <span class="n">秒后</span>
+<span class="mi">10000</span>
+<span class="o">//</span> <span class="n">等待</span> <span class="mi">1</span> <span class="n">秒后</span>
+<span class="mi">4</span>
+<span class="o">//</span> <span class="n">出现错误</span>
+<span class="n">Catch</span> <span class="n">a</span> <span class="n">error</span><span class="p">:</span> <span class="n">bad</span> <span class="n">number</span>
+<span class="o">.....................</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>箭头函数<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p>你可以使用箭头函数简化匿名函数的语法。比如下面这个数组迭代函数：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<p>可以简化：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<p>如果函数只有一条语句，则可以省略 <cite>{}</cite>：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>如果参数只有一个，则可以省略 <cite>()</cite>：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">].</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="o">=&gt;</span> <span class="nx">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="typescript">
+<h2>TypeScript<a class="headerlink" href="#typescript" title="永久链接至标题">¶</a></h2>
+<p>&gt; TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Any browser. Any host. Any OS. Open source.</p>
+<p>一些 modern language (吸收了 C C++ Lisp Haskell Pascal 等语言的优点，21 世纪之后出现的语言) 的一个功能是把 ECMAScript （JavaScript 语言标准） 作为目标代码。编写非 ECMAScript 代码，通过编译器生成 ECMAScript 代码。</p>
+<div class="coder docutils container">
+<div class="highlight-md"><div class="highlight"><pre><span></span>+------------+      +----------+      +------------+
+| lang codes | ---&gt; | compiler | ---&gt; | ECMAScript | ===&gt; run in Browser or (JS) VM
++------------+      +----------+      +------------+
+</pre></div>
+</div>
+</div>
+<p>使用 TypeScript 的好处：</p>
+<ul class="simple">
+<li>不需要学习新的语法和语义</li>
+<li>可以直接使用 JavaScript 库，编写的代码可以为 JavaScript 调用，你仍然可以和不懂 TypeScript 的一起协作</li>
+<li>提供静态的类型检查，获得只有静态语言才有的类型安全，并且支持类型推导</li>
+<li>模块化，抽象化 — 构建大型工程的基石</li>
+<li>提前使用 ECMAScript 6 和 ECMAScript 7 规范</li>
+</ul>
+<p><a class="reference external" href="http://www.typescriptlang.org/docs/handbook/basic-types.html">TypeScript 官方文档</a>
+<a class="reference external" href="http://www.css88.com/doc/typescript">TypeScript 中文文档</a></p>
+<div class="section" id="id8">
+<h3>数据类型<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p class="first">number</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="kd">var</span> <span class="nx">b</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.1</span>
+
+<span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="s1">&#39;number&#39;</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">string</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+<span class="kd">var</span> <span class="nx">b</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+
+<span class="kd">var</span> <span class="nx">c</span>: <span class="kt">string</span>      <span class="c1">// 声明</span>
+<span class="nx">c</span> <span class="o">=</span> <span class="s2">&quot;hello world&quot;</span>  <span class="c1">// 赋值</span>
+
+<span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">boolean</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span>: <span class="kt">boolean</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="kc">false</span>
+
+<span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="s1">&#39;boolean&#39;</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first"><cite>object</cite></p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;XiaoMing&quot;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">21</span><span class="p">}</span>
+<span class="k">typeof</span> <span class="nx">a</span> <span class="o">===</span> <span class="s2">&quot;object&quot;</span>
+
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Tom&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+    <span class="kr">public</span> <span class="nx">name</span>: <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">()</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Lili&quot;</span>
+<span class="k">typeof</span> <span class="nx">person</span> <span class="o">===</span> <span class="s2">&quot;object&quot;</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first"><cite>null</cite> 和 <cite>undefined</cite></p>
+<p><cite>null</cite> 和 <cite>undefined</cite> 是其他任何类型的子类型。但是，通常最好不使用 <cite>undefined</cite>，除非没有更好的选择。对于 <cite>null</cite>，当你使用 <cite>object</cite> 的类型时，当没有赋值的时候，可以选择赋予 <cite>null</cite> 值。</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kc">null</span>
+<span class="kd">var</span> <span class="nx">b</span>: <span class="kt">null</span> <span class="o">=</span> <span class="kc">null</span>
+
+<span class="kd">var</span> <span class="nx">c</span>: <span class="kt">string</span> <span class="o">=</span> <span class="kc">null</span> <span class="c1">// 声明，赋予 `null`，表示只申请了 c 地址的内存</span>
+<span class="nx">c</span> <span class="o">=</span> <span class="s2">&quot;abc&quot;</span>            <span class="c1">// 分配一块内存存储 `abc`，将这个地址赋予 c</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">void</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">f</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">g() {</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">any</p>
+<p>忽略类型检查，相当于直接编写 ECMAScript</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span>: <span class="kt">any</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="kd">var</span> <span class="nx">c</span>: <span class="kt">any</span> <span class="o">=</span> <span class="s2">&quot;abc&quot;</span>
+<span class="kd">var</span> <span class="nx">e</span>: <span class="kt">any</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Tom&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">Array</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="kd">var</span> <span class="nx">b</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="kd">var</span> <span class="nx">c</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nx">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="nx">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;world&quot;</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">tuple</p>
+<p>tuple 是一个数据领域用来表示一个数据项的标准格式。TypeScript 使用一个固定数组表示：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">]</span>
+
+<span class="kd">var</span> <span class="nx">b</span><span class="o">:</span> <span class="p">[</span><span class="kt">string</span><span class="p">,</span> <span class="kt">number</span><span class="p">,</span> <span class="kt">string</span><span class="p">]</span>
+<span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;XiaoMing&quot;</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">enum</p>
+<p>枚举，常用在算法表示各个状态：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">enum</span> <span class="nx">Color</span> <span class="p">{</span>
+    <span class="nx">RED</span><span class="p">,</span> <span class="nx">GREEN</span><span class="p">,</span> <span class="nx">BLUE</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">a</span>: <span class="kt">Color</span> <span class="o">=</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">RED</span>
+
+<span class="k">switch</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">case</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">RED</span><span class="o">:</span>
+    <span class="c1">// do something</span>
+    <span class="k">break</span>
+<span class="k">case</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">GREEN</span><span class="o">:</span>
+    <span class="c1">// do something</span>
+    <span class="k">break</span>
+<span class="k">case</span> <span class="nx">Color</span><span class="p">.</span><span class="nx">BLUE</span><span class="o">:</span>
+    <span class="c1">// do something</span>
+    <span class="k">break</span>
+<span class="k">default</span><span class="o">:</span>
+    <span class="k">break</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p class="first">class types</p>
+</li>
+</ul>
+<blockquote>
+<div><div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+    <span class="kr">public</span> <span class="nx">name</span>: <span class="kt">string</span>
+    <span class="kr">public</span> <span class="nx">age</span>: <span class="kt">number</span>
+    <span class="kr">constructor</span> <span class="p">(</span><span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">number</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span>
+    <span class="p">}</span>
+    <span class="kr">public</span> <span class="nx">sayHello() {</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id9">
+<h3>抽象类和类的继承<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>抽象类用于放置共同方法和数据（不能使用 new 实例化），下面定义了一个形状类：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">abstract</span> <span class="kr">class</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">public</span> <span class="nx">x</span>: <span class="kt">number</span>
+  <span class="kr">public</span> <span class="nx">y</span>: <span class="kt">number</span>
+  <span class="kr">public</span> <span class="nx">color</span>: <span class="kt">string</span>
+
+  <span class="kr">public</span> <span class="nx">draw</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ctx</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="kr">abstract</span> <span class="nx">print</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>一般，抽象类作为基类使用，继承抽象类的其他类成为派生类。比如，下面定义了一个矩形类：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Rect</span> <span class="kr">extends</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">public</span> <span class="nx">print() {</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;A Rect&quot;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>使用这个矩形类：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="p">......</span>
+<span class="kd">var</span> <span class="nx">rect</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Rect</span><span class="p">()</span>
+<span class="nx">rect</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+<span class="nx">rect</span><span class="p">.</span><span class="nx">print</span><span class="p">()</span>   <span class="c1">// A Rect</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>接口<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>接口用于某些多态的场景，描述外部应该提供的变量、函数、对象、或者其他内容。一个接口定义如下：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="nx">draw</span><span class="o">:</span> <span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span>
+  <span class="nx">print</span><span class="o">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>这个接口 <cite>Shape</cite> 描述了两个方法：<cite>draw</cite> 和 <cite>print</cite>。你可以编写类来实现这个接口：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">MyShape</span> <span class="kr">implements</span> <span class="nx">Shape</span> <span class="p">{</span>
+  <span class="kr">public</span> <span class="nx">draw</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="p">}</span>
+
+  <span class="kr">public</span> <span class="nx">print() {</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>一旦 <cite>MyShape</cite> 实现了这个接口，任何和这个接口有关系的函数、方法、对象等等，都可以互相操作：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">shape</span>: <span class="kt">Shape</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">shape</span><span class="p">.</span><span class="nx">print</span><span class="p">()</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="p">......</span>
+<span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyShape</span><span class="p">()</span>
+<span class="nx">s</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+<span class="nx">f</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>类型别名<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>你可以使用关键字 <cite>type</cite> 定义类型的别名，这是一种 C-style 的类型定义方式：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">N</span> <span class="o">=</span> <span class="kt">number</span>
+<span class="kd">var</span> <span class="nx">a</span>: <span class="kt">N</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nx">type</span> <span class="nb">String</span> <span class="o">=</span> <span class="kt">string</span>
+<span class="kd">var</span> <span class="nx">b</span>: <span class="kt">String</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
+
+<span class="nx">type</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span>
+  <span class="nx">age</span>: <span class="kt">number</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">c</span>: <span class="kt">Person</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;XiaoMing&#39;</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">33</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>泛型<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>泛型可以提供多样的数据类型。数组本身就是泛型的：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">b</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nx">b</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">c</span>: <span class="kt">Array</span><span class="o">&lt;</span><span class="p">{</span><span class="nx">name</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">number</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nx">c</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;XiaoMing&#39;</span><span class="p">,</span>
+  <span class="nx">age</span>: <span class="kt">33</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<p>你可以定义自己的泛型类：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">My</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kr">private</span> <span class="nx">value</span>: <span class="kt">T</span>
+
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">value</span>: <span class="kt">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span>
+  <span class="p">}</span>
+
+  <span class="nx">getValue</span><span class="p">()</span><span class="o">:</span> <span class="nx">T</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">my1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">My</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nx">my1</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()</span>
+
+<span class="kd">var</span> <span class="nx">my2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">My</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+<span class="nx">my2</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>迭代器<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>在 TypeScript 中，迭代器有几个明确的类型表示：内联迭代器是 Iterable&lt;T&gt;，闭包迭代器是 Iterator&lt;T&gt;。下面是一个内敛迭代器的例子：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="o">*</span> <span class="nx">items</span><span class="p">()</span><span class="o">:</span> <span class="nx">Iterable</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">yield</span> <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">*</span> <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="react">
+<h2>React<a class="headerlink" href="#react" title="永久链接至标题">¶</a></h2>
+<p>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在 2013 年 5 月开源。</p>
+<p>&gt; 当前最新版本 0.16 是使用 MIT 许可协议。</p>
+<div class="section" id="hello-react">
+<h3>Hello React<a class="headerlink" href="#hello-react" title="永久链接至标题">¶</a></h3>
+<div class="coder docutils container">
+<div class="code html highlight-default"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;Demo&lt;/title&gt;
+  &lt;script src=&quot;react.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;react-dom.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;wrapper&quot;&gt;&lt;/div&gt;
+  &lt;script&gt;
+    class Message extends React.Component {
+      render() {
+        return &lt;div&gt;Hello World&lt;/div&gt;
+      }
+    }
+
+    ReactDOM.render(&lt;Message/&gt;, document.getElementById(&#39;wrapper&#39;))
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+<p>React 的两个主要元素分别是：位于 react.js 模块的 <cite>Component</cite> 基类，位于 react-dom.js 的 <cite>render</cite> 函数。通常，你需要编写每个 UI 组件类，这些类应该继承自 react.js 模块的 <cite>Component</cite> 基类；最后，使用 react-dom.js 的 <cite>render</cite> 函数来渲染整个 HTML 文档树。</p>
+</div>
+<div class="section" id="html-dom-react-dom">
+<h3>HTML DOM 和 React DOM<a class="headerlink" href="#html-dom-react-dom" title="永久链接至标题">¶</a></h3>
+<p>HTML DOM 是网页描述的原生文档：</p>
+<div class="coder docutils container">
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;wrapper&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Hello World<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>在 JavaScript 中，HTML DOM 以对象表示，比如：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">wrapper</span>: <span class="kt">HTMLElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;wrapper&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>React DOM 是 React 运行时内部的虚拟 DOM，这层 DOM 保存了 Rect 内部的操作资源，当需要的时候，生成 HTML DOM。一个例子：</p>
+<div class="coder docutils container">
+<div class="code ts highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Message</span> <span class="n">extends</span> <span class="n">React</span><span class="o">.</span><span class="n">Component</span><span class="o">&lt;</span><span class="n">null</span><span class="p">,</span> <span class="n">null</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="n">render</span><span class="p">():</span> <span class="n">JSX</span><span class="o">.</span><span class="n">Element</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="n">Hello</span> <span class="n">World</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">ReactDOM</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">Message</span><span class="o">/&gt;</span><span class="p">,</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;wrapper&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="props">
+<h3>使用 props 注入数据<a class="headerlink" href="#props" title="永久链接至标题">¶</a></h3>
+<p>和模板引擎一样，React 支持数据的渲染 — 一个模板字符串 + 数据 ==&gt; 最终的字符文本。React 使用称为 <strong>JSX</strong> 的语法表示这些模板字符串，里面是 React DOM （包括 HTML DOM） 的内容。每个 <cite>React.Component</cite> 派生的类有一个 <cite>props</cite> 属性，这个属性可以携带任何数据，这就是你放置外部数据的地方。</p>
+<p>例子：</p>
+<div class="coder docutils container">
+<div class="code ts highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">name</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>另一个例子：</p>
+<div class="coder docutils container">
+<div class="code ts highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">TipItem</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">name</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">TipItem</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>一个完整的组件：</p>
+<div class="coder docutils container">
+<div class="code ts highlight-default"><div class="highlight"><pre><span></span>// 定义一个数据接口
+interface User {
+  name: string
+  age: number
+}
+
+// 定义 MyCom1 需要的 props 接口
+interface MyComProps {
+  users: Array&lt;User&gt;
+}
+
+// 定义 MyCom1
+class MyCom1 extends React.Component&lt;MyComProps, null&gt; {
+  public render(): JSX.Element {
+    var items: Array&lt;JSX.Element&gt; = []
+    for (let user of this.props.users) {
+      items.push(
+        &lt;li&gt;
+          &lt;button&gt;{user.name}&lt;/button&gt;
+          &lt;button&gt;{user.age}&lt;/button&gt;
+        &lt;/li&gt;
+      )
+    }
+
+    return (
+      &lt;ul&gt;
+        {items}
+      &lt;/ul&gt;
+    )
+  }
+}
+
+// 定义 MyCom2，这个组件使用 MyCom1
+class MyCom2 extends React.Component&lt;MyComProps, null&gt; {
+  public render(): JSX.Element {
+    var users = [{name: &#39;XiaoMing&#39;, age: 33}, {name: &#39;Lili&#39;, age: 26}]
+    return (
+      &lt;div&gt;
+        &lt;MyCom1 users={users} /&gt;
+        &lt;button&gt;Submit&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>添加事件<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p>你可以为每一个 HTML DOM 绑定事件，例子：</p>
+<div class="coder docutils container">
+<div class="code ts highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCom2</span> <span class="n">extends</span> <span class="n">React</span><span class="o">.</span><span class="n">Component</span><span class="o">&lt;</span><span class="n">MyComProps</span><span class="p">,</span> <span class="n">null</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="n">public</span> <span class="n">render</span><span class="p">():</span> <span class="n">JSX</span><span class="o">.</span><span class="n">Element</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">users</span> <span class="o">=</span> <span class="p">[{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;XiaoMing&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">33</span><span class="p">},</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Lili&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">26</span><span class="p">}]</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">MyCom1</span> <span class="n">users</span><span class="o">=</span><span class="p">{</span><span class="n">users</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">onDidSubmit</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">)}</span><span class="o">&gt;</span><span class="n">Submit</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="n">private</span> <span class="n">onDidSubmit</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;click submit button&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>当点击这个按钮 <cite>button</cite> 时，则会运行 <cite>onDidSubmit</cite> 这个回调函数。</p>
+</div>
+<div class="section" id="setstate-render">
+<h3>使用 setState({}) 改变状态，重新运行 render<a class="headerlink" href="#setstate-render" title="永久链接至标题">¶</a></h3>
+<p>组件有一个 <cite>setState</cite> 函数，当调用时，会运行一系列的函数操作，并且检查 <cite>render</cite> 函数中的组件数据是否发生变化，如果发生就重新渲染。例子：</p>
+<div class="coder docutils container">
+<div class="code ts highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCom2</span> <span class="n">extends</span> <span class="n">React</span><span class="o">.</span><span class="n">Component</span><span class="o">&lt;</span><span class="n">MyComProps</span><span class="p">,</span> <span class="n">null</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="n">private</span> <span class="n">x</span><span class="p">:</span> <span class="n">number</span>
+
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">:</span> <span class="n">MyComProps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="p">}</span>
+
+  <span class="n">public</span> <span class="n">render</span><span class="p">():</span> <span class="n">JSX</span><span class="o">.</span><span class="n">Element</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">users</span> <span class="o">=</span> <span class="p">[{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;XiaoMing&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">33</span><span class="p">},</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Lili&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">26</span><span class="p">}]</span>
+    <span class="n">var</span> <span class="n">xElem</span><span class="p">:</span> <span class="n">JSX</span><span class="o">.</span><span class="n">Element</span> <span class="o">=</span> <span class="n">null</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">xElem</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">x</span> <span class="ow">is</span> <span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">x</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">MyCom1</span> <span class="n">users</span><span class="o">=</span><span class="p">{</span><span class="n">users</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">onDidSubmit</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">)}</span><span class="o">&gt;</span><span class="n">Submit</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="n">xElem</span><span class="p">}</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="n">private</span> <span class="n">onDidSubmit</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;click submit button&#39;</span><span class="p">)</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setState</span><span class="p">({})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>当点击这个按钮 <cite>button</cite> 时，<cite>x</cite> 值加 <cite>1</cite>，调用 <cite>setState</cite> 重新运行 React 的渲染，当运行到 <cite>render</cite> 时，发现 <cite>x</cite> 的值 <cite>&gt; 0</cite>，那么得到新的 DOM <cite>xElem = &lt;p&gt;The x is {this.x}&lt;/p&gt;</cite>，这个组件重新渲染这个 HTML DOM。</p>
+</div>
+<div class="section" id="ref-dom">
+<h3>使用 ref 绑定 DOM 的引用<a class="headerlink" href="#ref-dom" title="永久链接至标题">¶</a></h3>
+<p>你可以使用 <cite>ref</cite> 属性绑定 DOM 的引用。例子：</p>
+<div class="coder docutils container">
+<div class="code ts highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCom2</span> <span class="n">extends</span> <span class="n">React</span><span class="o">.</span><span class="n">Component</span><span class="o">&lt;</span><span class="n">MyComProps</span><span class="p">,</span> <span class="n">null</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="n">private</span> <span class="n">button</span><span class="p">:</span> <span class="n">HTMLElement</span>
+  <span class="n">private</span> <span class="n">com1</span><span class="p">:</span> <span class="n">MyCom1</span>
+
+  <span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">:</span> <span class="n">MyComProps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">null</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">com1</span> <span class="o">=</span> <span class="n">null</span>
+  <span class="p">}</span>
+
+  <span class="n">public</span> <span class="n">render</span><span class="p">():</span> <span class="n">JSX</span><span class="o">.</span><span class="n">Element</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">users</span> <span class="o">=</span> <span class="p">[{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;XiaoMing&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">33</span><span class="p">},</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Lili&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">:</span> <span class="mi">26</span><span class="p">}]</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">MyCom1</span> <span class="n">users</span><span class="o">=</span><span class="p">{</span><span class="n">users</span><span class="p">}</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">o</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="o">.</span><span class="n">com1</span> <span class="o">=</span> <span class="n">o</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">o</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">o</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Submit</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="n">public</span> <span class="n">doSomething</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">button</span><span class="p">)</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">com1</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>每当运行 <cite>render</cite> 时，<cite>ref</cite> 会绑定变量到所在的 HTML DOM 或者 React DOM。这样，你可以在程序中调用这些 DOM 的函数。</p>
+<p>&gt; <cite>{o =&gt; this.com1 = o}</cite> 是 ES 6 箭头函数的写法，等价于 <cite>{ function (o) { this.com1 = o; } }</cite></p>
+</div>
+<div class="section" id="react-lifecycle">
+<h3>React Lifecycle<a class="headerlink" href="#react-lifecycle" title="永久链接至标题">¶</a></h3>
+<img alt="https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/images/component-lifecycle.jpg" src="https://raw.githubusercontent.com/crazycodeboy/RNStudyNotes/master/React%20Native%E4%B9%8BReact%E9%80%9F%E5%AD%A6%E6%95%99%E7%A8%8B/images/component-lifecycle.jpg" />
+<p>一个完整的组件例子：</p>
+<div class="coder docutils container">
+<div class="highlight-ts"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="nx">HelloProps</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kr">class</span> <span class="nx">Hello</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="o">&lt;</span><span class="nx">HelloProps</span><span class="p">,</span> <span class="kc">null</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">props</span>: <span class="kt">MyComProps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="c1">// React 提供的回调接口</span>
+
+  <span class="kr">public</span> <span class="nx">render</span><span class="p">()</span><span class="o">:</span> <span class="nx">JSX</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{}</span>
+  <span class="kr">public</span> <span class="nx">componentWillMount() {</span><span class="p">}</span>
+  <span class="kr">public</span> <span class="nx">componentWillReceiveProps() {</span><span class="p">}</span>
+  <span class="kr">public</span> <span class="nx">shouldComponentUpdate() {</span><span class="p">}</span>
+  <span class="kr">public</span> <span class="nx">componentWillUpdate() {</span><span class="p">}</span>
+  <span class="kr">public</span> <span class="nx">componentDidMount() {</span><span class="p">}</span>
+  <span class="kr">public</span> <span class="nx">componentWillUnmount() {</span><span class="p">}</span>
+
+  <span class="c1">// 你的自定义外部接口</span>
+
+  <span class="kr">public</span> <span class="nx">sayHello() {</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="css-html">
+<h2>CSS 和 HTML<a class="headerlink" href="#css-html" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.w3school.com.cn/html/index.asp">HTML 手册</a></li>
+<li><a class="reference external" href="http://www.w3school.com.cn/css/index.asp">CSS 手册</a></li>
+<li><a class="reference external" href="http://www.zhangxinxu.com/jq/stylus/">Stylus 手册</a></li>
+</ul>
+<p>你必须应该知道并且熟练的常用 CSS 属性：</p>
+<ul class="simple">
+<li><cite>display</cite></li>
+<li><cite>position</cite></li>
+<li><cite>padding</cite></li>
+<li><cite>margin</cite></li>
+<li><cite>overflow</cite></li>
+<li><cite>float</cite></li>
+<li><cite>width</cite></li>
+<li><cite>height</cite></li>
+<li><cite>text-align</cite></li>
+<li><cite>vertical-align</cite></li>
+<li><cite>color</cite></li>
+<li><cite>background-color</cite></li>
+<li><cite>font-size</cite></li>
+<li><cite>font-weight</cite></li>
+<li><cite>line-height</cite></li>
+<li><cite>word-wrap</cite></li>
+<li><cite>word-space</cite></li>
+<li><cite>boarder</cite></li>
+<li></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">JavaScript 快速开始</a><ul>
+<li><a class="reference internal" href="#ecmascript-6-2015-ecmascript-7-next-version">ECMAScript 6 (2015) 和 ECMAScript 7 (Next Version)</a><ul>
+<li><a class="reference internal" href="#id1">模板字符串</a></li>
+<li><a class="reference internal" href="#id2">迭代器</a></li>
+<li><a class="reference internal" href="#id3">类</a></li>
+<li><a class="reference internal" href="#id4">模块</a></li>
+<li><a class="reference internal" href="#async-await-promise">async await 和 Promise</a></li>
+<li><a class="reference internal" href="#id5">箭头函数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#typescript">TypeScript</a><ul>
+<li><a class="reference internal" href="#id8">数据类型</a></li>
+<li><a class="reference internal" href="#id9">抽象类和类的继承</a></li>
+<li><a class="reference internal" href="#id10">接口</a></li>
+<li><a class="reference internal" href="#id11">类型别名</a></li>
+<li><a class="reference internal" href="#id12">泛型</a></li>
+<li><a class="reference internal" href="#id13">迭代器</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#react">React</a><ul>
+<li><a class="reference internal" href="#hello-react">Hello React</a></li>
+<li><a class="reference internal" href="#html-dom-react-dom">HTML DOM 和 React DOM</a></li>
+<li><a class="reference internal" href="#props">使用 props 注入数据</a></li>
+<li><a class="reference internal" href="#id14">添加事件</a></li>
+<li><a class="reference internal" href="#setstate-render">使用 setState({}) 改变状态，重新运行 render</a></li>
+<li><a class="reference internal" href="#ref-dom">使用 ref 绑定 DOM 的引用</a></li>
+<li><a class="reference internal" href="#react-lifecycle">React Lifecycle</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#css-html">CSS 和 HTML</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="progdoc.html"
+                        title="上一章">开发者文档</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="git.html"
+                        title="下一章">Git 代码仓库工作流</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/programming/javascript-getstart.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="git.html" title="Git 代码仓库工作流"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="progdoc.html" title="开发者文档"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webship 0.1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>

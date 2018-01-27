@@ -1,0 +1,335 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Features &#8212; webship 0.1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="3D 建模和 Web 访问" href="3d-models-to-web.html" />
+    <link rel="prev" title="Supermap" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="3d-models-to-web.html" title="3D 建模和 Web 访问"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Supermap"
+             accesskey="P">上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Supermap</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="features">
+<h1>Features<a class="headerlink" href="#features" title="永久链接至标题">¶</a></h1>
+<img alt="http://support.supermap.com.cn:8090/iserver/help/html/zh/Cloud_Clients/img/SuperMapGIS.jpg" src="http://support.supermap.com.cn:8090/iserver/help/html/zh/Cloud_Clients/img/SuperMapGIS.jpg" />
+<div class="section" id="client">
+<h2>Client<a class="headerlink" href="#client" title="永久链接至标题">¶</a></h2>
+<div class="section" id="iclient-for-javascript-9d">
+<h3>iClient for JavaScript 9D<a class="headerlink" href="#iclient-for-javascript-9d" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://iclient.supermap.io/">iClient for JavaScript 9D</a> 集成了开源 JavaScript 2D （少部分 3D） 图像框架：</p>
+<ul class="simple">
+<li><a class="reference external" href="http://leafletjs.com/">Leaflet - an open-source JavaScript library for mobile-friendly interactive maps</a></li>
+<li><a class="reference external" href="https://openlayers.org/">OpenLayers - a high-performance, feature-packed library for all your mapping needs</a></li>
+<li><a class="reference external" href="https://www.mapbox.com/mapbox-gl-js/api/">MapboxGL - a JavaScript library that uses WebGL to render interactive maps from vector tiles and Mapbox styles</a></li>
+<li><a class="reference external" href="http://echarts.baidu.com/">ECharts - a powerful, interactive charting and visualization library for browser</a></li>
+<li><a class="reference external" href="http://mapv.baidu.com/">MapV - a library of geography visualization</a></li>
+</ul>
+<p>Supermap 提供 <strong>iServer</strong> 服务发布图像数据，<strong>iClient</strong> 对这些数据通过不同的图像 JavaScript API 进行呈现。例子：</p>
+<div class="coder docutils container">
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>自定义比例尺地图<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot; margin: 0; overflow: hidden; background: #fff; width: 100%; height: 100%; position: absolute; top: 0;&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;margin: 0 auto; width: 100%; height: 100%&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;../../dist/include-leaflet.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+      <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">isLocal</span> <span class="o">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">server</span> <span class="o">:</span> <span class="s2">&quot;http://117.122.248.69:8090&quot;</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">host</span> <span class="o">+</span> <span class="s2">&quot;/iserver/services/map-jingjin/rest/maps/京津地区地图&quot;</span><span class="p">;</span>
+      <span class="c1">//自定义比例尺</span>
+      <span class="kd">var</span> <span class="nx">scaleDenominators</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4000000</span><span class="p">,</span> <span class="mi">2000000</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">,</span> <span class="mi">500000</span><span class="p">,</span> <span class="mi">250000</span><span class="p">,</span> <span class="mi">125000</span><span class="p">];</span>
+      <span class="kd">var</span> <span class="nx">origin</span> <span class="o">=</span> <span class="p">[</span><span class="mf">114.59</span><span class="p">,</span> <span class="mf">42.31</span><span class="p">];</span>
+      <span class="c1">//leaflet CRS投影设置</span>
+      <span class="kd">var</span> <span class="nx">crs</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">Proj</span><span class="p">.</span><span class="nx">CRS</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="p">{</span>
+          <span class="nx">origin</span><span class="o">:</span> <span class="nx">origin</span><span class="p">,</span>
+          <span class="nx">scaleDenominators</span><span class="o">:</span> <span class="nx">scaleDenominators</span>
+      <span class="p">});</span>
+
+      <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="p">{</span>
+          <span class="nx">crs</span><span class="o">:</span> <span class="nx">crs</span><span class="p">,</span>
+          <span class="nx">center</span><span class="o">:</span> <span class="p">[</span><span class="mf">39.79</span><span class="p">,</span> <span class="mf">116.85</span><span class="p">],</span>
+          <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+          <span class="nx">zoom</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="p">});</span>
+      <span class="nx">L</span><span class="p">.</span><span class="nx">supermap</span><span class="p">.</span><span class="nx">tiledMapLayer</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/ex_map_1.png" src="../../_images/ex_map_1.png" />
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">Supermap iServer 提供固定格式的已经编码过的图像数据服务，iClient 提供一些可编程的 JavaScript API 用于动态操作。</p>
+</div>
+</div>
+<div class="section" id="iclient-for-3d-webgl">
+<h3>iClient for 3D WebGL<a class="headerlink" href="#iclient-for-3d-webgl" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://iclient.supermap.io/web/introduction/3dwebgl.html">iClient for 3D WebGL</a> 基于 <a class="reference external" href="https://cesiumjs.org/">Cesium - an open-source JavaScript library for world-class 3D globes and maps</a> 开源框架，提供 JavaScript WebGL 的 3D 快速开发。例子：</p>
+<div class="coder docutils container">
+<div class="highlight-html"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;IE=Edge,chrome=1&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>鸟巢水面特效<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;../Build/Cesium/Widgets/widgets.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;./css/pretty.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./js/jquery.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./js/config.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./js/require.min.js&quot;</span> <span class="na">data-main</span><span class="o">=</span><span class="s">&quot;js/main&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+        <span class="nt">html</span><span class="o">,</span> <span class="nt">body</span><span class="o">,</span> <span class="p">#</span><span class="nn">cesiumContainer</span> <span class="p">{</span>
+            <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="k">overflow</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span><span class="k">background-color</span><span class="p">:</span> <span class="mh">#000000</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;cesiumContainer&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;loadingbar&#39;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;spinner&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;spinner-container container1&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;spinner-container container2&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;spinner-container container3&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+        <span class="kd">function</span> <span class="nx">onload</span><span class="p">(</span><span class="nx">Cesium</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//初始化viewer部件</span>
+            <span class="kd">var</span> <span class="nx">viewer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cesium</span><span class="p">.</span><span class="nx">Viewer</span><span class="p">(</span><span class="s1">&#39;cesiumContainer&#39;</span><span class="p">,{</span>
+                <span class="nx">imageryProvider</span><span class="o">:</span> <span class="k">new</span> <span class="nx">Cesium</span><span class="p">.</span><span class="nx">BingMapsImageryProvider</span><span class="p">({</span>
+                    <span class="nx">url</span> <span class="o">:</span> <span class="s1">&#39;https://dev.virtualearth.net&#39;</span><span class="p">,</span>
+                    <span class="nx">mapStyle</span> <span class="o">:</span> <span class="nx">Cesium</span><span class="p">.</span><span class="nx">BingMapsStyle</span><span class="p">.</span><span class="nx">AERIAL</span>
+                <span class="p">})</span>
+            <span class="p">});</span>
+            <span class="kd">var</span> <span class="nx">scene</span> <span class="o">=</span> <span class="nx">viewer</span><span class="p">.</span><span class="nx">scene</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">widget</span> <span class="o">=</span> <span class="nx">viewer</span><span class="p">.</span><span class="nx">cesiumWidget</span><span class="p">;</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#loadingbar&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="c1">//添加鸟巢建筑图层</span>
+                <span class="kd">var</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">addS3MTilesLayerByScp</span><span class="p">(</span><span class="nx">URL_CONFIG</span><span class="p">.</span><span class="nx">SCP_NIAOCHAO</span><span class="p">,{</span><span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;niaochao&#39;</span><span class="p">});</span>
+                <span class="c1">//添加鸟巢水面图层</span>
+                <span class="kd">var</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">addS3MTilesLayerByScp</span><span class="p">(</span><span class="nx">URL_CONFIG</span><span class="p">.</span><span class="nx">SCP_NIAOCHAO_WATER</span><span class="p">,{</span><span class="nx">name</span> <span class="o">:</span> <span class="s1">&#39;water&#39;</span><span class="p">});</span>
+                <span class="nx">Cesium</span><span class="p">.</span><span class="nx">when</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">promise1</span><span class="p">,</span><span class="nx">promise2</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">layers</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="c1">//查找水面图层</span>
+                    <span class="kd">var</span> <span class="nx">waterLayer</span><span class="o">=</span><span class="nx">scene</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;water&#39;</span><span class="p">);</span>
+                    <span class="kd">var</span> <span class="nx">style</span><span class="o">=</span><span class="k">new</span> <span class="nx">Cesium</span><span class="p">.</span><span class="nx">Style3D</span><span class="p">();</span>
+                    <span class="c1">//调整水面图层的底部高程，确保水面与模型贴合</span>
+                    <span class="nx">style</span><span class="p">.</span><span class="nx">bottomAltitude</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.8</span><span class="p">;</span>
+                    <span class="nx">waterLayer</span><span class="p">.</span><span class="nx">style3D</span> <span class="o">=</span> <span class="nx">style</span><span class="p">;</span>
+                    <span class="c1">//修改风格后需刷新</span>
+                    <span class="nx">waterLayer</span><span class="p">.</span><span class="nx">refresh</span><span class="p">();</span>
+                    <span class="c1">//设置相机位置、视角，便于观察场景</span>
+                    <span class="nx">scene</span><span class="p">.</span><span class="nx">camera</span><span class="p">.</span><span class="nx">setView</span><span class="p">({</span>
+                        <span class="nx">destination</span> <span class="o">:</span> <span class="k">new</span> <span class="nx">Cesium</span><span class="p">.</span><span class="nx">Cartesian3</span><span class="p">.</span><span class="nx">fromDegrees</span><span class="p">(</span><span class="mf">116.3899</span><span class="p">,</span><span class="mf">40.0001</span><span class="p">,</span><span class="mf">110.0</span><span class="p">),</span>
+                        <span class="nx">orientation</span> <span class="o">:</span> <span class="p">{</span>
+                            <span class="nx">heading</span> <span class="o">:</span><span class="mf">3.5722815225236584</span><span class="p">,</span>
+                            <span class="nx">pitch</span> <span class="o">:-</span><span class="mf">0.35756382305481216</span><span class="p">,</span>
+                            <span class="nx">roll</span> <span class="o">:</span> <span class="mf">2.602362769721367e-13</span>
+                        <span class="p">}</span>
+                    <span class="p">});</span>
+                <span class="p">},</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;加载SCP失败，请检查网络连接状态或者url地址是否正确？&#39;</span><span class="p">;</span>
+                    <span class="nx">widget</span><span class="p">.</span><span class="nx">showErrorPanel</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+                <span class="p">});</span>
+            <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">widget</span><span class="p">.</span><span class="nx">_showRenderLoopErrors</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="s1">&#39;渲染时发生错误，已停止渲染。&#39;</span><span class="p">;</span>
+                    <span class="nx">widget</span><span class="p">.</span><span class="nx">showErrorPanel</span><span class="p">(</span><span class="nx">title</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/ex_map_2.png" src="../../_images/ex_map_2.png" />
+</div>
+</div>
+<div class="section" id="iclient-for-android-ios">
+<h3>iClient for Android | IOS<a class="headerlink" href="#iclient-for-android-ios" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://support.supermap.com.cn:8090/iserver/help/html/zh/index.htm#mergedProjects/an/DevelopGuide/samplecodeUsage.htm">iClient for Android | IOS</a> 针对移动端提供的 SDK 开发包，支持 Android、iOS 平台，帮助用户快速构建轻量级的移动端 GIS 应用。</p>
+</div>
+<div class="section" id="imobile-for-reactnative">
+<h3>iMobile for ReactNative<a class="headerlink" href="#imobile-for-reactnative" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://support.supermap.com.cn/product/iMobile.aspx">iMobile for ReactNative</a> 使用 ReactNative 技术，支持基于 Android 和 iOS 操作系统的智能移动终端，可以快速开发在线和离线的移动 GIS 应用。</p>
+</div>
+</div>
+<div class="section" id="server">
+<h2>Server<a class="headerlink" href="#server" title="永久链接至标题">¶</a></h2>
+<div class="section" id="iserver">
+<h3>iServer<a class="headerlink" href="#iserver" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://support.supermap.com.cn/product/iServer.aspx">iServer</a> 是基于高性能 GIS 内核的云 GIS 应用服务器，分为标准版、专业版、高级版三个版本，具有二三维一体化的服务发布、管理与聚合功能，并提供多层次的扩展开发能力，通过提供多种移动端、Web 端、PC 端等开发 SDK，可用于构建 SOA 应用系统和 GIS 专有云系统。</p>
+<p>总体上，这个服务提供 Java API 和 RESTful API 两种访问方式。</p>
+</div>
+<div class="section" id="iportal">
+<h3>iPortal<a class="headerlink" href="#iportal" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://support.supermap.com.cn/product/iPortal.aspx">iPortal</a> 是面向云计算的 GIS门户平台，可实现对地图、服务、场景、数据等各种 GIS 资源进行整合、发现、分享与管理，还可实现对组织内部多个 GIS 服务器进行监控，保障平台系统安全稳定运行。其个性化的门户定制和 API 扩展开发能力，可以助您快速构建符合自身行业风格的 GIS 门户站点或打造属于组织、单位的特色私有云门户。</p>
+</div>
+<div class="section" id="iexpress">
+<h3>iExpress<a class="headerlink" href="#iexpress" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://support.supermap.com.cn/product/iExpress.aspx">iExpress</a> 是基于云计算技术的 GIS 分发服务器。它作为 GIS 云和端的中介，通过服务代理与缓存加速技术，有效提升云 GIS 的终端访问体验。并提供地图、三维瓦片本地发布与多节点更新推送能力，可用于快速构建跨平台、低成本的 WebGIS 应用系统。</p>
+</div>
+<div class="section" id="imanager">
+<h3>iManager<a class="headerlink" href="#imanager" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://support.supermap.com.cn/product/iCloudManager.aspx">iManager</a> 是全面的 GIS 运维管理中心，可用于应用服务管理、基础设施管理、大数据管理；提供基于容器技术的 Docker 解决方案，可一键创建 SuperMap GIS 大数据站点，快速部署、体验空间大数据服务；可监控多个 GIS 数据节点、GIS 服务节点或任意 Web 站点等类型，监控硬件资源占用、地图访问热点、节点健康状态等指标，实现 GIS 系统的一体化运维监控管理。</p>
+</div>
+</div>
+<div class="section" id="desktop">
+<h2>Desktop<a class="headerlink" href="#desktop" title="永久链接至标题">¶</a></h2>
+<div class="section" id="idesktop">
+<h3>iDesktop<a class="headerlink" href="#idesktop" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://support.supermap.com.cn/product/iDesktop.aspx">iDesktop</a> 是插件式桌面 GIS 软件，提供高级版、专业版和标准版三个版本，具备二三维一体化的数据处理、制图、分析、海图、二三维标绘等功能，支持对在线地图服务的无缝访问及云端资源的协同共享，可用于空间数据的生产、加工、分析和行业应用系统快速定制开发。</p>
+</div>
+<div class="section" id="idesktop-cross">
+<h3>iDesktop Cross<a class="headerlink" href="#idesktop-cross" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://support.supermap.com.cn/product/iDesktop_Cross.aspx">iDesktop Cross</a> 是业界首款跨平台全功能桌面 GIS 软件，突破了专业桌面 GIS 软件只能运行于 Windows 环境的困境，可在 Linux 环境中完美运行。具备空间大数据管理、可视化任务调度的能力，也可用于数据生产、加工、处理、分析以及制图。基于 SuperMap iObjects Java 、Eclipse 和 OSGI 等平台，通过 Java 语言开发的插件式、跨平台 GIS 应用软件，提供了地图制图、数据处理、数据分析等功能，同时提供了灵活的开发框架和辅助控件，便于用户二次开发。</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../../index.html">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Features</a><ul>
+<li><a class="reference internal" href="#client">Client</a><ul>
+<li><a class="reference internal" href="#iclient-for-javascript-9d">iClient for JavaScript 9D</a></li>
+<li><a class="reference internal" href="#iclient-for-3d-webgl">iClient for 3D WebGL</a></li>
+<li><a class="reference internal" href="#iclient-for-android-ios">iClient for Android | IOS</a></li>
+<li><a class="reference internal" href="#imobile-for-reactnative">iMobile for ReactNative</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#server">Server</a><ul>
+<li><a class="reference internal" href="#iserver">iServer</a></li>
+<li><a class="reference internal" href="#iportal">iPortal</a></li>
+<li><a class="reference internal" href="#iexpress">iExpress</a></li>
+<li><a class="reference internal" href="#imanager">iManager</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#desktop">Desktop</a><ul>
+<li><a class="reference internal" href="#idesktop">iDesktop</a></li>
+<li><a class="reference internal" href="#idesktop-cross">iDesktop Cross</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="index.html"
+                        title="上一章">Supermap</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="3d-models-to-web.html"
+                        title="下一章">3D 建模和 Web 访问</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/gis/supermap/features.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="转向" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="3d-models-to-web.html" title="3D 建模和 Web 访问"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Supermap"
+             >上一页</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webship 0.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Supermap</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Wang Tong.
+      由 <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6 创建。
+    </div>
+  </body>
+</html>
