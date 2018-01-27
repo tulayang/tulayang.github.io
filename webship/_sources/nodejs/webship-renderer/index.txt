@@ -1,8 +1,0 @@
-Webship-Renderer
-===============================
-
-.. toctree::
-  :maxdepth: 2
-
-  getstart
-  api/index
